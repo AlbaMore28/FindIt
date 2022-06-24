@@ -1,0 +1,149 @@
+.background_image{
+    background-position: 50%;
+    background-image: url('/storage/img/fondo_header.png');
+    height: 350px;
+}
+
+.filtro_cabecera{
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.nav_bar_cabecera{
+    background-color: rgba(208, 207, 207, 0.75);
+}
+
+.nav_boton{
+    text-shadow: 1px -2px 6px black;
+}
+
+.nav_boton:hover{
+    font-size: 18px;
+    -webkit-text-stroke: 0.4px white;
+}
+
+.nav-item{
+    width: 100px;
+    text-align: center;
+}
+
+.titulo{
+    text-shadow: 1px -2px 6px gray;
+}
+
+.letra{
+    font-size: 26px;
+    font-weight: 300;
+    line-height: 25px;
+}
+
+.acentuar_letras{
+    color: #DBC0A8;
+    font-weight: 630;
+}
+
+.card{
+    position: relative;
+}
+
+.card .face{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    overflow: hidden;
+    transition: .5s;
+}
+
+.card .front{
+    transform: perspective(600px) rotateY(0deg);
+    box-shadow: 5px 5px 11px 3px #888888;
+}
+
+.card .back{
+    transform: perspective(600px) rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card:hover .front{
+    transform: perspective(600px) rotateY(180deg);
+}
+
+.card:hover .back{
+    transform: perspective(600px) rotateY(360deg);
+}
+
+div hr{
+  height: 3px;
+  background-color: white;
+  width: 70%;
+  margin-bottom: 30px;
+}
+
+.titulo_destacados{
+    text-shadow: 1px -2px 6px black;
+}
+
+.rainbow-button {
+  width:calc(130px + 6px);
+  height:calc(48px + 6px);
+  background-image: linear-gradient(90deg, #8593AE 0%, #5A4E4D 49%, #7E675E 80%, #DDA288 100%);
+  border-radius:4px;
+  font-size:15px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.rainbow-button:after {
+  content:attr(alt);
+  width:130px;
+  height:48px;
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.rainbow-button:hover {
+  animation:slidebg 2s linear infinite;
+}
+
+@keyframes slidebg {
+  to {
+    background-position:130px;
+  }
+}
+
+.rainbow-destacado {
+  width:calc(144px + 6px);
+  height:calc(144px + 6px);
+  background-image: linear-gradient(90deg, #8593AE 0%, #5A4E4D 49%, #7E675E 80%, #DDA288 100%);
+  box-shadow: 5px 5px 11px 3px #888888;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.rainbow-destacado:after {
+  content:attr(alt);
+  width:132px;
+  height:132px;
+  --tw-bg-opacity: 1;
+  background-color: rgb(100 116 139 / var(--tw-bg-opacity));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.rainbow-destacado:hover {
+  animation:slid 2s linear infinite;
+}
+
+@keyframes slid {
+  to {
+    background-position:132px;
+  }
+}
+
+
+
+

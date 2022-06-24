@@ -41,4 +41,23 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $appends = [
+        'profile_photo_url',
+    ];
+
+    //Relacion 1 a muchos
+    public function objetosBuscados(){
+        return $this->hasMany(ObjetoBuscadoBusca::class);
+    }
+
+    //Relacion 1 a muchos
+    public function objetosEncontrados(){
+        return $this->hasMany(ObjetoEncontradoEncuentra::class);
+    }
+
+    //Relacion 1 a 1 con imagen (inversa)
+    public function imageUser(){
+        return $this->belongsTo(ImageUser::class,'image_user_id','image_id');
+    }
 }

@@ -17,8 +17,13 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $nombre_usuario = $this->faker->unique()->word(20);
         return [
-            'name' => $this->faker->name(),
+            'nombre' => $this->faker->name(),
+            'apellidos' => $this->faker->lastName(),
+            'nombre_usuario' => $nombre_usuario,
+            'fecha_nac'=> $this->faker->date(),
+            'telefono' => $this->faker->randomNumber(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password

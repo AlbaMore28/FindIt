@@ -1,0 +1,3 @@
+1. En el .env: FILESYSTEM_DISK = public
+2. Meterse  vendor\fakerphp\faker\src\Faker\Provider\Image.php:
+    donde pone unlink filepath poner return filename

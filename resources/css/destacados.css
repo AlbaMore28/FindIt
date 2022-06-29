@@ -11,7 +11,7 @@
     display: flex;
     align-items: center;
     width: fit-content;
-    animation: carouselAnim 15s infinite alternate linear;
+    animation: carouselAnim 7s infinite alternate linear;
 }
 .item-destacado {
     display: flex;
@@ -41,13 +41,13 @@
         transform: translate(0,0);
     }
     to {
-        transform: translate(calc(-70% + (5*220px)));
+        transform: translate(calc(-93% + (5*220px)));
     }
 }
 
 @media only screen and (max-width: 768px) {
     .items-destacados {
-        animation: carouselAnim 15s infinite alternate linear;
+        animation: carouselAnim 10s infinite alternate linear;
     }
 
     @keyframes carouselAnim {

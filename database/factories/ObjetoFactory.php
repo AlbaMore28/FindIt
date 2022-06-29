@@ -22,9 +22,10 @@ class ObjetoFactory extends Factory
             'titulo' =>$this->faker->word(10),
             'descripcion' =>$this->faker->text(250),
             'color' =>$this->faker->word(7),
-            'lugar'=>$this->faker->text(100),
+            'lugar'=>$this->faker->streetAddress(),
             'visibilidad' =>$this->faker->randomElement([0,1]),
             'tamanio' =>$this->faker->randomElement(['grande','mediano','pequenio']),
+            'tipo'=>$this->faker->randomElement(['buscado','encontrado']),
         ];
     }
 }

@@ -13,4 +13,14 @@ class Objeto extends Model
     public function imagesObjeto(){
         return $this->hasMany(ImageObjeto::class);
     }
+
+    //Relacion 1 a 1 con objeto buscado
+    public function objetoBuscado(){
+        return $this->hasOne(ObjetoBuscadoBusca::class);
+    }
+
+    //Relacion 1 a 1 con objeto encontrado
+    public function objetoEncontrado(){
+        return $this->hasOne(ObjetoEncontradoEncuentra::class);
+    }
 }

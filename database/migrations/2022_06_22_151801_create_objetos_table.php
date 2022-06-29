@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('lugar');
             $table->boolean('visibilidad');
             $table->enum('tamanio', ['grande','mediano','pequenio']);
+            $table->enum('tipo', ['buscado','encontrado']);
             $table->timestamps();
         });
     }

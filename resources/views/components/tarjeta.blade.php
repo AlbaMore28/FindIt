@@ -1,7 +1,8 @@
-@props(['link'])
+@props(['link','link2','accion','accion2'])
+
 <div class="card w-64 h-128 my-20 mx-16 ">
     <div class="face front flex flex-col justify-center bg-gray-500 rounded-lg">
-        <div class="bg-gray-700 h-40 w-40 flex justify-center mb-5 mx-12 rounded-lg">
+        <div class="bg-gray-700 h-40 w-40 flex justify-center mb-5 mx-12 rounded-lg sombra-box-front">
             <img class="p-2" alt="" src="{{$link}}" >
         </div>
         <div class="flex justify-center letra">
@@ -9,11 +10,14 @@
         </div>
     </div>
     
-    <div class="face back flex justify-between text-center text-white bg-gray-500 rounded-lg">
-        <div class="flex justify-center">
-            <a href="#" class="rainbow-button mt-64" alt="Registrar Objeto {{$accion2}}"></a>
+    <div class="face back flex justify-col text-center text-white bg-gray-500 rounded-lg">
+        <div class="bg-gray-700 h-40 w-40 flex justify-cente mx-12 rounded-lg margin-box-back">
+            <img class="p-2 oscurecer-img" alt="" src="{{$link2}}" >
         </div>
-        <div class="flex justify-center mb-20">
+        <div class="flex justify-center">
+            <a href="#" class="rainbow-button" alt="Registrar Objeto {{$accion2}}"></a>
+        </div>
+        <div class="flex justify-center mb-16">
             <a href="#" class="rainbow-button" alt="Lista de Objetos {{$accion2}}s"></a>
         </div>
     </div>

@@ -20,25 +20,24 @@ class ObjetoSeeder extends Seeder
      */
     public function run()
     {
-        $objetos = Objeto::factory(10)->create();
+        $objetos = Objeto::factory(20)->create();
         
         foreach($objetos as $objeto){
-            $tipo = rand(0,1);
 
-            switch ($tipo){
-                case 0:
+            switch ($objeto->tipo){
+                case 'buscado':
                     $objetoBuscadoBusca = ObjetoBuscadoBusca::factory(1)->make()[0];
                     $objetoBuscadoBusca->objeto()->associate($objeto);
                     $objetoBuscadoBusca->save();
                     break;
-                case 1:
+                case 'encontrado':
                     $objetoEncontradoEncuentra = ObjetoEncontradoEncuentra::factory(1)->make()[0];
                     $objetoEncontradoEncuentra->objeto()->associate($objeto);
                     $objetoEncontradoEncuentra->save();
                     break;
             }
 
-            $images = Image::factory(rand(1,3))->url('objetos/')->create();
+            $images = Image::factory(rand(1,3))->url('objetos/')->create(['tipo'=>'objeto']);
 
             foreach($images as $image){
                 $imageObjeto = ImageObjeto::factory(1)->make()[0];

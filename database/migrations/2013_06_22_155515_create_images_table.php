@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('url')->unique();
+            $table->enum('tipo', ['user','objeto']);
 
             $table->timestamps();
         });

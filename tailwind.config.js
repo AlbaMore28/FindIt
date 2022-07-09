@@ -16,7 +16,15 @@ module.exports = {
       },
       height: {
         '128': '481px',
-        '400': '721.6px'
+        '400': '721.6px',
+        '792': '792px'
+      },
+      minHeight: {
+        'inherit': 'inherit'
+      },
+      width: {
+        '400': '721.6px',
+        '700': '1012px'
       }
     },
   },

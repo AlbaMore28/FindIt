@@ -20,7 +20,7 @@ class ObjetoSeeder extends Seeder
      */
     public function run()
     {
-        $objetos = Objeto::factory(20)->create();
+        $objetos = Objeto::factory(100)->create();
         
         foreach($objetos as $objeto){
 
@@ -37,7 +37,7 @@ class ObjetoSeeder extends Seeder
                     break;
             }
 
-            $images = Image::factory(rand(1,3))->url('objetos/')->create(['tipo'=>'objeto']);
+            $images = Image::factory(rand(1,3))->url('objetos/', ['item'])->create(['tipo'=>'objeto']);
 
             foreach($images as $image){
                 $imageObjeto = ImageObjeto::factory(1)->make()[0];

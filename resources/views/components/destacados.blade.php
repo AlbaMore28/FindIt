@@ -13,8 +13,8 @@
                             @if ($objeto->tipo == 'encontrado')Encontrado @else Buscando @endif 
                         </p>
                         <p class="name">{{$objeto->titulo}}</p>
-                        {{-- <img src="{{ asset('storage/'. $objeto->imagesObjeto->first()->image->url)}}" alt="objeto"> --}}
-                        <img src="{{ asset('storage/img/bolso.jpg')}}" alt="objeto">
+                        <img src="{{ asset('storage/'. $objeto->imagesObjeto->first()->image->url)}}" alt="objeto">
+                        {{-- <img src="{{ asset('storage/img/bolso.jpg')}}" alt="objeto"> --}}
                         <p class="quote">{{$objeto->lugar}}</p>
                     </div> 
             @endforeach

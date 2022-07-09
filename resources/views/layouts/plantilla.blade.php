@@ -6,19 +6,18 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" />
         <title>FindIt</title>
         <link rel="icon" href="{{ asset('storage/img/brujula.png') }}">
     </head>
     <body>
-        <x-cabecera/>
-        <div class="flex flex-col justify-center bg-gradient-to-t from-blush via-steel to-blue-gray h-full">
-            @yield('contenido')
+        <header>
+            <x-cabecera/>
+        </header>
         
-            <div class="flex justify-center">
-                <hr>
-            </div>
-            <x-destacados :objetos='$objetos'/>
-            
-        </div>
+        <main>
+            @yield('contenido')
+        </main>
+        
     </body>
 </html>

@@ -18,7 +18,7 @@
             <a href="#" class="rainbow-button" alt="Registrar Objeto {{$accion2}}"></a>
         </div>
         <div class="flex justify-center mb-16">
-            <a href="#" class="rainbow-button" alt="Lista de Objetos {{$accion2}}s"></a>
+            <a href="{{route('objetosBuscados.index')}}" class="rainbow-button" alt="Lista de Objetos {{$accion2}}s"></a>
         </div>
     </div>
 </div>

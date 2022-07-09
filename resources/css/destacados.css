@@ -19,9 +19,9 @@
     flex-direction: column;
     position: relative;
     width: 220px;
-    height: 286px;
+    height: 270px;
     margin: 1em 2em;
-    padding: .5em; 
+    padding: .5em .6em; 
     border-radius: 10px;
     box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.05);
 }
@@ -33,7 +33,7 @@
 
 .item-destacado > p.name {
     font-weight: bold;
-    margin-top: -15%;
+    margin-top: -18%;
 }
 
 @keyframes carouselAnim {
@@ -41,7 +41,7 @@
         transform: translate(0,0);
     }
     to {
-        transform: translate(calc(-93% + (5*220px)));
+        transform: translate(calc(-102% + (5*220px)));
     }
 }
 
@@ -93,4 +93,5 @@
 .item-destacado >img{
     border-radius: 5%;
     max-height: 136px;
+    width: 100%;
 }

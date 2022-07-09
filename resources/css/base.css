@@ -1,3 +1,7 @@
+main{
+  min-height: 1104.6px;
+}
+
 .background_image{
     background-position: 50%;
     background-image: url('/storage/img/fondo_header.png');

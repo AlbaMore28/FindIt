@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $images = Image::factory(5)->url()->create(['tipo'=>'user']);
+        $images = Image::factory(10)->url('users/', ['face'])->create(['tipo'=>'user']);
         
         foreach($images as $image){
             $imageUser = ImageUser::factory(1)->make()[0];

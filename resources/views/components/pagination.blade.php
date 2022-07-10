@@ -12,7 +12,7 @@
                 </li>
             @else
                 <li>
-                    <a href="{{ $paginator->previousPageUrl() }}" rel="prev" aria-label="@lang('pagination.previous')">
+                    <a href="{{ $paginator->previousPageUrl() }}#lista" rel="prev" aria-label="@lang('pagination.previous')">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
                         </svg>
@@ -37,7 +37,7 @@
                                 </span>
                             </li>
                         @else
-                            <li><a href="{{ $url }}">
+                            <li><a href="{{ $url }}#lista">
                                 <span class="material-symbols-outlined opacity-20">
                                     circle
                                 </span>
@@ -50,7 +50,7 @@
             {{-- Next Page Link --}}
             @if ($paginator->hasMorePages())
                 <li>
-                    <a href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')">
+                    <a href="{{ $paginator->nextPageUrl() }}#lista" rel="next" aria-label="@lang('pagination.next')">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                         </svg>

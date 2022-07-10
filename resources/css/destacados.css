@@ -32,8 +32,9 @@
 }
 
 .item-destacado > p.name {
-    font-weight: bold;
-    margin-top: -18%;
+    font-size: 20px;
+    margin-top: -19%;
+    margin-bottom: -4%;
 }
 
 @keyframes carouselAnim {

@@ -17,7 +17,7 @@ module.exports = {
       height: {
         '128': '481px',
         '400': '721.6px',
-        '792': '792px'
+        '816': '816px'
       },
       minHeight: {
         'inherit': 'inherit'

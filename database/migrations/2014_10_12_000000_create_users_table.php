@@ -28,7 +28,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('image_user_id')
-                  ->references('image_id')
+                  ->references('id')
                   ->on('image_users')
                   ->onDelete('set null');
         });

@@ -58,6 +58,6 @@ class User extends Authenticatable
 
     //Relacion 1 a 1 con imagen (inversa)
     public function imageUser(){
-        return $this->belongsTo(ImageUser::class,'image_user_id','image_id');
+        return $this->belongsTo(ImageUser::class);
     }
 }

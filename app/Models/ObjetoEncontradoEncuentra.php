@@ -13,7 +13,7 @@ class ObjetoEncontradoEncuentra extends Model
 
     //Relacion 1 a 1 (inversa)
     public function objeto(){
-        return $this->belongsTo(Objeto::class);
+        return $this->belongsTo(Objeto::class,'id','id');
     }
 
     //Relacion 1 a muchos (inversa)

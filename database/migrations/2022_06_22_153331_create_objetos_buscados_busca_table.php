@@ -14,12 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('objetos_buscados_busca', function (Blueprint $table) {
+            $table->id();
             $table->timestamps();
 
-            $table->unsignedBigInteger('objeto_id')->primary();
             $table->unsignedBigInteger('user_id');
 
-            $table->foreign('objeto_id')
+            $table->foreign('id')
                   ->references('id')
                   ->on('objetos')
                   ->onDelete('cascade');

@@ -14,11 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('image_objetos', function (Blueprint $table) {
-            $table->unsignedBigInteger('image_id')->primary();
+            $table->id();
             $table->unsignedBigInteger('objeto_id');
             $table->timestamps();
 
-            $table->foreign('image_id')
+            $table->foreign('id')
                   ->references('id')
                   ->on('images')
                   ->onDelete('cascade');

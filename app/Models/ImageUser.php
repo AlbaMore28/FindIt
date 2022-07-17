@@ -11,7 +11,7 @@ class ImageUser extends Model
 
     //Relacion 1 a 1 con Image (inversa)
     public function image(){
-        return $this->belongsTo(Image::class);
+        return $this->belongsTo(Image::class,'id','id');
     }
     
     //Relacion 1 a 1 con usuario 

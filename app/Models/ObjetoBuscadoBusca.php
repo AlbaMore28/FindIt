@@ -14,7 +14,7 @@ class ObjetoBuscadoBusca extends Model
 
     //Relacion 1 a 1 (inversa)
     public function objeto(){
-        return $this->belongsTo(Objeto::class);
+        return $this->belongsTo(Objeto::class,'id','id');
     }
 
     //Relacion muchos a 1 (inversa)

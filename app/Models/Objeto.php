@@ -16,11 +16,11 @@ class Objeto extends Model
 
     //Relacion 1 a 1 con objeto buscado
     public function objetoBuscado(){
-        return $this->hasOne(ObjetoBuscadoBusca::class);
+        return $this->hasOne(ObjetoBuscadoBusca::class,'id','id');
     }
 
     //Relacion 1 a 1 con objeto encontrado
     public function objetoEncontrado(){
-        return $this->hasOne(ObjetoEncontradoEncuentra::class);
+        return $this->hasOne(ObjetoEncontradoEncuentra::class,'id','id');
     }
 }

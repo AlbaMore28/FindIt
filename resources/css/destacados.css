@@ -19,22 +19,18 @@
     flex-direction: column;
     position: relative;
     width: 220px;
-    height: 270px;
+    height: 277px;
     margin: 1em 2em;
-    padding: .5em .6em; 
     border-radius: 10px;
     box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.05);
 }
 
 .item-destacado > p {
     text-align: center;
-    padding: 1em 0px;
 }
 
 .item-destacado > p.name {
     font-size: 20px;
-    margin-top: -19%;
-    margin-bottom: -4%;
 }
 
 @keyframes carouselAnim {
@@ -85,14 +81,14 @@
     border-radius: 21%;
     padding: 0px;
     width: 55%;
-    margin-right: 77%;
-    margin-top: 2%;
-    transform: rotate(-37deg);
+    margin-right: 69%;
+    margin-top: 6%;
+    transform: rotate(-38deg);
     box-shadow: 4px 4px 5px 0px rgb(0 0 0 / 5%);
 }
 
 .item-destacado >img{
     border-radius: 5%;
-    max-height: 136px;
-    width: 100%;
+    margin-top: -37px;
+    box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.05);
 }

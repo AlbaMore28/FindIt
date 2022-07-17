@@ -12,9 +12,8 @@
                         >
                             @if ($objeto->tipo == 'encontrado')Encontrado @else Buscando @endif 
                         </p>
-                        <p class="name">{{ucfirst($objeto->titulo)}}</p>
-                        <img src="{{ asset('storage/'. $objeto->imagesObjeto->first()->image->url)}}" alt="objeto">
-                        {{-- <img src="{{ asset('storage/img/bolso.jpg')}}" alt="objeto"> --}}
+                        <img class="w-full h-3/5 object-cover object-center" src="{{ asset('storage/'. $objeto->imagesObjeto->first()->image->url)}}" alt="objeto">
+                        <p class="name pt-5 pb-2">{{ucfirst($objeto->titulo)}}</p>
                         <p class="quote">{{$objeto->lugar}}</p>
                     </div> 
             @endforeach

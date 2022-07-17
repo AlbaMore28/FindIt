@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Objeto;
+use App\Models\ObjetoBuscadoBusca;
 use Illuminate\Http\Request;
 
 class ObjetosBuscadosController extends Controller
@@ -43,21 +44,21 @@ class ObjetosBuscadosController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  ObjetoBuscadoBusca  $objetoBuscado
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(ObjetoBuscadoBusca $objetoBuscado)
     {
-        //
+        return view('objetosBuscados.show', compact('objetoBuscado'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  ObjetoBuscadoBusca  $objetoBuscado
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(ObjetoBuscadoBusca $objetoBuscado)
     {
         //
     }
@@ -66,10 +67,10 @@ class ObjetosBuscadosController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  ObjetoBuscadoBusca  $objetoBuscado
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, ObjetoBuscadoBusca $objetoBuscado)
     {
         //
     }
@@ -77,10 +78,10 @@ class ObjetosBuscadosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  ObjetoBuscadoBusca  $objetoBuscado
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(ObjetoBuscadoBusca $objetoBuscado)
     {
         //
     }

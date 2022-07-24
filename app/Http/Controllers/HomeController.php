@@ -22,4 +22,8 @@ class HomeController extends Controller
 
       return view('faq', compact('faqs'));
    }
+
+   public function contactar(){
+      return view('contact');
+   }
 }

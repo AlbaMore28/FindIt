@@ -19,3 +19,5 @@ Route::get('/', [HomeController::class, 'home'])->name('home.index');
 Route::get('objetosBuscados', [ObjetosBuscadosController::class, 'index'])->name('objetosBuscados.index');
 Route::get('objetoBuscado/{objetoBuscado}', [ObjetosBuscadosController::class, 'show'])->name('objetosBuscados.show');
 Route::get('faq', [HomeController::class, 'preguntas'])->name('home.faq');
+Route::get('contact', [HomeController::class, 'contactar'])->name('home.contact');
+Route::get('registroInicioSesion', [HomeController::class, 'vistaRegistroInicioSesion'])->name('home.vistaRegistroInicioSesion');

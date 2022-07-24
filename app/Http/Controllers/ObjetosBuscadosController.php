@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ImageObjeto;
 use App\Models\Objeto;
 use App\Models\ObjetoBuscadoBusca;
 use Illuminate\Http\Request;
@@ -49,7 +50,9 @@ class ObjetosBuscadosController extends Controller
      */
     public function show(ObjetoBuscadoBusca $objetoBuscado)
     {
-        return view('objetosBuscados.show', compact('objetoBuscado'));
+        $objetos = Objeto::where('visibilidad','1')->orderBy('id', 'desc')->take(5)->get();
+        
+        return view('objetosBuscados.show', compact('objetoBuscado','objetos'));
     }
 
     /**

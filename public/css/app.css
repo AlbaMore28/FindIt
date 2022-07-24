@@ -35,7 +35,7 @@ main{
 
 .nav_bar_scroll{
   position: fixed;
-  z-index: 1;
+  z-index: 100;
   top: 0;
   width: 100%;
   height: 100px;
@@ -70,7 +70,7 @@ main{
 
 .enlace_titulo_nav{
   position: fixed;
-  z-index: 2;
+  z-index: 200;
   transition: 0.4s;
   top: 0;
   color: #637190;
@@ -79,7 +79,7 @@ main{
 
 .img_nav{
   position: fixed;
-  z-index: 2;
+  z-index: 200;
   transition: 0.4s;
   width: 40px;
   margin-top: 15px;
@@ -93,7 +93,7 @@ main{
   margin-top: 33px;
   transition: 0.4s;
   margin-left: 200px;
-  z-index: 2;
+  z-index: 200;
 }
 
 .letra{
@@ -252,7 +252,7 @@ div hr{
 
 .login_nav{
   position: fixed;
-  z-index: 2;
+  z-index: 200;
   margin-top: 10px;
   right: 2%;
   top: 0;
@@ -274,6 +274,67 @@ div hr{
 }
 
 
+
+
+
+
+
+
+
+h1 {
+    text-align: center;
+}
+
+.container {
+    width: 500px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    /*  box-shadow is from materialize css's website */
+    box-shadow: 0 24px 38px 3px rgba(0, 0, 0, 0.14),
+        0 9px 46px 8px rgba(0, 0, 0, 0.12), 0 11px 15px -7px rgba(0, 0, 0, 0.2);
+}
+
+.container img {
+    width: 100%;
+    z-index: -2;
+}
+
+button {
+    height: 10%;
+    border: none;
+    outline: none;
+    background: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    padding: 1em;
+    display: flex;
+}
+
+button .arrow {
+    border: solid #fff;
+    border-width: 0 4px 4px 0;
+    display: inline-block;
+    padding: 10px;
+    transition: transform 0.3s ease-out;
+    outline: none;
+}
+
+#right-btn {
+    margin: auto 0 auto -2em;
+}
+
+#right-btn .arrow {
+    transform: rotate(-45deg);
+}
+
+#left-btn {
+    z-index: 0;
+    margin: auto -2em auto 0;
+}
+
+#left-btn .arrow {
+    transform: rotate(135deg);
+}
 .contenedor-destacados {
     width: 70%;
     overflow: hidden;
@@ -386,6 +447,152 @@ div hr{
     border-radius: 5%;
     margin-top: -37px;
     box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.05);
+}
+@font-face {
+    font-family: "icons-1";
+    src: url('/fonts/Byom-Icons-Trial.ttf');
+  
+}
+
+@font-face {
+    font-family: "icons-2";
+    src: url('/fonts/PeaxDrawnIcons.ttf');
+}
+
+.cuadro_info{
+    margin-top: 12%;
+    margin-left: 8%;
+}
+
+.cuadro_grande{
+    margin-top: -1.45px;
+}
+
+.pestania{
+    border-bottom: none !important;
+    z-index: 3;
+    background-color: rgb(255 255 255 / 0.5) !important;
+}
+
+.titulo-pestania{
+    margin-top: 13px;
+}
+
+.imagen-objeto{
+    margin-top: 12%;
+}
+
+.imagen-principal{
+    height: 274px;
+}
+
+.imagen-pequenia{
+    height: 69px;
+}
+
+.imagen-principal:hover{
+    cursor: pointer;
+}
+
+.imagen-pequenia:hover{
+    cursor: pointer;
+}
+
+.icono-lugar{
+    font-family: icons-2;
+}
+
+.icono-chincheta{
+    font-family: icons-1;
+}
+
+.modal{
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgb(0 0 0 / 0.5);
+}
+
+.modal .img-modal{
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.button-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+}
+
+.button-container .button-desplazar-img {
+  color: #fff;
+  font-size: 32px;
+  cursor: pointer;
+  position: relative;
+  opacity: 0.75;
+  transition: all 300ms ease-in-out;
+}
+
+.button-container .button-desplazar-img:hover {
+  opacity: 1;
+}
+
+.button-container .button-desplazar-img:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 1);
+  border-radius: 50%;
+  z-index: -99;
+}
+
+.button-container .button-desplazar-img:nth-child(1) {
+  float: left;
+}
+
+.button-container .button-desplazar-img:nth-child(2) {
+  float: right;
+}
+
+.modal-close{
+    position: absolute;
+    top: 21.5%;
+    right: 30%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 1);
+    border-radius: 50%;
+    padding: 2px;
+    opacity: 0.75;
+    transition: .4s;
+}
+
+.modal-close:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+
+.modal-close > i{
+    opacity: 0.75;
+    color: white;
+    position: relative;
+    top: 3px;
+    transition: .4s;
+}
+
+.modal-close > i:hover{
+    opacity: 1;
+    cursor: pointer;
 }
 /*
 ! tailwindcss v3.1.4 | MIT License | https://tailwindcss.com
@@ -927,6 +1134,14 @@ video {
   margin-left: 3rem;
   margin-right: 3rem;
 }
+.my-32 {
+  margin-top: 8rem;
+  margin-bottom: 8rem;
+}
+.mx-56 {
+  margin-left: 14rem;
+  margin-right: 14rem;
+}
 .mt-10 {
   margin-top: 2.5rem;
 }
@@ -981,6 +1196,27 @@ video {
 .ml-10 {
   margin-left: 2.5rem;
 }
+.mt-3 {
+  margin-top: 0.75rem;
+}
+.mr-2 {
+  margin-right: 0.5rem;
+}
+.ml-28 {
+  margin-left: 7rem;
+}
+.ml-2 {
+  margin-left: 0.5rem;
+}
+.mt-14 {
+  margin-top: 3.5rem;
+}
+.ml-7 {
+  margin-left: 1.75rem;
+}
+.ml-5 {
+  margin-left: 1.25rem;
+}
 .block {
   display: block;
 }
@@ -989,6 +1225,9 @@ video {
 }
 .grid {
   display: grid;
+}
+.hidden {
+  display: none;
 }
 .h-0\.5 {
   height: 0.125rem;
@@ -1034,6 +1273,15 @@ video {
 .h-864 {
   height: 864px;
 }
+.h-screen {
+  height: 100vh;
+}
+.h-1\/2 {
+  height: 50%;
+}
+.h-60 {
+  height: 15rem;
+}
 .min-h-inherit {
   min-height: inherit;
 }
@@ -1066,6 +1314,24 @@ video {
 }
 .w-80 {
   width: 20rem;
+}
+.w-1280 {
+  width: 1280px;
+}
+.w-screen {
+  width: 100vw;
+}
+.w-2\/5 {
+  width: 40%;
+}
+.w-1\/2 {
+  width: 50%;
+}
+.w-1\/3 {
+  width: 33.333333%;
+}
+.w-96 {
+  width: 24rem;
 }
 @-webkit-keyframes bounce {
 
@@ -1156,11 +1422,18 @@ video {
 .border-4 {
   border-width: 4px;
 }
+.border-2 {
+  border-width: 2px;
+}
 .border-solid {
   border-style: solid;
 }
 .border-white\/50 {
   border-color: rgb(255 255 255 / 0.5);
+}
+.border-gray-400 {
+  --tw-border-opacity: 1;
+  border-color: rgb(156 163 175 / var(--tw-border-opacity));
 }
 .bg-white\/50 {
   background-color: rgb(255 255 255 / 0.5);
@@ -1176,6 +1449,13 @@ video {
 .bg-gray-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(107 114 128 / var(--tw-bg-opacity));
+}
+.bg-white\/30 {
+  background-color: rgb(255 255 255 / 0.3);
+}
+.bg-gray-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
 }
 .bg-gradient-to-t {
   background-image: linear-gradient(to top, var(--tw-gradient-stops));
@@ -1266,6 +1546,9 @@ video {
 .pb-2 {
   padding-bottom: 0.5rem;
 }
+.text-left {
+  text-align: left;
+}
 .text-center {
   text-align: center;
 }
@@ -1293,6 +1576,10 @@ video {
   font-size: 1.125rem;
   line-height: 1.75rem;
 }
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
 .font-medium {
   font-weight: 500;
 }
@@ -1317,6 +1604,10 @@ video {
   --tw-text-opacity: 1;
   color: rgb(55 65 81 / var(--tw-text-opacity));
 }
+.text-red-600 {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
 .opacity-20 {
   opacity: 0.2;
 }
@@ -1326,6 +1617,11 @@ video {
 .shadow-sm {
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.shadow-lg {
+  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 .drop-shadow-lg {
@@ -1354,6 +1650,9 @@ video {
 }
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hover\:cursor-pointer:hover {
+  cursor: pointer;
 }
 .hover\:text-gray-700:hover {
   --tw-text-opacity: 1;

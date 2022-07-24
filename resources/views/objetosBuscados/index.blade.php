@@ -9,7 +9,7 @@
                     @foreach ($objetosBuscados as $objetoBuscado)
                         <a href="{{route('objetosBuscados.show', $objetoBuscado)}}">
                             <div class="flex flex-col items-center text-center text-lg font-semibold text-blue-gray-dark bg-white/50 rounded-xl shadow-sm">
-                                <img class=" h-40 rounded-xl shadow-sm w-full object-cover object-center" src="{{ asset('storage/'. $objetoBuscado->imagesObjeto->first()->image->url)}}" alt="objeto">
+                                <img class=" h-40 rounded-xl shadow-sm w-full object-cover object-center" src="{{ asset('storage/'. $objetoBuscado->imagesObjeto->first()->image->url) }}" alt="objeto">
                                 <p class="name mt-2">{{ucfirst($objetoBuscado->titulo)}}</p>
                                 <p class="quote pb-2">{{$objetoBuscado->lugar}}</p>
                             </div>

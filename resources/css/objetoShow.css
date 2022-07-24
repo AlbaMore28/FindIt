@@ -1,0 +1,146 @@
+@font-face {
+    font-family: "icons-1";
+    src: url('/fonts/Byom-Icons-Trial.ttf');
+  
+}
+
+@font-face {
+    font-family: "icons-2";
+    src: url('/fonts/PeaxDrawnIcons.ttf');
+}
+
+.cuadro_info{
+    margin-top: 12%;
+    margin-left: 8%;
+}
+
+.cuadro_grande{
+    margin-top: -1.45px;
+}
+
+.pestania{
+    border-bottom: none !important;
+    z-index: 3;
+    background-color: rgb(255 255 255 / 0.5) !important;
+}
+
+.titulo-pestania{
+    margin-top: 13px;
+}
+
+.imagen-objeto{
+    margin-top: 12%;
+}
+
+.imagen-principal{
+    height: 274px;
+}
+
+.imagen-pequenia{
+    height: 69px;
+}
+
+.imagen-principal:hover{
+    cursor: pointer;
+}
+
+.imagen-pequenia:hover{
+    cursor: pointer;
+}
+
+.icono-lugar{
+    font-family: icons-2;
+}
+
+.icono-chincheta{
+    font-family: icons-1;
+}
+
+.modal{
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgb(0 0 0 / 0.5);
+}
+
+.modal .img-modal{
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.button-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+}
+
+.button-container .button-desplazar-img {
+  color: #fff;
+  font-size: 32px;
+  cursor: pointer;
+  position: relative;
+  opacity: 0.75;
+  transition: all 300ms ease-in-out;
+}
+
+.button-container .button-desplazar-img:hover {
+  opacity: 1;
+}
+
+.button-container .button-desplazar-img:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 1);
+  border-radius: 50%;
+  z-index: -99;
+}
+
+.button-container .button-desplazar-img:nth-child(1) {
+  float: left;
+}
+
+.button-container .button-desplazar-img:nth-child(2) {
+  float: right;
+}
+
+.modal-close{
+    position: absolute;
+    top: 21.5%;
+    right: 30%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 1);
+    border-radius: 50%;
+    padding: 2px;
+    opacity: 0.75;
+    transition: .4s;
+}
+
+.modal-close:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+
+.modal-close > i{
+    opacity: 0.75;
+    color: white;
+    position: relative;
+    top: 3px;
+    transition: .4s;
+}
+
+.modal-close > i:hover{
+    opacity: 1;
+    cursor: pointer;
+}

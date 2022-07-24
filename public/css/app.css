@@ -335,6 +335,48 @@ button .arrow {
 #left-btn .arrow {
     transform: rotate(135deg);
 }
+
+#info{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin: 10px;
+  transition: 0.6s;
+  -webkit-animation: 0.5s ease-in alerta-derecha-izquierda;
+          animation: 0.5s ease-in alerta-derecha-izquierda;
+  z-index: 1000;
+}
+
+@-webkit-keyframes alerta-derecha-izquierda {
+  from {
+    left: 50%;
+    
+  }
+  to {transform: translateX(-100%);
+    left: 0;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes alerta-derecha-izquierda {
+  from {
+    left: 50%;
+    
+  }
+  to {transform: translateX(-100%);
+    left: 0;
+    transform: translateX(0%);
+  }
+}
+
+#close-info{
+  opacity: 0.75;
+  transform: translateY(10%);
+}
+
+#close-info:hover{
+  opacity: 1;
+}
 .contenedor-destacados {
     width: 70%;
     overflow: hidden;
@@ -1425,6 +1467,9 @@ video {
 .border-2 {
   border-width: 2px;
 }
+.border-l-4 {
+  border-left-width: 4px;
+}
 .border-solid {
   border-style: solid;
 }
@@ -1434,6 +1479,18 @@ video {
 .border-gray-400 {
   --tw-border-opacity: 1;
   border-color: rgb(156 163 175 / var(--tw-border-opacity));
+}
+.border-red-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(239 68 68 / var(--tw-border-opacity));
+}
+.border-yellow-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(234 179 8 / var(--tw-border-opacity));
+}
+.border-green-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(34 197 94 / var(--tw-border-opacity));
 }
 .bg-white\/50 {
   background-color: rgb(255 255 255 / 0.5);
@@ -1456,6 +1513,18 @@ video {
 .bg-gray-400 {
   --tw-bg-opacity: 1;
   background-color: rgb(156 163 175 / var(--tw-bg-opacity));
+}
+.bg-red-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 226 226 / var(--tw-bg-opacity));
+}
+.bg-yellow-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 249 195 / var(--tw-bg-opacity));
+}
+.bg-green-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 252 231 / var(--tw-bg-opacity));
 }
 .bg-gradient-to-t {
   background-image: linear-gradient(to top, var(--tw-gradient-stops));
@@ -1502,6 +1571,9 @@ video {
 }
 .p-10 {
   padding: 2.5rem;
+}
+.p-4 {
+  padding: 1rem;
 }
 .py-2\.5 {
   padding-top: 0.625rem;
@@ -1607,6 +1679,18 @@ video {
 .text-red-600 {
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+.text-red-700 {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity));
+}
+.text-yellow-700 {
+  --tw-text-opacity: 1;
+  color: rgb(161 98 7 / var(--tw-text-opacity));
+}
+.text-green-700 {
+  --tw-text-opacity: 1;
+  color: rgb(21 128 61 / var(--tw-text-opacity));
 }
 .opacity-20 {
   opacity: 0.2;

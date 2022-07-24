@@ -17,8 +17,27 @@
         </header>
         
         <main>
+            @if (session('success'))
+                <x-alerta color='green' :mensaje="session('success')"/>
+            @endif
+            @if (session('info'))
+                <x-alerta color='yellow' :mensaje="session('info')"/>
+            @endif
+            @if (session('error'))
+                <x-alerta color='red' :mensaje="session('error')"/>
+            @endif
+            <div>
+                {{ Auth::user() }}
+            </div>
+            @auth
+                <a href="{{ route('home.cerrarSesion') }}">Cerrar Sesión</a>
+            @endauth
+            @guest
+                <a href="{{ route('home.vistaRegistroInicioSesion') }}">Iniciar Sesión</a>
+            @endguest
             @yield('contenido')
         </main>
         
+        <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>

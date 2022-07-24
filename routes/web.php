@@ -20,4 +20,14 @@ Route::get('objetosBuscados', [ObjetosBuscadosController::class, 'index'])->name
 Route::get('objetoBuscado/{objetoBuscado}', [ObjetosBuscadosController::class, 'show'])->name('objetosBuscados.show');
 Route::get('faq', [HomeController::class, 'preguntas'])->name('home.faq');
 Route::get('contact', [HomeController::class, 'contactar'])->name('home.contact');
-Route::get('registroInicioSesion', [HomeController::class, 'vistaRegistroInicioSesion'])->name('home.vistaRegistroInicioSesion');
+
+
+Route::middleware('guest')->group(function (){
+    Route::get('registroInicioSesion', [HomeController::class, 'vistaRegistroInicioSesion'])->name('home.vistaRegistroInicioSesion');
+    //Route::post('registro', [HomeController::class, 'registro'])->name('home.registro');
+    Route::post('inicioSesion', [HomeController::class, 'iniciarSesion'])->name('home.iniciarSesion');
+});
+
+Route::middleware('auth')->group(function (){
+    Route::get('cerrarSesion', [HomeController::class, 'cerrarSesion'])->name('home.cerrarSesion');
+});

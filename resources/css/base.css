@@ -319,3 +319,33 @@ button .arrow {
 #left-btn .arrow {
     transform: rotate(135deg);
 }
+
+#info{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin: 10px;
+  transition: 0.6s;
+  animation: 0.5s ease-in alerta-derecha-izquierda;
+  z-index: 1000;
+}
+
+@keyframes alerta-derecha-izquierda {
+  from {
+    left: 50%;
+    
+  }
+  to {transform: translateX(-100%);
+    left: 0;
+    transform: translateX(0%);
+  }
+}
+
+#close-info{
+  opacity: 0.75;
+  transform: translateY(10%);
+}
+
+#close-info:hover{
+  opacity: 1;
+}

@@ -24,7 +24,7 @@ Route::get('contact', [HomeController::class, 'contactar'])->name('home.contact'
 
 Route::middleware('guest')->group(function (){
     Route::get('registroInicioSesion', [HomeController::class, 'vistaRegistroInicioSesion'])->name('home.vistaRegistroInicioSesion');
-    //Route::post('registro', [HomeController::class, 'registro'])->name('home.registro');
+    Route::post('registro', [HomeController::class, 'registro'])->name('home.registro');
     Route::post('inicioSesion', [HomeController::class, 'iniciarSesion'])->name('home.iniciarSesion');
 });
 

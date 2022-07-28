@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Image;
+use App\Models\User;
 use Illuminate\Contracts\Cache\Store;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -17,24 +18,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Storage::deleteDirectory('users');
+        /* Storage::deleteDirectory('users');
         Storage::deleteDirectory('objetos');
         Storage::makeDirectory('users');
-        Storage::makeDirectory('objetos');
+        Storage::makeDirectory('objetos'); */
 
-        $this->call(UserSeeder::class);
+        $this->call(RoleSeeder::class);
+
+        /* $this->call(UserSeeder::class);
         $this->call(ObjetoSeeder::class);
 
-        $this->call(FaqSeeder::class);
-        
+        $this->call(FaqSeeder::class); */
 
-        
-        
-        
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
 }

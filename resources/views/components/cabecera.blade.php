@@ -27,10 +27,12 @@
             <a class="nav-link block pr-2 lg:px-2  hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out nav_boton"
               href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light">ABOUT</a>
           </li>
-          <li class="nav-item px-2">
-            <a class="nav-link block pr-2 lg:px-2  hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out nav_boton"
-              href="{{route('home.faq')}}" data-mdb-ripple="true" data-mdb-ripple-color="light">FAQ</a>
-          </li>
+          @can('home.faq')
+            <li class="nav-item px-2">
+              <a class="nav-link block pr-2 lg:px-2  hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out nav_boton"
+                href="{{route('home.faq')}}" data-mdb-ripple="true" data-mdb-ripple-color="light">FAQ</a>
+            </li>
+          @endcan
           <li class="nav-item px-2">
             <a class="nav-link block pr-2 lg:px-2  hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out nav_boton"
               href="{{route('home.contact')}}" data-mdb-ripple="true" data-mdb-ripple-color="light">CONTACT</a>

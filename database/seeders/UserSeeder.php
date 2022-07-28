@@ -17,6 +17,24 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        User::create([
+            'nombre' => 'Alba',
+            'apellidos' => 'Moreno',
+            'nombre_usuario' => 'alba_more',
+            'email' => 'moreno.alba.97@gmail.com',
+            'fecha_nac' => '2022-07-28',
+            'password' => bcrypt('1234')
+        ])->assignRole('Administrador');
+
+        User::create([
+            'nombre' => 'Nabil',
+            'apellidos' => 'Ali',
+            'nombre_usuario' => 'nobol',
+            'fecha_nac' => '2022-07-28',
+            'email' => 'nobolaa@gmail.com',
+            'password' => bcrypt('1234')
+        ])->assignRole('Moderador');
+        
         $images = Image::factory(10)->url('users/', ['face'])->create(['tipo'=>'user']);
         
         foreach($images as $image){

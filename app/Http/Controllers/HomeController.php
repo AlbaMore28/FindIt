@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
+   public function __construct(){
+      $this->middleware('can:home.faq')->only('preguntas');
+   }
+
    public function home()
    {
       $objetos = Objeto::where('visibilidad','1')->orderBy('id', 'desc')->take(5)->get();

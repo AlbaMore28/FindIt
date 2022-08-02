@@ -15,7 +15,7 @@
             <img class="p-2 oscurecer-img" alt="" src="{{$link2}}" >
         </div>
         <div class="flex justify-center">
-            <a href="#" class="rainbow-button" alt="Registrar Objeto {{$accion2}}"></a>
+            <a href="{{route('objetosBuscados.create')}}" class="rainbow-button" alt="Registrar Objeto {{$accion2}}"></a>
         </div>
         <div class="flex justify-center mb-16">
             <a href="{{route('objetosBuscados.index')}}" class="rainbow-button" alt="Lista de Objetos {{$accion2}}s"></a>

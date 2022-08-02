@@ -7,14 +7,27 @@
           <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
         </svg>
         <a id="enlace" href="{{route('home.index')}}" class="flex flex-row justify-center text-center">
-          <img id="imagen" class="h-14 w-14 mt-32" alt="" src="{{ asset('storage/img/brujula_blanca.png') }}" >
+          <img id="imagen" class="h-14 w-14 mt-32" alt="" src="{{asset('storage/img/brujula_blanca.png')}}" >
           <h1 id="titulo" class="text-5xl font-bold mb-6 titulo">FindIt</h1>
         </a>
         <div id="login" class="flex flex-col justify-items-center mt-8 text-white">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          <a href="{{route('home.vistaRegistroInicioSesion')}}" class="text-xs text-center">Regitrarse/<br>Iniciar Sesión</a>
+          @auth
+            @if (Auth::user()->imageUser)
+              <img src="{{asset('storage/'.Auth::user()->imageUser->image->url)}}" class="h-12 w-12 ml-3 mb-1 rounded-full border-2 border-solid border-white" alt="imagen user">
+            @else
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            @endif
+            <p class="text-xs text-center">{{ucfirst(Auth::user()->nombre_usuario)}}</p>
+            <a href="{{route('home.cerrarSesion')}}" class="text-xs text-center">Cerrar Sesión</a>
+          @endauth
+          @guest
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <a href="{{route('home.vistaRegistroInicioSesion')}}" class="text-xs text-center">Regitrarse/<br>Iniciar Sesión</a>
+          @endguest
         </div>
       </div>
       <div class="h-14">

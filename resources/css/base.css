@@ -257,14 +257,6 @@ div hr{
   margin-top: -31px;
 }
 
-
-
-
-
-
-
-
-
 h1 {
     text-align: center;
 }
@@ -348,4 +340,93 @@ button .arrow {
 
 #close-info:hover{
   opacity: 1;
+}
+
+/* label color */
+label {
+  color: #637190 !important;
+}
+
+/* label focus color */
+.input-field input[type=text]:focus + label {
+  color: #7E675E !important;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid #DBC0A8 !important;
+  box-shadow: 0 1px 0 0 #DBC0A8 !important;
+}
+/* valid color */
+.input-field input[type=text].valid {
+  border-bottom: 1px solid #637190 !important;
+  box-shadow: 0 1px 0 0 #637190 !important;
+}
+/* invalid color */
+.input-field input[type=text].invalid {
+  border-bottom: 1px solid red !important;
+  box-shadow: 0 1px 0 0 #637190 !important;
+}
+/* icon prefix focus color */
+.input-field .prefix.active {
+  color: #637190 !important;
+}
+
+/*option select */
+content li>a, .dropdown-content li>span{
+  color: #637190 !important;
+}
+.select-dropdown li.disabled>span, .select-dropdown li.optgroup {
+  color: rgba(0,0,0,0.3) !important;
+}
+
+/* Boton activar visibilidad */
+.switch label input[type=checkbox]:checked+.lever {
+  background-color: #8593AE !important;
+}
+input[type=checkbox]:checked+.lever:after {
+  background-color: #637190 !important;
+}
+
+.boton-form{
+  background-color: #637190 !important;
+}
+.boton-form:hover{
+  background-color: #8593AE !important;
+}
+
+.texto-boton{
+  position: relative;
+  top: -4px;
+}
+
+/* boton files */
+input[type="file"] {
+  display: none;
+}
+
+.icono-file{
+  position: relative;
+  top: 6px;
+}
+
+.boton-file:hover{
+  opacity: 0.5 ;
+}
+
+.input-field textarea:focus{
+  outline: none !important;
+  border-bottom: 1px solid #DBC0A8 !important;
+  box-shadow: 0 1px 0 0 #DBC0A8 !important;
+}
+
+input[type=color]:hover{
+  cursor: pointer;
+}
+
+/* focus color input */
+input[type=color]:focus{
+  outline: none !important;
+  border: solid #DBC0A8 !important;
+  box-shadow: 0 1px 0 0 #DBC0A8 !important;
+  border-radius: 10px;
 }

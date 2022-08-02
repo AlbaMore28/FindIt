@@ -8,6 +8,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+        @yield('css')
         <title>FindIt</title>
         <link rel="icon" href="{{ asset('storage/img/brujula.png') }}">
     </head>
@@ -26,18 +27,10 @@
             @if (session('error'))
                 <x-alerta color='red' :mensaje="session('error')"/>
             @endif
-            <div>
-                {{ Auth::user() }}
-            </div>
-            @auth
-                <a href="{{ route('home.cerrarSesion') }}">Cerrar Sesión</a>
-            @endauth
-            @guest
-                <a href="{{ route('home.vistaRegistroInicioSesion') }}">Iniciar Sesión</a>
-            @endguest
             @yield('contenido')
         </main>
         
+        @yield('js')
         <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>

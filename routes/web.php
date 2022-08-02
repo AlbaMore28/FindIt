@@ -30,4 +30,6 @@ Route::middleware('guest')->group(function (){
 
 Route::middleware('auth')->group(function (){
     Route::get('cerrarSesion', [HomeController::class, 'cerrarSesion'])->name('home.cerrarSesion');
+    Route::get('objetosBuscados/create', [ObjetosBuscadosController::class, 'create'])->name('objetosBuscados.create');
+    Route::post('objetosBuscados', [ObjetosBuscadosController::class, 'store'])->name('objetosBuscados.store');
 });

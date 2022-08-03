@@ -24,6 +24,7 @@ module.exports = {
         'inherit': 'inherit'
       },
       width: {
+        '450': '450px',
         '400': '721.6px',
         '700': '1012px',
         '800': '800px',

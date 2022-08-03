@@ -4,7 +4,7 @@
     <div class=" contenedor-destacados"> 
         <div class="items-destacados text-white">
             @foreach ($objetos as $objeto)    
-                <a href="@if ($objeto->tipo == 'buscado') {{route('objetosBuscados.show', $objeto->objetoBuscado)}} @else {{route('home.index')}} @endif">
+                <a href="@if ($objeto->tipo == 'buscado') {{route('objetosBuscados.show', $objeto->objetoBuscado)}} @else {{route('objetosEncontrados.show', $objeto->objetoEncontrado)}} @endif">
                     <div class="item-destacado bg-gradient-to-l from-blue-gray-dark to-blue-gray">
                         <p class="etiqueta-tipo 
                             @if ($objeto->tipo == 'encontrado') bg-gray-700 text-white 

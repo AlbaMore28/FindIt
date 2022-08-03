@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ObjetosBuscadosController;
+use App\Http\Controllers\ObjetosEncontradosController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,10 +17,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'home'])->name('home.index');
-Route::get('objetosBuscados', [ObjetosBuscadosController::class, 'index'])->name('objetosBuscados.index');
-Route::get('objetoBuscado/{objetoBuscado}', [ObjetosBuscadosController::class, 'show'])->name('objetosBuscados.show');
 Route::get('faq', [HomeController::class, 'preguntas'])->name('home.faq');
 Route::get('contact', [HomeController::class, 'contactar'])->name('home.contact');
+
+Route::get('objetosBuscados', [ObjetosBuscadosController::class, 'index'])->name('objetosBuscados.index');
+Route::get('objetoBuscado/{objetoBuscado}', [ObjetosBuscadosController::class, 'show'])->name('objetosBuscados.show');
+
+Route::get('objetosEncontrados', [ObjetosEncontradosController::class, 'index'])->name('objetosEncontrados.index');
+Route::get('objetoEncontrado/{objetoEncontrado}', [ObjetosEncontradosController::class, 'show'])->name('objetosEncontrados.show');
 
 
 Route::middleware('guest')->group(function (){
@@ -30,6 +35,10 @@ Route::middleware('guest')->group(function (){
 
 Route::middleware('auth')->group(function (){
     Route::get('cerrarSesion', [HomeController::class, 'cerrarSesion'])->name('home.cerrarSesion');
+
     Route::get('objetosBuscados/create', [ObjetosBuscadosController::class, 'create'])->name('objetosBuscados.create');
     Route::post('objetosBuscados', [ObjetosBuscadosController::class, 'store'])->name('objetosBuscados.store');
+
+    Route::get('objetosEncontrados/create', [ObjetosEncontradosController::class, 'create'])->name('objetosEncontrados.create');
+    Route::post('objetosEncontrados', [ObjetosEncontradosController::class, 'store'])->name('objetosEncontrados.store');
 });

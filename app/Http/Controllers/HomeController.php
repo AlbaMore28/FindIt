@@ -38,7 +38,9 @@ class HomeController extends Controller
    }
 
    public function vistaRegistroInicioSesion(){
-      return view('home.registroInicioSesion');
+      $objetos = Objeto::where('visibilidad','1')->orderBy('id', 'desc')->take(5)->get();
+      
+      return view('home.registroInicioSesion', compact('objetos'));
    }
 
    public function iniciarSesion(Request $request){

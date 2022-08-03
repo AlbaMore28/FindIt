@@ -1,4 +1,4 @@
-@props(['link','link2','accion','accion2'])
+@props(['link','link2','accion','accion2','rutaCrear','rutaListar'])
 
 <div class="card w-64 h-128 my-20 mx-16 ">
     <div class="face front flex flex-col justify-center bg-gray-500 rounded-lg">
@@ -15,10 +15,10 @@
             <img class="p-2 oscurecer-img" alt="" src="{{$link2}}" >
         </div>
         <div class="flex justify-center">
-            <a href="{{route('objetosBuscados.create')}}" class="rainbow-button" alt="Registrar Objeto {{$accion2}}"></a>
+            <a href="{{$rutaCrear}}" class="rainbow-button" alt="Registrar Objeto {{$accion2}}"></a>
         </div>
         <div class="flex justify-center mb-16">
-            <a href="{{route('objetosBuscados.index')}}" class="rainbow-button" alt="Lista de Objetos {{$accion2}}s"></a>
+            <a href="{{$rutaListar}}" class="rainbow-button" alt="Lista de Objetos {{$accion2}}s"></a>
         </div>
     </div>
 </div>

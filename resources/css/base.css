@@ -430,3 +430,27 @@ input[type=color]:focus{
   box-shadow: 0 1px 0 0 #DBC0A8 !important;
   border-radius: 10px;
 }
+
+/* label underline focus color */
+.input-field input[type=password]:focus {
+  border-bottom: 1px solid #DBC0A8 !important;
+  box-shadow: 0 1px 0 0 #DBC0A8 !important;
+}
+
+/* label underline focus color */
+.input-field input[type=email]:focus {
+  border-bottom: 1px solid #DBC0A8 !important;
+  box-shadow: 0 1px 0 0 #DBC0A8 !important;
+}
+
+/* label underline focus color */
+.input-field input[type=tel]:focus {
+  border-bottom: 1px solid #DBC0A8 !important;
+  box-shadow: 0 1px 0 0 #DBC0A8 !important;
+}
+
+/* label underline focus color */
+.input-field input[type=date]:focus {
+  border-bottom: 1px solid #DBC0A8 !important;
+  box-shadow: 0 1px 0 0 #DBC0A8 !important;
+}

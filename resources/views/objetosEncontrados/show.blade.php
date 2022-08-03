@@ -1,10 +1,10 @@
 @extends('layouts.plantilla')
 @section('contenido')
     <div class="flex flex-col text-center bg-gradient-to-t from-blush via-steel to-blue-gray min-h-inherit items-center">
-        <h1 id="lista" class="text-white mt-20 mb-11 titulo_seccion">{{ucfirst($objetoBuscado->objeto->titulo)}}</h1>
+        <h1 id="lista" class="text-white mt-20 mb-11 titulo_seccion">{{ucfirst($objetoEncontrado->objeto->titulo)}}</h1>
         <div class="flex h-400 w-1280 justify-center border-4 border-solid border-white/50 rounded-xl">
             <div class="flex flex-col imagen-objeto">
-                <img class="imagen-principal rounded-xl shadow-lg" src="{{ asset('storage/'. $objetoBuscado->objeto->imagesObjeto->first()->image->url)}}" alt="objeto" onclick="activarModal(this.src, 0)">
+                <img class="imagen-principal rounded-xl shadow-lg" src="{{ asset('storage/'. $objetoEncontrado->objeto->imagesObjeto->first()->image->url)}}" alt="objeto" onclick="activarModal(this.src, 0)">
                 <div id="imagen-modal" class="hidden h-screen w-screen modal">
                     <img id="img-mod" class="rounded-xl shadow-lg img-modal w-2/5" alt="objeto">
                     <div class="button-container w-2/5">
@@ -15,10 +15,10 @@
                         <i class="fas fa-close h-6 w-6"></i>
                     </div>
                 </div>
-                @if (count($objetoBuscado->objeto->imagesObjeto)>1)
+                @if (count($objetoEncontrado->objeto->imagesObjeto)>1)
                     <p class=" text-sm text-left mt-7">Más imágenes</p>
                     <div class="flex">
-                        @foreach ($objetoBuscado->objeto->imagesObjeto as $imagen)
+                        @foreach ($objetoEncontrado->objeto->imagesObjeto as $imagen)
                             @if (!$loop->first && $loop->iteration < 4 && !$loop->last)
                                 <img class="imagen-pequenia mt-3 mr-2 rounded-xl" src="{{ asset('storage/'.$imagen->image->url)}}" alt="objeto" onclick="activarModal(this.src, {{$loop->index}})">
                             @endif
@@ -48,7 +48,7 @@
                 {{-- Pestaña descripción --}}
                 <div id="contenido-pestania-1" class="flex items-center w-full h-1/2 cuadro_grande bg-white/50 border-2 border-solid border-gray-400">
                     <p class=" ml-28 icono-lugar font-medium text-4xl text-blue-gray-dark">]</p>
-                    <p class="ml-2 w-96 font-semibold text-blue-gray-dark">{{$objetoBuscado->objeto->descripcion}}</p>
+                    <p class="ml-2 w-96 font-semibold text-blue-gray-dark">{{$objetoEncontrado->objeto->descripcion}}</p>
                 </div>
 
                 {{-- Pestaña lugar --}}
@@ -60,7 +60,7 @@
                         </div>
                     </div>
                     <p class="icono-lugar text-red-600 font-bold text-2xl mt-32 ml-5">l</p>
-                    <p class="mt-32 font-semibold text-blue-gray-dark">{{$objetoBuscado->objeto->lugar}}</p>
+                    <p class="mt-32 font-semibold text-blue-gray-dark">{{$objetoEncontrado->objeto->lugar}}</p>
                 </div>
 
                 {{-- Pestaña datos --}}
@@ -68,16 +68,16 @@
                     <div class="flex flex-col my-32 mx-56">
                         <div class="flex">
                             <p class="icono-chincheta font-medium text-xl">Q</p>
-                            <p class="font-semibold text-blue-gray-dark">Categoría: {{$objetoBuscado->objeto->categoria}}</p>
+                            <p class="font-semibold text-blue-gray-dark">Categoría: {{$objetoEncontrado->objeto->categoria}}</p>
                         </div>
                         <div class="flex">
                             <p class="icono-chincheta font-medium text-xl">Q</p>
                             <label for="muestrario">Color:</label>
-                            <input type="color" value="#5666A2" {{-- {{$objetoBuscado->objeto->color}} --}} id="muestrario">
+                            <input type="color" value="#5666A2" {{-- {{$objetoEncontrado->objeto->color}} --}} id="muestrario">
                         </div>
                         <div class="flex">
                             <p class="icono-chincheta font-semibold text-xl text-red-600 bg-gray-400">Q</p>
-                            <p>Tamaño: {{$objetoBuscado->objeto->tamanio}}</p>
+                            <p>Tamaño: {{$objetoEncontrado->objeto->tamanio}}</p>
                         </div>
                     </div>
                 </div>
@@ -102,7 +102,7 @@
     var num_imagenes;
 
     $(document).ready(function(event) {
-        var imagenes_aux = {!! json_encode($objetoBuscado->objeto->imagesObjeto) !!}
+        var imagenes_aux = {!! json_encode($objetoEncontrado->objeto->imagesObjeto) !!}
        
         imagenes_aux.forEach(imagen => {
             imagenes.push('http://findit.test/storage/'+imagen['image']['url']);

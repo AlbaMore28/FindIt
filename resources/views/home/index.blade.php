@@ -3,7 +3,7 @@
 @section('contenido')
     <div class="flex flex-col justify-center bg-gradient-to-t from-blush via-steel to-blue-gray h-full">
         <div class="flex flex-row justify-center h-400">
-            <x-tarjeta link="{{ asset('storage/img/mapa_final2.png') }}" link2="{{ asset('storage/img/mapa_reves.png') }}">
+            <x-tarjeta link="{{asset('storage/img/mapa_final2.png')}}" link2="{{asset('storage/img/mapa_reves.png')}}" rutaCrear="{{route('objetosBuscados.create')}}" rutaListar="{{route('objetosBuscados.index')}}">
                 <x-slot name="accion">
                     estás <span class="acentuar_letras">buscando</span> 
                 </x-slot>
@@ -17,7 +17,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19 13l-7 7-7-7m14-8l-7 7-7-7" />
                 </svg>
             </div>
-            <x-tarjeta link="{{ asset('storage/img/prismaticos.png') }}" link2="{{ asset('storage/img/prismaticos_reves.png') }}">
+            <x-tarjeta link="{{asset('storage/img/prismaticos.png')}}" link2="{{asset('storage/img/prismaticos_reves.png')}}" rutaCrear="{{route('objetosEncontrados.create')}}" rutaListar="{{route('objetosEncontrados.index')}}">
                 <x-slot name="accion">
                     has <span class="acentuar_letras">encontrado</span>
                     <x-slot name="accion2">

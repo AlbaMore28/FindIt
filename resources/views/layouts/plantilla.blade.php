@@ -29,6 +29,10 @@
             @endif
             @yield('contenido')
         </main>
+
+        <footer>
+            <x-footer/>
+        </footer>
         
         @yield('js')
         <script src="{{ asset('js/app.js') }}"></script>

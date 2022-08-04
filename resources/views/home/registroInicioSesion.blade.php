@@ -7,7 +7,7 @@
 @endsection
 
 @section('contenido')
-    <div class="flex flex-col items-center md:text-center bg-gradient-to-t from-blush via-steel to-blue-gray min-h-inherit">
+    <div class="flex flex-col items-center md:text-center bg-gradient-to-t from-blush via-steel to-blue-gray min-h-inherit pb-28">
         <h1 class="text-white mt-10 text-center md:mt-20 mb-11 titulo_seccion">Acceso</h1>
         <div class="flex">
             <div class="flex flex-col w-450 min-h-300 bg-slate-200 flex rounded-xl shadow-xl mr-24">

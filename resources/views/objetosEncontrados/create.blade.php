@@ -6,7 +6,7 @@
 @endsection
 
 @section('contenido')
-    <div class="flex flex-col text-center bg-gradient-to-t from-blush via-steel to-blue-gray min-h-inherit items-center">
+    <div class="flex flex-col text-center bg-gradient-to-t from-blush via-steel to-blue-gray min-h-inherit items-center pb-28">
         <h1 id="lista" class="text-white mt-20 mb-11 titulo_seccion">Registrar Ítem Encontrado</h1>
             <div class=" w-1280 min-h-300 bg-slate-200 flex rounded-xl shadow-xl">
                 <form action="{{route('objetosEncontrados.store')}}" method="post" enctype="multipart/form-data" class="grid grid-cols-2 grid-flow-row gap-x-20 p-20 w-full">
@@ -65,10 +65,13 @@
 
                         <div class="flex flex-col items-start mt-12">
                             <label for="imagenes_objeto_enc">Imágenes:</label>
-                            <div id="div-files" class="flex">
+                            <div class="flex">
                                 <label for="imagenes_objeto_enc" class="h-10 w-10 rounded-full bg-blue-gray-dark waves-effect waves-light boton-file">
                                     <i class="material-icons text-white icono-file">add</i>
                                 </label>
+                                <div id="div-files" class="flex">
+
+                                </div>
                             </div>
                             <input type="file" multiple id="imagenes_objeto_enc" name="imagenes_objeto_enc[]"> 
                         </div>
@@ -121,14 +124,17 @@
 
         // Obtener referencia al input
         const $seleccionArchivos = document.querySelector("#imagenes_objeto_enc");
+        var primero = true;
 
         // Escuchar cuando cambie
         $seleccionArchivos.addEventListener("change", () => {
+            $('#div-files')[0].innerHTML = "";
             // Los archivos seleccionados, pueden ser muchos o uno
             const archivos = $seleccionArchivos.files;
 
             // Ahora tomamos los archivos que vamos a previsualizar
-            if (archivos && archivos.length){
+            if (primero && archivos && archivos.length){
+                primero = false;
                 for (let i=0; i < archivos.length; i++) {
                     // añadimos la imagen
                     $('#div-files').append($('<img>',{id:'imagenPrevisualizacion'+i, class:'h-8 shadow-lg rounded-sm ml-2 mt-2'}));
@@ -137,7 +143,7 @@
                      
                     $("#imagenPrevisualizacion"+i).attr("src", $objectURL);
                 }   
-            }    
+            }
         });
     </script>
 @endsection

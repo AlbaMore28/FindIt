@@ -1,7 +1,7 @@
 @extends('layouts.plantilla')
 
 @section('contenido')
-    <div class="flex flex-col justify-center bg-gradient-to-t from-blush via-steel to-blue-gray h-full">
+    <div class="flex flex-col justify-center bg-gradient-to-t from-blush via-steel to-blue-gray h-full pb-28">
         <div class="flex flex-row justify-center h-400">
             <x-tarjeta link="{{asset('storage/img/mapa_final2.png')}}" link2="{{asset('storage/img/mapa_reves.png')}}" rutaCrear="{{route('objetosBuscados.create')}}" rutaListar="{{route('objetosBuscados.index')}}">
                 <x-slot name="accion">

@@ -1,7 +1,7 @@
 @extends('layouts.plantilla')
 
 @section('contenido')
-    <div class="flex flex-col items-center md:text-center bg-gradient-to-t from-blush via-steel to-blue-gray min-h-inherit">
+    <div class="flex flex-col items-center md:text-center bg-gradient-to-t from-blush via-steel to-blue-gray min-h-inherit pb-28">
         <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
             <form>
               <div class="form-group mb-6">

@@ -16,10 +16,12 @@
 
 body{
   font-family: 'Arima', cursive;
+  min-width: fit-content;
 }
 
 main{
   min-height: 1104.6px;
+  margin: auto;
 }
 
 .background_image{
@@ -482,3 +484,20 @@ input[type=color]:focus{
 .boton-detalles:hover{
   opacity: 0.5 ;
 }
+
+.botones-borrar-actualizar{
+  position: relative;
+  top: 66px;
+  margin-right: 10px;
+  left: -19px;
+}
+
+.botones-borrar-actualizar:hover{
+  opacity: 0.5 ;
+}
+
+.rol{
+  color: #7E675E;
+  text-shadow: -1px 1px #dbc0a8;
+}
+

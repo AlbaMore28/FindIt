@@ -13,7 +13,7 @@
                                 <div class="flex flex-col w-64 items-center text-center text-lg font-semibold text-blue-gray-dark">
                                     <p class="name mt-2">{{ucfirst($objeto->titulo)}}</p>
                                     <p class="quote pb-2">{{$objeto->lugar}}</p>
-                                    <p class=" italic">{{ucfirst($objeto->tipo)}}</p>
+                                    <p class="rol italic mt-4">{{ucfirst($objeto->tipo)}}</p>
                                 </div>
                                 @if ($objeto->tipo == 'buscado')
                                     @php

@@ -17,10 +17,14 @@
 
 body{
   font-family: 'Arima', cursive;
+  min-width: -webkit-fit-content;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
 }
 
 main{
   min-height: 1104.6px;
+  margin: auto;
 }
 
 .background_image{
@@ -510,6 +514,24 @@ input[type=color]:focus{
 .boton-detalles:hover{
   opacity: 0.5 ;
 }
+
+.botones-borrar-actualizar{
+  position: relative;
+  top: 66px;
+  margin-right: 10px;
+  left: -19px;
+}
+
+.botones-borrar-actualizar:hover{
+  opacity: 0.5 ;
+}
+
+.rol{
+  color: #7E675E;
+  text-shadow: -1px 1px #dbc0a8;
+}
+
+
 .contenedor-destacados {
     width: 70%;
     overflow: hidden;
@@ -1300,8 +1322,14 @@ video {
 .left-0 {
   left: 0px;
 }
+.left-16 {
+  left: 4rem;
+}
 .z-10 {
   z-index: 10;
+}
+.z-50 {
+  z-index: 50;
 }
 .col-span-2 {
   grid-column: span 2 / span 2;
@@ -1363,9 +1391,6 @@ video {
 .mb-4 {
   margin-bottom: 1rem;
 }
-.mt-20 {
-  margin-top: 5rem;
-}
 .mb-5 {
   margin-bottom: 1.25rem;
 }
@@ -1404,6 +1429,9 @@ video {
 }
 .mt-12 {
   margin-top: 3rem;
+}
+.mt-20 {
+  margin-top: 5rem;
 }
 .mt-2 {
   margin-top: 0.5rem;
@@ -1459,8 +1487,8 @@ video {
 .h-3\/5 {
   height: 60%;
 }
-.h-10 {
-  height: 2.5rem;
+.h-16 {
+  height: 4rem;
 }
 .h-128 {
   height: 481px;
@@ -1479,6 +1507,9 @@ video {
 }
 .h-400 {
   height: 721.6px;
+}
+.h-10 {
+  height: 2.5rem;
 }
 .h-11 {
   height: 2.75rem;
@@ -1508,12 +1539,6 @@ video {
 }
 .h-7 {
   height: 1.75rem;
-}
-.h-20 {
-  height: 5rem;
-}
-.h-16 {
-  height: 4rem;
 }
 .min-h-inherit {
   min-height: inherit;
@@ -1581,17 +1606,14 @@ video {
 .w-56 {
   width: 14rem;
 }
-.w-8 {
-  width: 2rem;
-}
 .w-7 {
   width: 1.75rem;
 }
-.w-60 {
-  width: 15rem;
-}
 .max-w-md {
   max-width: 28rem;
+}
+.flex-auto {
+  flex: 1 1 auto;
 }
 @-webkit-keyframes bounce {
 
@@ -1651,14 +1673,14 @@ video {
 .grid-rows-3 {
   grid-template-rows: repeat(3, minmax(0, 1fr));
 }
-.grid-rows-1 {
-  grid-template-rows: repeat(1, minmax(0, 1fr));
-}
 .flex-row {
   flex-direction: row;
 }
 .flex-col {
   flex-direction: column;
+}
+.place-content-center {
+  place-content: center;
 }
 .items-start {
   align-items: flex-start;
@@ -1677,6 +1699,9 @@ video {
 }
 .justify-between {
   justify-content: space-between;
+}
+.justify-around {
+  justify-content: space-around;
 }
 .justify-items-start {
   justify-items: start;
@@ -1873,9 +1898,29 @@ video {
   -o-object-fit: cover;
      object-fit: cover;
 }
+.object-fill {
+  -o-object-fit: fill;
+     object-fit: fill;
+}
+.object-none {
+  -o-object-fit: none;
+     object-fit: none;
+}
 .object-center {
   -o-object-position: center;
      object-position: center;
+}
+.object-top {
+  -o-object-position: top;
+     object-position: top;
+}
+.object-left-top {
+  -o-object-position: left top;
+     object-position: left top;
+}
+.object-bottom {
+  -o-object-position: bottom;
+     object-position: bottom;
 }
 .p-4 {
   padding: 1rem;
@@ -1936,6 +1981,10 @@ video {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
 }
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
 .pr-2 {
   padding-right: 0.5rem;
 }
@@ -1945,26 +1994,17 @@ video {
 .pb-2 {
   padding-bottom: 0.5rem;
 }
+.pt-6 {
+  padding-top: 1.5rem;
+}
+.pb-28 {
+  padding-bottom: 7rem;
+}
 .pl-1 {
   padding-left: 0.25rem;
 }
 .pr-3 {
   padding-right: 0.75rem;
-}
-.pb-20 {
-  padding-bottom: 5rem;
-}
-.pb-28 {
-  padding-bottom: 7rem;
-}
-.pt-2 {
-  padding-top: 0.5rem;
-}
-.pt-6 {
-  padding-top: 1.5rem;
-}
-.pt-7 {
-  padding-top: 1.75rem;
 }
 .text-left {
   text-align: left;
@@ -1974,6 +2014,9 @@ video {
 }
 .align-top {
   vertical-align: top;
+}
+.align-middle {
+  vertical-align: middle;
 }
 .text-5xl {
   font-size: 3rem;
@@ -1991,6 +2034,10 @@ video {
   font-size: 1.5rem;
   line-height: 2rem;
 }
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -2003,10 +2050,6 @@ video {
   font-size: 1.875rem;
   line-height: 2.25rem;
 }
-.text-lg {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-}
 .text-4xl {
   font-size: 2.25rem;
   line-height: 2.5rem;
@@ -2014,14 +2057,14 @@ video {
 .font-bold {
   font-weight: 700;
 }
+.font-semibold {
+  font-weight: 600;
+}
 .font-normal {
   font-weight: 400;
 }
 .font-medium {
   font-weight: 500;
-}
-.font-semibold {
-  font-weight: 600;
 }
 .uppercase {
   text-transform: uppercase;

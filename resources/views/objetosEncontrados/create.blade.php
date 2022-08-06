@@ -2,7 +2,6 @@
 @section('css')
     <link href="{{ asset('css/materializeforms.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> --}}
 @endsection
 
 @section('contenido')

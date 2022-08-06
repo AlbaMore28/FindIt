@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ObjetosBuscadosController;
+use App\Http\Controllers\ObjetosController;
 use App\Http\Controllers\ObjetosEncontradosController;
+use App\Http\Controllers\UsuariosController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,4 +43,9 @@ Route::middleware('auth')->group(function (){
 
     Route::get('objetosEncontrados/create', [ObjetosEncontradosController::class, 'create'])->name('objetosEncontrados.create');
     Route::post('objetosEncontrados', [ObjetosEncontradosController::class, 'store'])->name('objetosEncontrados.store');
+
+    Route::get('verPerfil', [UsuariosController::class, 'index'])->name('usuarios.index');
+    Route::get('editarPerfil', [UsuariosController::class, 'edit'])->name('usuarios.edit');
+
+    Route::get('misRegistros', [ObjetosController::class, 'index'])->name('objetos.index');
 });

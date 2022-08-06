@@ -6,16 +6,16 @@
         <div class="flex flex-row h-fit">
             <div class="h-864 grid grid-cols-1 gap-y-10 px-10 py-10 border-4 w-700 border-solid border-white/50 rounded-xl overflow-auto">
                     @foreach ($usuarios as $usuario)
-                        
                         <div class="h-56 w-full flex bg-white/50 rounded-xl shadow-sm items-center">
-                            <div class="w-56 mx-10">
-                                @if ($usuario->imageUser)
-                                    <img class="rounded-xl shadow-sm object-cover object-center " src="{{asset('storage/'.$usuario->imageUser->image->url)}}" alt="objeto">
-                                @else
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-gray-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            @if ($usuario->imageUser)
+                                @php $url_img = asset('storage/'.$usuario->imageUser->image->url) @endphp
+                            @else
+                                @php $url_img = asset('storage/img/no_img_perfil.png') @endphp
+                            @endif
+                            <div class="h-40 w-56 mx-10 rounded-xl shadow-sm bg-cover bg-center bg-no-repeat bg-opacity-50 flex justify-center" style="background-image: url('{{$url_img}}');">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-full w-40 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                                 </svg>
-                                @endif
                             </div>
                             
                             <div class="flex flex-col w-64 items-center text-center text-lg font-semibold text-blue-gray-dark info-user">

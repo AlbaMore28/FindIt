@@ -122,7 +122,6 @@
     }
 
     function activarModal(url, ind) {
-        console.log(ind);
         indice = ind;
         $('#img-mod').attr('src', url);
         $('#imagen-modal').show();

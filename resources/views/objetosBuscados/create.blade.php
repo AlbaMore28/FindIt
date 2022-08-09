@@ -2,7 +2,6 @@
 @section('css')
     <link href="{{ asset('css/materializeforms.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> --}}
 @endsection
 
 @section('contenido')
@@ -108,41 +107,39 @@
         });
         $(document).ready(function(event) {
             $( "label" ).removeClass("active");
-        });
-        $( ".input-field" ).focus(
-            function() {
-                $( this ).children("label").addClass("active");   
-            }
-        );
-        $( ".input-field" ).focusout(
-            function() {
-                if($( this ).children("input").val() == ""){
-                    $( this ).children("label").removeClass("active"); 
-                }  
-            }
-        );
+        
+            $( ".input-field" ).focus(
+                function() {
+                    $( this ).children("label").addClass("active");   
+                }
+            );
+            $( ".input-field" ).focusout(
+                function() {
+                    if($( this ).children("input").val() == ""){
+                        $( this ).children("label").removeClass("active"); 
+                    }  
+                }
+            );
 
-        // Obtener referencia al input
-        const $seleccionArchivos = document.querySelector("#imagenes_objeto_busc");
-        var primero = true;
-        // Escuchar cuando cambie
-        $seleccionArchivos.addEventListener("change", () => {
-            $('#div-files')[0].innerHTML = "";
-            // Los archivos seleccionados, pueden ser muchos o uno
-            const archivos = $seleccionArchivos.files;
+            // Escuchar cuando cambie
+            document.querySelector("#imagenes_objeto_busc").addEventListener("change", () => {
+                $('#div-files').empty();
+                
+                // Los archivos seleccionados, pueden ser muchos o uno
+                const archivos = document.querySelector("#imagenes_objeto_busc").files;
 
-            // Ahora tomamos los archivos que vamos a previsualizar
-            if (primero && archivos && archivos.length){
-                primero = false;
-                for (let i=0; i < archivos.length; i++) {
-                    // añadimos la imagen
-                    $('#div-files').append($('<img>',{id:'imagenPrevisualizacion'+i, class:'h-8 shadow-lg rounded-sm ml-2 mt-2'}));
-                    // Los convertimos a un objeto de tipo objectURL
-                    $objectURL = URL.createObjectURL(archivos[i]);
-                    
-                    $("#imagenPrevisualizacion"+i).attr("src", $objectURL);
+                // Ahora tomamos los archivos que vamos a previsualizar
+                if (archivos && archivos.length){
+                    for (let i=0; i < archivos.length; i++) {
+                        // añadimos la imagen
+                        $('#div-files').append($('<img>',{id:'imagenPrevisualizacion'+i, class:'h-8 shadow-lg rounded-sm ml-2 mt-2'}));
+                        // Los convertimos a un objeto de tipo objectURL
+                        $objectURL = URL.createObjectURL(archivos[i]);
+                        
+                        $("#imagenPrevisualizacion"+i).attr("src", $objectURL);
+                    }   
                 }   
-            }    
+            });
         });
     </script>
 @endsection

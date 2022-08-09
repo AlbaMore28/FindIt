@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class ObjetosController extends Controller
 {
     public function index(){
-        $objetos = Objeto::all();
+        $objetos = Objeto::with('objetoBuscado','objetoEncontrado')->get();
 
         return view('objetos.index',compact('objetos'));
     }

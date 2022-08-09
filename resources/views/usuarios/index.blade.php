@@ -8,15 +8,18 @@
 @section('contenido')
     <div class="flex flex-col items-center md:text-center bg-gradient-to-t from-blush via-steel to-blue-gray min-h-inherit  pb-28">
         <div id="modal-eliminar" class="flex flex-col justify-center items-center hidden h-screen w-screen modal-eliminar">
-            <div class=" h-80 w-400 bg-white rounded-lg div-modal text-2xl font-semibold text-blue-gray-dark shadow-lg">
+            <div class="h-80 w-400 bg-white rounded-lg div-modal text-2xl font-semibold text-blue-gray-dark shadow-lg">
                 <p class="mb-2">¿Está seguro de que desea eliminar su perfil?</p>
-                <div class="btn waves-effect waves-light boton-form mr-2" onclick="cerrarModal()">
-                    <span class="texto-boton">Cancelar</span> 
-                    <i class="tiny material-icons">clear</i>
-                </div>
-                <div id="btn-delete" class="btn waves-effect waves-light boton-form">
-                    <span class="texto-boton">Eliminar</span> 
-                    <i class="tiny material-icons">delete</i>
+                <div class="flex w-full justify-center">
+                    <div class="btn waves-effect waves-light boton-form mr-2" onclick="cerrarModal()">
+                        <span class="texto-boton">Cancelar</span> 
+                        <i class="tiny material-icons">clear</i>
+                    </div>
+                        <a id="btn-delete" class="btn waves-effect waves-light boton-form" href="{{route('usuarios.destroy')}}">
+                            <span class="texto-boton">Eliminar</span> 
+                            <i class="tiny material-icons">delete</i>
+                        </a>
+                    </form>
                 </div>
             </div>
         </div>
@@ -63,14 +66,14 @@
                     </div>
                     
                     <div class="flex justify-end mt-14">
-                        <a class="btn waves-effect waves-light boton-form mr-2" href="#">
+                        <a class="btn waves-effect waves-light boton-form mr-2" href="{{route('usuarios.edit')}}">
                             <span class="texto-boton">Editar</span> 
                             <i class="tiny material-icons">create</i>
                         </a>
-                        <a class="btn waves-effect waves-light boton-form" href="#" onclick="activarModal()">
+                        <button class="btn waves-effect waves-light boton-form" onclick="activarModal()">
                             <span class="texto-boton">Eliminar</span> 
                             <i class="tiny material-icons">delete</i>
-                        </a>
+                        </button>
                     </div>
             </div>
         </div>

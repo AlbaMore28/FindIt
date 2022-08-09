@@ -3,14 +3,13 @@
 @section('css')
     <link href="{{ asset('css/materializeforms.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> --}}
 @endsection
 
 @section('contenido')
     <div class="flex flex-col items-center md:text-center bg-gradient-to-t from-blush via-steel to-blue-gray min-h-inherit pb-28">
         <h1 class="text-white mt-10 text-center md:mt-20 mb-11 titulo_seccion">Acceso</h1>
         <div class="flex">
-            <div class="flex flex-col w-450 min-h-300 bg-slate-200 flex rounded-xl shadow-xl mr-24">
+            <div class="flex flex-col w-450 min-h-300 bg-slate-200 rounded-xl shadow-xl mr-24">
                 <h1 class="text-blue-gray-dark text-center mb-3 text-3xl titulo_seccion">Inicio Sesión</h1>
                 <form action="{{route('home.iniciarSesion')}}" method="post" class="grid grid-cols-1 grid-flow-row gap-x-20 p-20 w-full">
                     @csrf
@@ -32,7 +31,7 @@
                     </div>
                 </form>
             </div>
-            <div class="flex flex-col w-450 min-h-300 bg-slate-200 flex rounded-xl shadow-xl">
+            <div class="flex flex-col w-450 min-h-300 bg-slate-200 rounded-xl shadow-xl">
                 <h1 class="text-blue-gray-dark text-center mb-3 text-3xl titulo_seccion">Registro</h1>
                 <form action="{{route('home.registro')}}" method="post" enctype="multipart/form-data" class="grid grid-cols-1 grid-flow-row gap-x-20 p-20 w-full">
                     @csrf

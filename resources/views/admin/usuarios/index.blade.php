@@ -4,6 +4,11 @@
     <div class="flex flex-col items-center md:text-center bg-gradient-to-t from-blush via-steel to-blue-gray min-h-inherit pb-28">
         <h1 class="text-white mt-10 text-center md:mt-20 mb-11 titulo_seccion">Administración de Usuarios</h1>
         <div class="flex flex-row h-fit">
+            <div id="modal-cargar" class="flex flex-col justify-center items-center h-screen w-screen hidden">
+                <div>
+                    <img class="w-full" src="{{asset('storage/img/spinner.png')}}" alt="">
+                </div>
+            </div>
             <div class="h-864 grid grid-cols-1 gap-y-10 px-10 py-10 border-4 w-700 border-solid border-white/50 rounded-xl overflow-auto">
                     @foreach ($usuarios as $usuario)
                         <div class="h-56 w-full flex bg-white/50 rounded-xl shadow-sm items-center">
@@ -12,10 +17,12 @@
                             @else
                                 @php $url_img = asset('storage/img/no_img_perfil.png') @endphp
                             @endif
-                            <div class="h-40 w-56 mx-10 rounded-xl shadow-sm bg-cover bg-center bg-no-repeat bg-opacity-50 flex justify-center" style="background-image: url('{{$url_img}}');">
+                            <div class="img-block h-40 w-56 mx-10 rounded-xl shadow-sm bg-cover bg-center bg-no-repeat flex justify-center hidden" style="background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('{{$url_img}}');">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-full w-40 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                                 </svg>
+                            </div>
+                            <div class="img-no-block h-40 w-56 mx-10 rounded-xl shadow-sm bg-cover bg-center bg-no-repeat flex justify-center" style="background-image: url('{{$url_img}}');">
                             </div>
                             
                             <div class="flex flex-col w-64 items-center text-center text-lg font-semibold text-blue-gray-dark info-user">
@@ -23,29 +30,41 @@
                                 <p>{{ucfirst($usuario->email)}}</p>
                                 <div class="rol italic mt-4">  
                                     @empty($usuario->getRoleNames()->first())
-                                        <p id="roles">Colaborador/Beneficiario</p>
+                                        <p class="roles">Colaborador/Beneficiario</p>
                                     @else
-                                        <p id="roles">{{$usuario->getRoleNames()->first()}}</p>
+                                        <p class="roles">{{$usuario->getRoleNames()->first()}}</p>
                                     @endempty
                                 </div>
                             </div>
                             <div class="flex flex-col flex-auto items-end justify-between h-full p-6">
                                 <form id="form-rol" action="">
-                                    <select id="user_role" name="user_role">
+                                    <select id="{{$usuario->id}}" name="user_role">
                                         @foreach($roles as $rol)
-                                            <option value="{{$rol->name}}">{{$rol->name}}</option>
+                                        @if($rol->name == $usuario->getRoleNames()->first()) 
+                                           @php
+                                               $selected = "selected";
+                                           @endphp  
+                                        @elseif($usuario->getRoleNames()->first() == "" && $rol->name == "ColaboradorBeneficiario") 
+                                            @php
+                                                $selected = "selected";
+                                            @endphp
+                                        @else
+                                            @php
+                                                $selected = "";
+                                            @endphp
+                                        @endif
+                                            <option value="{{$rol->name}}" {{$selected}}>{{$rol->name}}</option>
                                         @endforeach
                                     </select>
                                 </form>
                                 <p></p>
                                 <div class="flex">
-                                    <a href="#">
-                                        <div class="h-10 w-10 rounded-full bg-blue-gray-dark waves-effect waves-light shadow-lg text-white mr-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 icono-detalles" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
-                                            </svg>
-                                        </div>
-                                    </a>
+                                    <button class="boton-bloquear h-10 w-10 rounded-full bg-blue-gray-dark waves-effect waves-light shadow-lg text-white mr-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 icono-detalles" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                                        </svg>
+                                    </button>
+                                    
                                     <a href="#">
                                         <div class="h-10 w-10 rounded-full bg-blue-gray-dark waves-effect waves-light shadow-lg text-white" id="boton-color">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 icono-detalles" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -75,9 +94,46 @@
 </script>
 
 <script>
+    $notifierRol = null;
+
     $(document).ready(function (){
-        $("select").change(function (event) {
-            $(this).parent().parent().parent().find('#roles').text($(this).val());
+        $("select").change(function (event) {    
+            $notifierRol = $(this);
+            $('#modal-cargar').removeClass('hidden');
+            $.ajax({
+                method: "POST",
+                url: "{{route('api.usuarios.cambiarRol')}}",
+                data: JSON.stringify({ id: $notifierRol.attr('id'), rol: $notifierRol.val() }),
+                contentType: "application/json", 
+                crossDomain: true,
+                xhrFields: {
+                    withCredentials: true
+                },
+            }).done(function(data){
+                console.log(data);
+                $notifierRol.parent().parent().parent().find('.roles').text($notifierRol.val()); // imprimimos la respuesta
+            }).fail(function() {
+                console.log("Algo salió mal");
+            }).always(function() {
+                $('#modal-cargar').addClass('hidden');
+            })
+            
+        });
+
+        $(".boton-bloquear").click(function (event) {
+            
+            if($(this).hasClass('bg-blue-gray-dark')){
+                $(this).removeClass('bg-blue-gray-dark');
+                $(this).css("background-color","red");
+                $(this).parent().parent().parent().find('.img-block').removeClass('hidden');
+                $(this).parent().parent().parent().find('.img-no-block').addClass('hidden');
+            }
+            else{
+                $(this).css("background-color", "");
+                $(this).addClass('bg-blue-gray-dark');
+                $(this).parent().parent().parent().find('.img-block').addClass('hidden');
+                $(this).parent().parent().parent().find('.img-no-block').removeClass('hidden');
+            }
         });
     });
 </script>

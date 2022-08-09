@@ -46,6 +46,8 @@ Route::middleware('auth')->group(function (){
 
     Route::get('verPerfil', [UsuariosController::class, 'index'])->name('usuarios.index');
     Route::get('editarPerfil', [UsuariosController::class, 'edit'])->name('usuarios.edit');
+    Route::post('editarPerfil', [UsuariosController::class, 'update'])->name('usuarios.update');
+    Route::get('borrarPerfil', [UsuariosController::class, 'destroy'])->name('usuarios.destroy');
 
     Route::get('misRegistros', [ObjetosController::class, 'index'])->name('objetos.index');
 });

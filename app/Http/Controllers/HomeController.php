@@ -22,6 +22,9 @@ class HomeController extends Controller
 
    public function home()
    {
+      /* $user = User::find(13);
+      $user->password=bcrypt('1234');
+      $user->save(); */
       $objetos = Objeto::where('visibilidad','1')->orderBy('id', 'desc')->take(5)->get();
 
       return view('home.index', compact('objetos'));

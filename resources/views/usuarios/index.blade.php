@@ -7,8 +7,8 @@
 
 @section('contenido')
     <div class="flex flex-col items-center md:text-center bg-gradient-to-t from-blush via-steel to-blue-gray min-h-inherit  pb-28">
-        <div id="modal-eliminar" class="flex flex-col justify-center items-center hidden h-screen w-screen modal-eliminar">
-            <div class="h-80 w-400 bg-white rounded-lg div-modal text-2xl font-semibold text-blue-gray-dark shadow-lg">
+        <div id="mi-modal-eliminar" class="flex flex-col justify-center items-center h-screen w-screen mi-modal-eliminar hidden">
+            <div class="h-80 w-400 bg-white rounded-lg div-mi-modal text-2xl font-semibold text-blue-gray-dark shadow-lg">
                 <p class="mb-2">¿Está seguro de que desea eliminar su perfil?</p>
                 <div class="flex w-full justify-center">
                     <div class="btn waves-effect waves-light boton-form mr-2" onclick="cerrarModal()">
@@ -98,11 +98,11 @@
 
     <script>
         function activarModal() {
-            $('#modal-eliminar').show();
+            $('#mi-modal-eliminar').show();
         }
 
         function cerrarModal() {
-            $("#modal-eliminar").hide();
+            $("#mi-modal-eliminar").hide();
         }
     </script>
 

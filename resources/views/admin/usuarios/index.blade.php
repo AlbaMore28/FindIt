@@ -4,7 +4,7 @@
     <div class="flex flex-col items-center md:text-center bg-gradient-to-t from-blush via-steel to-blue-gray min-h-inherit pb-28">
         <h1 class="text-white mt-10 text-center md:mt-20 mb-11 titulo_seccion">Administración de Usuarios</h1>
         <div class="flex flex-row h-fit">
-            <div id="modal-cargar" class="flex flex-col justify-center items-center h-screen w-screen hidden">
+            <div id="mi-modal-cargar" class="flex flex-col justify-center items-center h-screen w-screen hidden">
                 <div>
                     <img class="w-full" src="{{asset('storage/img/spinner.png')}}" alt="">
                 </div>
@@ -99,7 +99,7 @@
     $(document).ready(function (){
         $("select").change(function (event) {    
             $notifierRol = $(this);
-            $('#modal-cargar').removeClass('hidden');
+            $('#mi-modal-cargar').removeClass('hidden');
             $.ajax({
                 method: "POST",
                 url: "{{route('api.usuarios.cambiarRol')}}",
@@ -115,7 +115,7 @@
             }).fail(function() {
                 console.log("Algo salió mal");
             }).always(function() {
-                $('#modal-cargar').addClass('hidden');
+                $('#mi-modal-cargar').addClass('hidden');
             })
             
         });

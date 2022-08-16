@@ -13,7 +13,17 @@
                         >
                             @if ($objeto->tipo == 'encontrado')Encontrado @else Buscando @endif 
                         </p>
-                        <img class="w-full h-3/5 object-cover object-center" src="{{ asset('storage/'. $objeto->imagesObjeto->first()->image->url)}}" alt="objeto">
+                        @if (count($objeto->imagesObjeto))
+                            @php
+                                $imagen_url = asset('storage/'. $objeto->imagesObjeto->first()->image->url); 
+                            @endphp
+                                
+                        @else
+                            @php
+                                $imagen_url = asset('storage/img/no_img.png'); 
+                            @endphp
+                        @endif
+                        <img class="w-full h-3/5 object-cover object-center" src="{{$imagen_url}}" alt="objeto">
                         <p class="name pt-5 pb-2">{{ucfirst($objeto->titulo)}}</p>
                         <p class="quote">{{$objeto->lugar}}</p>
                     </div> 

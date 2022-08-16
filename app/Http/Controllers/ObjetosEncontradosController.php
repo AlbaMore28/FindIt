@@ -90,38 +90,4 @@ class ObjetosEncontradosController extends Controller
         
         return view('objetosEncontrados.show', compact('objetoEncontrado','objetos'));
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  ObjetoEncontradoEncuentra  $objetoEncontrado
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ObjetoEncontradoEncuentra $objetoEncontrado)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  ObjetoEncontradoEncuentra  $objetoEncontrado
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ObjetoEncontradoEncuentra $objetoEncontrado)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  ObjetoEncontradoEncuentra  $objetoEncontrado
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(ObjetoEncontradoEncuentra $objetoEncontrado)
-    {
-        //
-    }
 }

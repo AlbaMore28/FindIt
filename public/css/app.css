@@ -1451,17 +1451,17 @@ video {
 .mb-16 {
   margin-bottom: 4rem;
 }
-.mt-1 {
-  margin-top: 0.25rem;
-}
-.mr-2 {
-  margin-right: 0.5rem;
-}
 .mt-10 {
   margin-top: 2.5rem;
 }
 .mb-11 {
   margin-bottom: 2.75rem;
+}
+.mt-1 {
+  margin-top: 0.25rem;
+}
+.mr-2 {
+  margin-right: 0.5rem;
 }
 .mt-6 {
   margin-top: 1.5rem;
@@ -1630,6 +1630,9 @@ video {
 .w-40 {
   width: 10rem;
 }
+.w-700 {
+  width: 1012px;
+}
 .w-4 {
   width: 1rem;
 }
@@ -1641,9 +1644,6 @@ video {
 }
 .w-1280 {
   width: 1280px;
-}
-.w-700 {
-  width: 1012px;
 }
 .w-924 {
   width: 924px;
@@ -1660,11 +1660,11 @@ video {
 .w-screen {
   width: 100vw;
 }
-.w-2\/5 {
-  width: 40%;
-}
 .w-400 {
   width: 721.6px;
+}
+.w-2\/5 {
+  width: 40%;
 }
 .w-7\/12 {
   width: 58.333333%;
@@ -1918,6 +1918,10 @@ video {
 .bg-gray-400 {
   --tw-bg-opacity: 1;
   background-color: rgb(156 163 175 / var(--tw-bg-opacity));
+}
+.bg-red-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 38 38 / var(--tw-bg-opacity));
 }
 .bg-gradient-to-l {
   background-image: linear-gradient(to left, var(--tw-gradient-stops));

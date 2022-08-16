@@ -10,7 +10,7 @@
         <div class="h-80 w-400 bg-white rounded-lg div-mi-modal text-2xl font-semibold text-blue-gray-dark shadow-lg text-center">
             <p class="mb-2">¿Está seguro de que desea eliminar este objeto?</p>
             <div class="flex w-full justify-center">
-                <div class="btn waves-effect waves-light boton-form mr-2" onclick="cerrarModal()">
+                <div class="btn waves-effect waves-light boton-form mr-2" onclick="cerrarModalEliminar()">
                     <span class="texto-boton">Cancelar</span> 
                     <i class="tiny material-icons">clear</i>
                 </div>
@@ -24,10 +24,12 @@
     </div>
     <div id="imagen-mi-modal" class="hidden h-screen w-screen mi-modal">
         <img id="img-mod" class="rounded-xl shadow-lg img-mi-modal w-2/5" alt="objeto">
-        <div class="button-container w-2/5">
-            <div class="button-desplazar-img" onclick="desplazarImagen(false)"><i class="fas fa-angle-left"></i></div>
-            <div class="button-desplazar-img" onclick="desplazarImagen(true)"><i class="fas fa-angle-right"></i></div>
-        </div>
+        @if (count($objetoBuscado->objeto->imagesObjeto)>1)
+            <div class="button-container w-2/5">
+                <div class="button-desplazar-img" onclick="desplazarImagen(false)"><i class="fas fa-angle-left"></i></div>
+                <div class="button-desplazar-img" onclick="desplazarImagen(true)"><i class="fas fa-angle-right"></i></div>
+            </div>
+        @endif
         <div class="mi-modal-close">
             <i class="fas fa-close h-6 w-6"></i>
         </div>
@@ -37,7 +39,17 @@
         <div class="flex flex-col h-400 w-1280 px-20 justify-between border-4 border-solid border-white/50 rounded-xl">
             <div class="flex flex-row info-objeto justify-around h-7/12">  
                 <div class="flex flex-col">
-                    <img class="imagen-principal rounded-xl shadow-lg" src="{{ asset('storage/'. $objetoBuscado->objeto->imagesObjeto->first()->image->url)}}" alt="objeto" onclick="activarModal(this.src, 0)">
+                    @if (count($objetoBuscado->objeto->imagesObjeto))
+                        @php
+                            $imagen_url = asset('storage/'. $objetoBuscado->objeto->imagesObjeto->first()->image->url); 
+                        @endphp
+                    @else
+                        @php
+                            $imagen_url = asset('storage/img/no_img.png'); 
+                        @endphp
+                    @endif
+                    <img class="imagen-principal rounded-xl shadow-lg" src="{{$imagen_url}}" alt="objeto" @if (count($objetoBuscado->objeto->imagesObjeto)>0) onclick="activarModal(this.src, 0)" @endif>
+                    
                     @if (count($objetoBuscado->objeto->imagesObjeto)>1)
                         <p class=" text-sm text-left mt-7">Más imágenes</p>
                         <div class="flex">
@@ -97,7 +109,7 @@
                         <div class="flex">
                             <p class="icono-chincheta font-medium text-xl">Q</p>
                             <label for="muestrario">Color:</label>
-                            <input type="color" value="#5666A2" {{-- {{$objetoBuscado->objeto->color}} --}} id="muestrario">
+                            <input type="color" value="{{$objetoBuscado->objeto->color}}" id="muestrario">
                         </div>
                         <div class="flex">
                             <p class="icono-chincheta font-semibold text-xl text-red-600 bg-gray-400">Q</p>
@@ -115,7 +127,7 @@
                             <span class="texto-boton">Editar</span> 
                             <i class="tiny material-icons">create</i>
                         </a>
-                        <button class="btn waves-effect waves-light boton-form" onclick="activarModal()">
+                        <button class="btn waves-effect waves-light boton-form" onclick="activarModalEliminar()">
                             <span class="texto-boton">Eliminar</span> 
                             <i class="tiny material-icons">delete</i>
                         </button>
@@ -198,11 +210,11 @@
         } 
     });
 
-    function activarModal() {
+    function activarModalEliminar() {
             $('#mi-modal-eliminar').show();
         }
 
-    function cerrarModal() {
+    function cerrarModalEliminar() {
         $("#mi-modal-eliminar").hide();
     }
     

@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ObjetosBuscadosController;
 use App\Http\Controllers\ObjetosController;
 use App\Http\Controllers\ObjetosEncontradosController;
+use App\Http\Controllers\UsuarioBloqueadoController;
 use App\Http\Controllers\UsuariosController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'home'])->name('home.index');
 Route::get('faq', [HomeController::class, 'preguntas'])->name('home.faq');
 Route::get('contact', [HomeController::class, 'contactar'])->name('home.contact');
+Route::get('about', [HomeController::class, 'about'])->name('home.about');
 
 /* rutas objetos buscados (sin logueo o con logueo) */
 Route::get('objetosBuscados', [ObjetosBuscadosController::class, 'index'])->name('objetosBuscados.index');

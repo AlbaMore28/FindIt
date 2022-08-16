@@ -69,11 +69,9 @@
                                     <i class="material-icons text-white icono-file">add</i>
                                 </label>
                                 <div id="div-files" class="flex">
-                                    @if ($objeto->imagesObjeto)
-                                        @foreach ($objeto->imagesObjeto as $imagenObjeto)
-                                            <img id="imagenPrevisualizacion" class="h-8 shadow-lg rounded-sm ml-2 mt-2" src="{{asset('storage/'.$imagenObjeto->image->url)}}">  
-                                        @endforeach
-                                    @endif
+                                    @foreach ($objeto->imagesObjeto as $imagenObjeto)
+                                        <img id="imagenPrevisualizacion" class="h-8 shadow-lg rounded-sm ml-2 mt-2" src="{{asset('storage/'.$imagenObjeto->image->url)}}">  
+                                    @endforeach
                                 </div>
                             </div>
                             <input type="file" multiple id="imagenes" name="imagenes[]">

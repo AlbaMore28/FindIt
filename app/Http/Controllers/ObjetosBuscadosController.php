@@ -90,38 +90,4 @@ class ObjetosBuscadosController extends Controller
         
         return view('objetosBuscados.show', compact('objetoBuscado','objetos'));
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  ObjetoBuscadoBusca  $objetoBuscado
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ObjetoBuscadoBusca $objetoBuscado)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  ObjetoBuscadoBusca  $objetoBuscado
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ObjetoBuscadoBusca $objetoBuscado)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  ObjetoBuscadoBusca  $objetoBuscado
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(ObjetoBuscadoBusca $objetoBuscado)
-    {
-        //
-    }
 }

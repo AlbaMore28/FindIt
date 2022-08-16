@@ -17,8 +17,8 @@
                     </div>
 
                     <div class="input-field">
-                        <input type="password" id="password" name="password" autocomplete="off" placeholder=" " value="{{bcrypt($usuario->password)}}">
-                        <label for="password">Contraseña:</label>
+                        <input type="tel" id="telefono" name="telefono" autocomplete="off" placeholder=" " value="{{$usuario->telefono}}">
+                        <label for="telefono">Teléfono:</label>
                     </div>
 
                     <div class="input-field h-11">
@@ -37,8 +37,6 @@
                     </div>
 
                     <div class="input-field">
-                        <input type="tel" id="telefono" name="telefono" autocomplete="off" placeholder=" " value="{{$usuario->telefono}}">
-                        <label for="telefono">Teléfono:</label>
                     </div>
 
                     @if ($usuario->imageUser)

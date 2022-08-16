@@ -78,7 +78,7 @@ class UsuariosController extends Controller
         $usuario->save();
 
 
-        return redirect()->route('usuarios.index')->with('info', 'El usuario se actualizó con éxito.');
+        return redirect()->route('usuarios.index')->with('success', 'El usuario se actualizó con éxito.');
     }
 
     /**
@@ -89,6 +89,12 @@ class UsuariosController extends Controller
     public function destroy()
     {
         $usuario = User::with('objetosBuscados','objetosEncontrados')->find(Auth::user()->id);
+
+        $num_admins = User::role('Administrador')->get()->count();
+
+        if($usuario->hasRole('Administrador') && $num_admins<2){
+            return redirect()->route('usuarios.index')->with('error','No se puede borrar tu perfil ya que eres el único administrador dado de alta en el sistema');
+        }
 
         if($usuario->objetosBuscados){
             foreach($usuario->objetosBuscados as $objetoBuscado){
@@ -125,6 +131,6 @@ class UsuariosController extends Controller
 
         $usuario->delete();
 
-        return redirect()->route('home.index')->with('info', 'El usuario se ha eliminado con éxito.');
+        return redirect()->route('home.index')->with('success', 'El usuario se ha eliminado con éxito.');
     }
 }

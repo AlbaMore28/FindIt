@@ -11,7 +11,7 @@
             <div class="h-80 w-400 bg-white rounded-lg div-mi-modal text-2xl font-semibold text-blue-gray-dark shadow-lg">
                 <p class="mb-2">¿Está seguro de que desea eliminar su perfil?</p>
                 <div class="flex w-full justify-center">
-                    <div class="btn waves-effect waves-light boton-form mr-2" onclick="cerrarModal()">
+                    <div class="btn waves-effect waves-light boton-form mr-2" onclick="cerrarModalEliminar()">
                         <span class="texto-boton">Cancelar</span> 
                         <i class="tiny material-icons">clear</i>
                     </div>
@@ -61,7 +61,7 @@
                         @if ($usuario->imageUser)
                             <img src="{{asset('storage/'.$usuario->imageUser->image->url)}}" alt="imagen usuario" class="h-20 rounded-lg  mt-2 shadow-lg">
                         @else
-                            <img src="{{asset('storage/img/no_img_perfil.png')}}" alt="imagen usuario" class="h-20 w-28 mt-2 no-img-user">
+                            <img src="{{asset('storage/img/no_img.png')}}" alt="imagen usuario" class="h-20 w-28 mt-2 no-img-user">
                         @endif
                     </div>
                     
@@ -70,7 +70,7 @@
                             <span class="texto-boton">Editar</span> 
                             <i class="tiny material-icons">create</i>
                         </a>
-                        <button class="btn waves-effect waves-light boton-form" onclick="activarModal()">
+                        <button class="btn waves-effect waves-light boton-form" onclick="activarModalEliminar()">
                             <span class="texto-boton">Eliminar</span> 
                             <i class="tiny material-icons">delete</i>
                         </button>
@@ -97,11 +97,11 @@
     </script>
 
     <script>
-        function activarModal() {
+        function activarModalEliminar() {
             $('#mi-modal-eliminar').show();
         }
 
-        function cerrarModal() {
+        function cerrarModalEliminar() {
             $("#mi-modal-eliminar").hide();
         }
     </script>

@@ -10,7 +10,12 @@
                         @if (($objeto->tipo == 'buscado' && $objeto->objetoBuscado->user_id == Auth::user()->id) ||
                             ($objeto->tipo == 'encontrado' && $objeto->objetoEncontrado->user_id == Auth::user()->id))
                             <div class="h-56 w-924 flex bg-white/50 rounded-xl shadow-sm items-center">
-                                <img class="h-40 w-56 rounded-xl shadow-sm object-cover object-center mx-10" src="{{ asset('storage/'. $objeto->imagesObjeto->first()->image->url) }}" alt="objeto">
+                                @if (count($objeto->imagesObjeto) > 0)
+                                    @php $imagen_url = asset('storage/'.$objeto->imagesObjeto->first()->image->url); @endphp
+                                @else
+                                    @php $imagen_url = asset('storage/img/no_img.png') @endphp
+                                @endif
+                                <img class="h-40 w-56 rounded-xl shadow-sm object-cover object-center mx-10" src="{{$imagen_url}}" alt="objeto">
                                 <div class="flex flex-col w-64 items-center text-center text-lg font-semibold text-blue-gray-dark">
                                     <p class="name mt-2">{{ucfirst($objeto->titulo)}}</p>
                                     <p class="quote pb-2">{{$objeto->lugar}}</p>

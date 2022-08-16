@@ -40,6 +40,10 @@ class HomeController extends Controller
       return view('home.contact');
    }
 
+   public function about(){
+      return view('home.about');
+   }
+
    public function vistaRegistroInicioSesion(){
       $objetos = Objeto::where('visibilidad','1')->orderBy('id', 'desc')->take(5)->get();
       

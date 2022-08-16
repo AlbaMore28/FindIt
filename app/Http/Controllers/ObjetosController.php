@@ -73,13 +73,13 @@ class ObjetosController extends Controller
             }
         }
 
-        if($objeto->tipo == 'encontrado'){
+        if($objeto->tipo == 'buscado'){
             $objetoBuscado = $objeto;
-            return redirect()->route('objetosEncontrados.show', $objetoBuscado);
+            return redirect()->route('objetosBuscados.show', $objetoBuscado);
         }
         else{
             $objetoEncontrado = $objeto;
-            return redirect()->route('objetosBuscados.show', $objetoEncontrado);
+            return redirect()->route('objetosEncontrados.show', $objetoEncontrado);
         }
     }
 

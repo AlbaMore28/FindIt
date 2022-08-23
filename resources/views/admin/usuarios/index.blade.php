@@ -29,16 +29,25 @@
                                 <p class="name mt-2">{{ucfirst($usuario->nombre_usuario)}}</p>
                                 <p>{{ucfirst($usuario->email)}}</p>
                                 <div class="rol italic mt-4">  
-                                    @empty($usuario->getRoleNames())
-                                        <p class="roles">Colaborador/Beneficiario</p>
+                                    @if($usuario->getRoleNames()->count() == 0)
+                                        <p class="roles">ColaboradorBeneficiario</p>
                                     @else
                                         <p class="roles">{{$usuario->getRoleNames()->first()}}</p>
-                                    @endempty
+                                    @endif
                                 </div>
                             </div>
                             <div class="flex flex-col flex-auto items-end justify-between h-full p-6">
                                 <form id="form-rol" action="">
-                                    <select id="{{$usuario->id}}" name="user_role">
+                                    @if ($usuario->getRoleNames()->count() == 0)
+                                        @php
+                                            $claseRolPrevia = "ColaboradorBeneficiario";
+                                        @endphp 
+                                    @else
+                                        @php
+                                            $claseRolPrevia = $usuario->getRoleNames()->first();
+                                        @endphp 
+                                    @endif
+                                    <select id="{{$usuario->id}}" class="{{$claseRolPrevia}}" name="user_role">
                                         @foreach($roles as $rol)
                                             @if($rol->name == $usuario->getRoleNames()->first()) 
                                                 @php
@@ -96,9 +105,11 @@
 <script>
     $notifierRol = null;
     $notifierBloqueado = null;
+    var previousRol = null;
 
     $(document).ready(function (){
-        $("select").change(function (event) {    
+        $("select").change(function (event) {  
+            previousRol  = $(this).attr('class');  
             $notifierRol = $(this);
             $('#mi-modal-cargar').removeClass('hidden');
             $.ajax({
@@ -115,6 +126,7 @@
                 $notifierRol.parent().parent().parent().find('.roles').text($notifierRol.val()); // imprimimos la respuesta
             }).fail(function() {
                 console.log("Algo salió mal");
+                $notifierRol.val(previousRol);
             }).always(function() {
                 $('#mi-modal-cargar').addClass('hidden');
             })

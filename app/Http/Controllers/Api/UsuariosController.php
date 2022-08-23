@@ -11,8 +11,20 @@ use Illuminate\Support\Facades\Hash;
 class UsuariosController extends Controller
 {
     public function cambiarRol(Request $request){
+        $user = User::find($request->id);
+
+        $num_admins = User::role('Administrador')->get()->count();
+
+        if($user == Auth::user() && Auth::user()->hasRole('Administrador') && $num_admins<2){
+            return response()->json(
+                'No puede cambiar el rol al único administrador', 400
+            );
+        }
+
+        $user->syncRoles($request->rol);
+
         return response()->json(
-            $request->request->all()
+            'Se ha actualizado el rol'
         );
     }
 

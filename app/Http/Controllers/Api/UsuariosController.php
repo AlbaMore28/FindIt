@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UsuariosController extends Controller
 {
@@ -30,6 +31,29 @@ class UsuariosController extends Controller
         $user->save();
         return response()->json(
             'ok'
+        );
+    }
+
+    public function editarPassword(Request $request){
+        $usuario = User::find(Auth::user()->id);
+
+        if(!Hash::check($request->input('password_old'),$usuario->password)){
+            return response()->json(
+                'No ha introducido la contraseña actual correcta', 400
+            );
+        }
+
+        if($request->input('password') != $request->input('password_confirmation')){
+            return response()->json(
+                'No ha introducido la misma contraseña en la confirmación', 400
+            );
+        }
+
+        $usuario->password = bcrypt($request->input('password'));
+        $usuario->save();
+        
+        return response()->json(
+            'Se ha actualizado la contraseña'
         );
     }
 }

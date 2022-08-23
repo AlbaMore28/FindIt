@@ -21,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('usuario/cambiarRol', [UsuariosController::class, 'cambiarRol'])->name('api.usuarios.cambiarRol');
 Route::post('usuario/cambiarEstadoBloqueado', [UsuariosController::class, 'cambiarEstadoBloqueado'])->name('api.usuarios.cambiarEstadoBloqueado');
+Route::post('usuario/editarPassword', [UsuariosController::class, 'editarPassword'])->name('api.usuarios.editarPassword');

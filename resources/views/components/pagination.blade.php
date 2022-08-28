@@ -37,8 +37,8 @@
                                 </span>
                             </li>
                         @else
-                            <li><a href="{{ $url }}#lista">
-                                <span class="material-symbols-outlined opacity-20">
+                            <li><a href="{{ $url }}#lista" class="material-symbols-outlined ">
+                                <span class="opacity-20">
                                     circle
                                 </span>
                             </a></li>

@@ -10,21 +10,31 @@ use Illuminate\Support\Facades\Hash;
 
 class UsuariosController extends Controller
 {
+    public function __construct(){
+        $this->middleware('can:api.usuarios.cambiarEstadoBloqueado')->only('cambiarEstadoBloqueado');
+        $this->middleware('can:api.usuarios.cambiarRol')->only('cambiarRol');
+    }
+
     public function cambiarRol(Request $request){
         $user = User::find($request->id);
 
         $num_admins = User::role('Administrador')->get()->count();
 
-        if($user == Auth::user() && Auth::user()->hasRole('Administrador') && $num_admins<2){
+        if($user->id == Auth::user()->id && Auth::user()->hasRole('Administrador') && $num_admins<2){
             return response()->json(
                 'No puede cambiar el rol al único administrador', 400
+            );
+        }
+        if($user->id != Auth::user()->id && Auth::user()->hasRole('Administrador') && $user->hasRole('Administrador')){
+            return response()->json(
+                'No puede cambiar el rol a otro administrador', 400
             );
         }
 
         $user->syncRoles($request->rol);
 
         return response()->json(
-            'Se ha actualizado el rol'
+            'Se ha actualizado el rol correctamente'
         );
     }
 
@@ -33,17 +43,31 @@ class UsuariosController extends Controller
 
         $num_admins = User::role('Administrador')->get()->count();
 
-        if(($user->hasRole('Administrador') && $num_admins<2) || ($user == Auth::user())){
+        if(Auth::user()->hasRole('Moderador') && $user->hasRole('Administrador')){
             return response()->json(
-                'error', 409
+                'Un moderador no puede bloquear a un administrador', 400
+            );
+        }
+
+        if($user == Auth::user()){
+            return response()->json(
+                'No puede bloquearse a sí mismo', 400
+            );
+        }
+
+        if($user->hasRole('Administrador') && $num_admins<2)
+        {
+            return response()->json(
+                'No se puede bloquear al único administrador', 400
             );
         }
 
         $user->bloqueado = !$user->bloqueado;
         $user->save();
         return response()->json(
-            'ok'
+            ' con éxito'
         );
+
     }
 
     public function editarPassword(Request $request){
@@ -65,7 +89,7 @@ class UsuariosController extends Controller
         $usuario->save();
         
         return response()->json(
-            'Se ha actualizado la contraseña'
+            'Se ha actualizado la contraseña con éxito'
         );
     }
 }

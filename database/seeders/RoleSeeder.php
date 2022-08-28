@@ -22,10 +22,13 @@ class RoleSeeder extends Seeder
         $role1 = Role::findByName('Administrador');
         $role2 = Role::findByName('Moderador');
 
-        /* Permission::create(['name' => 'home.faq'])->assignRole($role1);
-        Permission::create(['name' => 'objetosBuscados.show'])->syncRoles([$role1, $role2]); */
+        /* Permisos para Administrador y Moderador */
+        Permission::create(['name' => 'admin.usuarios.index'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'admin.objetos.index'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'api.usuarios.cambiarEstadoBloqueado'])->syncRoles([$role1, $role2]);
 
-
-
+        /* Permisos sólo para Administrador */
+        Permission::create(['name' => 'admin.usuarios.destroy'])->assignRole($role1);
+        Permission::create(['name' => 'api.usuarios.cambiarRol'])->assignRole($role1);
     }
 }

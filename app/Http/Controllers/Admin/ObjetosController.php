@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class ObjetosController extends Controller
 {
+    public function __construct(){
+        $this->middleware('can:admin.objetos.index')->only('index');
+    }
+
     public function index(){
         $objetos = Objeto::all();
 

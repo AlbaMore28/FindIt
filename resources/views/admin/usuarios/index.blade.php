@@ -4,6 +4,10 @@
     <div class="flex flex-col items-center md:text-center bg-gradient-to-t from-blush via-steel to-blue-gray min-h-inherit pb-28">
         <h1 class="text-white mt-10 text-center md:mt-20 mb-11 titulo_seccion">Administración de Usuarios</h1>
         <div class="flex flex-row h-fit">
+            <div id="my_popup_error" class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 hidden">  
+            </div>
+            <div id="my_popup_succes" class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 hidden">  
+            </div>
             <div id="mi-modal-cargar" class="flex flex-col justify-center items-center h-screen w-screen hidden">
                 <div>
                     <img class="w-full" src="{{asset('storage/img/spinner.png')}}" alt="">
@@ -37,50 +41,62 @@
                                 </div>
                             </div>
                             <div class="flex flex-col flex-auto items-end justify-between h-full p-6">
-                                <form id="form-rol" action="">
-                                    @if ($usuario->getRoleNames()->count() == 0)
-                                        @php
-                                            $claseRolPrevia = "ColaboradorBeneficiario";
-                                        @endphp 
-                                    @else
-                                        @php
-                                            $claseRolPrevia = $usuario->getRoleNames()->first();
-                                        @endphp 
-                                    @endif
-                                    <select id="{{$usuario->id}}" class="{{$claseRolPrevia}}" name="user_role">
-                                        @foreach($roles as $rol)
-                                            @if($rol->name == $usuario->getRoleNames()->first()) 
+                                @can('api.usuarios.cambiarRol')
+                                    @if (($usuario->getRoleNames()->count() > 0 && $usuario->getRoleNames()->first() != 'Administrador') || $usuario->getRoleNames()->count() == 0)
+                                        <form id="form-rol" action="">
+                                            @if ($usuario->getRoleNames()->count() == 0)
                                                 @php
-                                                    $selected = "selected";
-                                                @endphp  
-                                            @elseif($usuario->getRoleNames()->first() == "" && $rol->name == "ColaboradorBeneficiario") 
-                                                @php
-                                                    $selected = "selected";
-                                                @endphp
+                                                    $claseRolPrevia = "ColaboradorBeneficiario";
+                                                @endphp 
                                             @else
                                                 @php
-                                                    $selected = "";
-                                                @endphp
+                                                    $claseRolPrevia = $usuario->getRoleNames()->first();
+                                                @endphp 
                                             @endif
-                                            <option value="{{$rol->name}}" {{$selected}}>{{$rol->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </form>
+                                            <select id="{{$usuario->id}}" class="{{$claseRolPrevia}}" name="user_role">
+                                                @foreach($roles as $rol)
+                                                    @if($rol->name == $usuario->getRoleNames()->first()) 
+                                                        @php
+                                                            $selected = "selected";
+                                                        @endphp  
+                                                    @elseif($usuario->getRoleNames()->first() == "" && $rol->name == "ColaboradorBeneficiario") 
+                                                        @php
+                                                            $selected = "selected";
+                                                        @endphp
+                                                    @else
+                                                        @php
+                                                            $selected = "";
+                                                        @endphp
+                                                    @endif
+                                                    <option value="{{$rol->name}}" {{$selected}}>{{$rol->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </form>
+                                    @endif
+                                @endcan
                                 <p></p>
                                 <div class="flex">
-                                    <button id="{{$usuario->id}}" class="boton-bloquear h-10 w-10 rounded-full waves-effect waves-light shadow-lg text-white mr-2 @if(!$usuario->bloqueado) bg-blue-gray-dark @else bg-red-600 @endif">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 icono-detalles" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
-                                        </svg>
-                                    </button>
+                                    @can('api.usuarios.cambiarEstadoBloqueado')
+                                        @if ((Auth::user()->id != $usuario->id) && $usuario->getRoleNames()->first() != 'Administrador')
+                                            <button id="{{$usuario->id}}" class="boton-bloquear h-10 w-10 rounded-full waves-effect waves-light shadow-lg text-white mr-2 @if(!$usuario->bloqueado) bg-blue-gray-dark @else bg-red-600 @endif">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 icono-detalles" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                                                </svg>
+                                            </button>
+                                        @endif
+                                    @endcan
                                     
-                                    <a href="{{route('admin.usuarios.destroy',$usuario)}}">
-                                        <div class="h-10 w-10 rounded-full bg-blue-gray-dark waves-effect waves-light shadow-lg text-white" id="boton-color">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 icono-detalles" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                            </svg>
-                                        </div>
-                                    </a>
+                                    @can('admin.usuarios.destroy')
+                                        @if (Auth::user()->id != $usuario->id && $usuario->getRoleNames()->first() != 'Administrador')
+                                            <a href="{{route('admin.usuarios.destroy',$usuario)}}">
+                                                <div class="h-10 w-10 rounded-full bg-blue-gray-dark waves-effect waves-light shadow-lg text-white" id="boton-color">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 icono-detalles" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                    </svg>
+                                                </div>
+                                            </a>
+                                        @endif
+                                    @endcan
                                 </div>
                             </div>
                         </div>
@@ -122,11 +138,19 @@
                     withCredentials: true
                 },
             }).done(function(data){
-                console.log(data);
-                $notifierRol.parent().parent().parent().find('.roles').text($notifierRol.val()); // imprimimos la respuesta
-            }).fail(function() {
-                console.log("Algo salió mal");
+                $notifierRol.parent().parent().parent().find('.roles').text($notifierRol.val());
+                $('#my_popup_succes').text(data);
+                $('#my_popup_succes').removeClass('hidden');
+                setTimeout(function(){
+                    $('#my_popup_succes').addClass('hidden');
+                }, 10000);
+            }).fail(function(err) {
                 $notifierRol.val(previousRol);
+                $('#my_popup_error').text(JSON.parse(err.responseText));
+                $('#my_popup_error').removeClass('hidden');
+                setTimeout(function(){
+                    $('#my_popup_error').addClass('hidden');
+                }, 10000);
             }).always(function() {
                 $('#mi-modal-cargar').addClass('hidden');
             })
@@ -146,21 +170,36 @@
                     withCredentials: true
                 },
             }).done(function(data){
-                console.log(data);
                 if($notifierBloqueado.hasClass('bg-blue-gray-dark')){
                     $notifierBloqueado.removeClass('bg-blue-gray-dark');
                     $notifierBloqueado.addClass("bg-red-600");
                     $notifierBloqueado.parent().parent().parent().find('.img-block').removeClass('hidden');
                     $notifierBloqueado.parent().parent().parent().find('.img-no-block').addClass('hidden');
+                    
+                    $('#my_popup_succes').text('Usuario bloqueado'+data);
+                    $('#my_popup_succes').removeClass('hidden');
+                    setTimeout(function(){
+                        $('#my_popup_succes').addClass('hidden');
+                    }, 10000);
                 }
                 else{
                     $notifierBloqueado.removeClass("bg-red-600");
                     $notifierBloqueado.addClass('bg-blue-gray-dark');
                     $notifierBloqueado.parent().parent().parent().find('.img-block').addClass('hidden');
                     $notifierBloqueado.parent().parent().parent().find('.img-no-block').removeClass('hidden');
+
+                    $('#my_popup_succes').text('Usuario desbloqueado'+data);
+                    $('#my_popup_succes').removeClass('hidden');
+                    setTimeout(function(){
+                        $('#my_popup_succes').addClass('hidden');
+                    }, 10000);
                 }
-            }).fail(function() {
-                console.log("Algo salió mal");
+            }).fail(function(err) {
+                $('#my_popup_error').text(JSON.parse(err.responseText));
+                $('#my_popup_error').removeClass('hidden');
+                setTimeout(function(){
+                    $('#my_popup_error').addClass('hidden');
+                }, 10000);
             }).always(function() {
                 $('#mi-modal-cargar').addClass('hidden');
             })

@@ -121,7 +121,7 @@
             </div>
 
             @auth
-                @if (($objetoEncontrado->user->id == Auth::user()->id) || (Auth::user()->can('home.faq') && Auth::user()->can('home.faq')))
+                @if (($objetoEncontrado->user->id == Auth::user()->id) || (Auth::user()->can('admin.objetos.index')))
                     <div class="flex flex-row justify-end mb-20 mr-7">
                         <a class="btn waves-effect waves-light boton-form mr-2" href="{{route('objetos.edit',$objetoEncontrado->id)}}">
                             <span class="texto-boton">Editar</span> 

@@ -62,6 +62,10 @@
         </div>
         <h1 class="text-white mt-10 text-center md:mt-20 mb-11 titulo_seccion">Ver Perfil</h1>
         <div class=" w-1280 min-h-300 bg-slate-200 flex rounded-xl shadow-xl">
+            <div id="my_popup_error" class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 hidden">  
+            </div>
+            <div id="my_popup_succes" class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 hidden">  
+            </div>
             <div class="grid grid-cols-2 grid-flow-row gap-x-20 p-20 w-full">
                     <div class="input-field h-11">
                         <input type="text" id="nombre" name="nombre" autocomplete="off" placeholder=" " value="{{$usuario->nombre}}" disabled>
@@ -152,10 +156,18 @@
                 }).done(function(data){
                     $('#mi-modal-cargar').addClass('hidden');
                     cerrarModalPassword();
-                    alert(data);
+                    $('#my_popup_succes').text(data);
+                    $('#my_popup_succes').removeClass('hidden');
+                    setTimeout(function(){
+                        $('#my_popup_succes').addClass('hidden');
+                    }, 10000);
                 }).fail(function(err) {
                     $('#mi-modal-cargar').addClass('hidden');
-                    alert(JSON.parse(err.responseText));
+                    $('#my_popup_error').text(JSON.parse(err.responseText));
+                    $('#my_popup_error').removeClass('hidden');
+                    setTimeout(function(){
+                        $('#my_popup_error').addClass('hidden');
+                    }, 10000);
                 })
             });
         });
@@ -174,6 +186,8 @@
         function cerrarModalPassword() {
             $("#mi-modal-password").hide();
         }
+
+        
 
     </script>
 

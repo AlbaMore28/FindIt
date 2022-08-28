@@ -9,9 +9,9 @@
                     @foreach ($objetosEncontrados as $objetoEncontrado)
                         <a href="{{route('objetosEncontrados.show', $objetoEncontrado)}}">
                             <div class="flex flex-col items-center text-center text-lg font-semibold text-blue-gray-dark bg-white/50 rounded-xl shadow-sm">  
-                                @if (count($objetoEncontrado->objeto->imagesObjeto))
+                                @if (count($objetoEncontrado->imagesObjeto))
                                     @php
-                                        $imagen_url = asset('storage/'. $objetoEncontrado->objeto->imagesObjeto->first()->image->url); 
+                                        $imagen_url = asset('storage/'. $objetoEncontrado->imagesObjeto->first()->image->url); 
                                     @endphp
                                 @else
                                     @php

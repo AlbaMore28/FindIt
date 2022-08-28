@@ -11,6 +11,11 @@ use Spatie\Permission\Models\Role;
 
 class UsuariosController extends Controller
 {
+    public function __construct(){
+        $this->middleware('can:admin.usuarios.index')->only('index');
+        $this->middleware('can:admin.usuarios.destroy')->only('destroy');
+    }
+  
     public function index(){
         $roles = Role::all();
 

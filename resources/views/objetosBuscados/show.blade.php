@@ -143,79 +143,75 @@
     </div>
 @endsection
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+@section('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-<script
-  src="https://code.jquery.com/jquery-3.6.0.min.js"
-  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-  crossorigin="anonymous">
-</script>
+    <script>
+        var imagenes = [];
+        var indice;
+        var num_imagenes;
 
-<script>
-    var imagenes = [];
-    var indice;
-    var num_imagenes;
+        $(document).ready(function(event) {
+            var imagenes_aux = {!! json_encode($objetoBuscado->objeto->imagesObjeto) !!}
+        
+            imagenes_aux.forEach(imagen => {
+                imagenes.push('http://findit.test/storage/'+imagen['image']['url']);
+            });
 
-    $(document).ready(function(event) {
-        var imagenes_aux = {!! json_encode($objetoBuscado->objeto->imagesObjeto) !!}
-       
-        imagenes_aux.forEach(imagen => {
-            imagenes.push('http://findit.test/storage/'+imagen['image']['url']);
+            num_imagenes = imagenes.length;
         });
+        
+        var ultimo_indice = 1;
+        function activarPestania(indice) {
+            $('#pestania-'+ultimo_indice).removeClass("pestania");
+            $('#contenido-pestania-'+ultimo_indice).addClass("hidden");
+            $('#pestania-'+indice).addClass("pestania");
+            $('#contenido-pestania-'+indice).removeClass("hidden");
 
-        num_imagenes = imagenes.length;
-    });
-    
-    var ultimo_indice = 1;
-    function activarPestania(indice) {
-        $('#pestania-'+ultimo_indice).removeClass("pestania");
-        $('#contenido-pestania-'+ultimo_indice).addClass("hidden");
-        $('#pestania-'+indice).addClass("pestania");
-        $('#contenido-pestania-'+indice).removeClass("hidden");
-
-        ultimo_indice = indice;
-    }
-
-    function activarModal(url, ind) {
-        indice = ind;
-        $('#img-mod').attr('src', url);
-        $('#imagen-mi-modal').show();
-    }
-
-    function desplazarImagen(delante){
-        if(delante){
-            indice = (indice+1)%num_imagenes
+            ultimo_indice = indice;
         }
-        else{
-            if(indice == 0){
-                indice = num_imagenes-1;
+
+        function activarModal(url, ind) {
+            indice = ind;
+            $('#img-mod').attr('src', url);
+            $('#imagen-mi-modal').show();
+        }
+
+        function desplazarImagen(delante){
+            if(delante){
+                indice = (indice+1)%num_imagenes
             }
             else{
-                indice--;
+                if(indice == 0){
+                    indice = num_imagenes-1;
+                }
+                else{
+                    indice--;
+                }
             }
+
+            $('#img-mod').attr('src', imagenes[indice]);
         }
 
-        $('#img-mod').attr('src', imagenes[indice]);
-    }
+        $(window).click(function(event) {
+            if (event.target.id != "img-mod" && 
+                !event.target.classList.contains("imagen-principal") && 
+                !event.target.classList.contains("imagen-pequenia") &&
+                !event.target.classList.contains("button-desplazar-img") &&
+                !event.target.classList.contains("fa-angle-left") &&
+                !event.target.classList.contains("fa-angle-right")
+            ) {
+            $("#imagen-mi-modal").hide();
+            } 
+        });
 
-    $(window).click(function(event) {
-        if (event.target.id != "img-mod" && 
-            !event.target.classList.contains("imagen-principal") && 
-            !event.target.classList.contains("imagen-pequenia") &&
-            !event.target.classList.contains("button-desplazar-img") &&
-            !event.target.classList.contains("fa-angle-left") &&
-            !event.target.classList.contains("fa-angle-right")
-        ) {
-          $("#imagen-mi-modal").hide();
-        } 
-    });
+        function activarModalEliminar() {
+                $('#mi-modal-eliminar').show();
+            }
 
-    function activarModalEliminar() {
-            $('#mi-modal-eliminar').show();
+        function cerrarModalEliminar() {
+            $("#mi-modal-eliminar").hide();
         }
-
-    function cerrarModalEliminar() {
-        $("#mi-modal-eliminar").hide();
-    }
-    
-</script>
+        
+    </script>
+@endsection

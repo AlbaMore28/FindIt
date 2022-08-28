@@ -25,10 +25,9 @@ class UsuariosController extends Controller
     }
 
     public function destroy(User $user){
-        $num_admins = User::role('Administrador')->get()->count();
 
-        if(($user->hasRole('Administrador') && $num_admins<2) || ($user == Auth::user())){
-            return redirect()->route('admin.usuarios.index')->with('error','No se puede borrar el administrador');
+        if(($user->hasRole('Administrador')) || ($user == Auth::user())){
+            return redirect()->route('admin.usuarios.index')->with('error','No se puede borrar un administrador');
         }
         
         $usuario = $user;

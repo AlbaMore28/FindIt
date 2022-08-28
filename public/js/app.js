@@ -2063,22 +2063,7 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-/* harmony import */ var _base__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./base */ "./resources/js/base.js");
-/* harmony import */ var _base__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_base__WEBPACK_IMPORTED_MODULE_1__);
 
-
-
-/***/ }),
-
-/***/ "./resources/js/base.js":
-/*!******************************!*\
-  !*** ./resources/js/base.js ***!
-  \******************************/
-/***/ (() => {
-
-$('#close-info').click(function () {
-  $('#info').hide();
-});
 
 /***/ }),
 

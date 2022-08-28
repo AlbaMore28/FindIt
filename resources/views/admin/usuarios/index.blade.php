@@ -110,101 +110,96 @@
             </div>
         </div>
     </div>
+
 @endsection
 
-<script
-    src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-    crossorigin="anonymous">
-</script>
+@section('js')
+    <script>
+        $notifierRol = null;
+        $notifierBloqueado = null;
+        var previousRol = null;
 
-<script>
-    $notifierRol = null;
-    $notifierBloqueado = null;
-    var previousRol = null;
-
-    $(document).ready(function (){
-        $("select").change(function (event) {  
-            previousRol  = $(this).attr('class');  
-            $notifierRol = $(this);
-            $('#mi-modal-cargar').removeClass('hidden');
-            $.ajax({
-                method: "POST",
-                url: "{{route('api.usuarios.cambiarRol')}}",
-                data: JSON.stringify({ id: $notifierRol.attr('id'), rol: $notifierRol.val() }),
-                contentType: "application/json", 
-                crossDomain: true,
-                xhrFields: {
-                    withCredentials: true
-                },
-            }).done(function(data){
-                $notifierRol.parent().parent().parent().find('.roles').text($notifierRol.val());
-                $('#my_popup_succes').text(data);
-                $('#my_popup_succes').removeClass('hidden');
-                setTimeout(function(){
-                    $('#my_popup_succes').addClass('hidden');
-                }, 10000);
-            }).fail(function(err) {
-                $notifierRol.val(previousRol);
-                $('#my_popup_error').text(JSON.parse(err.responseText));
-                $('#my_popup_error').removeClass('hidden');
-                setTimeout(function(){
-                    $('#my_popup_error').addClass('hidden');
-                }, 10000);
-            }).always(function() {
-                $('#mi-modal-cargar').addClass('hidden');
-            })
-            
-        });
-
-        $(".boton-bloquear").click(function (event) {
-            $notifierBloqueado = $(this);
-            $('#mi-modal-cargar').removeClass('hidden');
-            $.ajax({
-                method: "POST",
-                url: "{{route('api.usuarios.cambiarEstadoBloqueado')}}",
-                data: JSON.stringify({ id: $notifierBloqueado.attr('id') }),
-                contentType: "application/json", 
-                crossDomain: true,
-                xhrFields: {
-                    withCredentials: true
-                },
-            }).done(function(data){
-                if($notifierBloqueado.hasClass('bg-blue-gray-dark')){
-                    $notifierBloqueado.removeClass('bg-blue-gray-dark');
-                    $notifierBloqueado.addClass("bg-red-600");
-                    $notifierBloqueado.parent().parent().parent().find('.img-block').removeClass('hidden');
-                    $notifierBloqueado.parent().parent().parent().find('.img-no-block').addClass('hidden');
-                    
-                    $('#my_popup_succes').text('Usuario bloqueado'+data);
+        $(document).ready(function (){
+            $("select").change(function (event) {  
+                previousRol  = $(this).attr('class');  
+                $notifierRol = $(this);
+                $('#mi-modal-cargar').removeClass('hidden');
+                $.ajax({
+                    method: "POST",
+                    url: "{{route('api.usuarios.cambiarRol')}}",
+                    data: JSON.stringify({ id: $notifierRol.attr('id'), rol: $notifierRol.val() }),
+                    contentType: "application/json", 
+                    crossDomain: true,
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                }).done(function(data){
+                    $notifierRol.parent().parent().parent().find('.roles').text($notifierRol.val());
+                    $('#my_popup_succes').text(data);
                     $('#my_popup_succes').removeClass('hidden');
                     setTimeout(function(){
                         $('#my_popup_succes').addClass('hidden');
                     }, 10000);
-                }
-                else{
-                    $notifierBloqueado.removeClass("bg-red-600");
-                    $notifierBloqueado.addClass('bg-blue-gray-dark');
-                    $notifierBloqueado.parent().parent().parent().find('.img-block').addClass('hidden');
-                    $notifierBloqueado.parent().parent().parent().find('.img-no-block').removeClass('hidden');
-
-                    $('#my_popup_succes').text('Usuario desbloqueado'+data);
-                    $('#my_popup_succes').removeClass('hidden');
+                }).fail(function(err) {
+                    $notifierRol.val(previousRol);
+                    $('#my_popup_error').text(JSON.parse(err.responseText));
+                    $('#my_popup_error').removeClass('hidden');
                     setTimeout(function(){
-                        $('#my_popup_succes').addClass('hidden');
+                        $('#my_popup_error').addClass('hidden');
                     }, 10000);
-                }
-            }).fail(function(err) {
-                $('#my_popup_error').text(JSON.parse(err.responseText));
-                $('#my_popup_error').removeClass('hidden');
-                setTimeout(function(){
-                    $('#my_popup_error').addClass('hidden');
-                }, 10000);
-            }).always(function() {
-                $('#mi-modal-cargar').addClass('hidden');
-            })
-            
-            
+                }).always(function() {
+                    $('#mi-modal-cargar').addClass('hidden');
+                })
+                
+            });
+
+            $(".boton-bloquear").click(function (event) {
+                $notifierBloqueado = $(this);
+                $('#mi-modal-cargar').removeClass('hidden');
+                $.ajax({
+                    method: "POST",
+                    url: "{{route('api.usuarios.cambiarEstadoBloqueado')}}",
+                    data: JSON.stringify({ id: $notifierBloqueado.attr('id') }),
+                    contentType: "application/json", 
+                    crossDomain: true,
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                }).done(function(data){
+                    if($notifierBloqueado.hasClass('bg-blue-gray-dark')){
+                        $notifierBloqueado.removeClass('bg-blue-gray-dark');
+                        $notifierBloqueado.addClass("bg-red-600");
+                        $notifierBloqueado.parent().parent().parent().find('.img-block').removeClass('hidden');
+                        $notifierBloqueado.parent().parent().parent().find('.img-no-block').addClass('hidden');
+                        
+                        $('#my_popup_succes').text('Usuario bloqueado'+data);
+                        $('#my_popup_succes').removeClass('hidden');
+                        setTimeout(function(){
+                            $('#my_popup_succes').addClass('hidden');
+                        }, 10000);
+                    }
+                    else{
+                        $notifierBloqueado.removeClass("bg-red-600");
+                        $notifierBloqueado.addClass('bg-blue-gray-dark');
+                        $notifierBloqueado.parent().parent().parent().find('.img-block').addClass('hidden');
+                        $notifierBloqueado.parent().parent().parent().find('.img-no-block').removeClass('hidden');
+
+                        $('#my_popup_succes').text('Usuario desbloqueado'+data);
+                        $('#my_popup_succes').removeClass('hidden');
+                        setTimeout(function(){
+                            $('#my_popup_succes').addClass('hidden');
+                        }, 10000);
+                    }
+                }).fail(function(err) {
+                    $('#my_popup_error').text(JSON.parse(err.responseText));
+                    $('#my_popup_error').removeClass('hidden');
+                    setTimeout(function(){
+                        $('#my_popup_error').addClass('hidden');
+                    }, 10000);
+                }).always(function() {
+                    $('#mi-modal-cargar').addClass('hidden');
+                })
+            });
         });
-    });
-</script>
+    </script>
+@endsection

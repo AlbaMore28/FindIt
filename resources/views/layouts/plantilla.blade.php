@@ -11,6 +11,11 @@
         @yield('css')
         <title>FindIt</title>
         <link rel="icon" href="{{ asset('storage/img/brujula.png') }}">
+        <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous">
+        </script>
     </head>
     <body>
         <header>
@@ -34,7 +39,21 @@
             <x-footer/>
         </footer>
         
-        @yield('js')
         <script src="{{ asset('js/app.js') }}"></script>
+        <script>
+            $(document).ready(function(){
+                $info = $('#info');
+                if($info.length){
+                    setTimeout(function(){
+                        $info.addClass('hidden');
+                    }, 3000);
+                    $('#close-info').click(function (){
+                        $info.hide();
+                    });
+                }
+                
+            })
+        </script>
+        @yield('js')
     </body>
 </html>

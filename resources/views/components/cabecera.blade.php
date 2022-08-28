@@ -87,60 +87,53 @@
 </div>
 <!-- Background image -->
 
-<script
-  src="https://code.jquery.com/jquery-3.6.0.min.js"
-  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-  crossorigin="anonymous"></script>
+<script>
+  scrolled = false;
 
-    <script>
+  $(window).scroll(function (event) {
+      var scroll = $(window).scrollTop();
+      if($(window).scrollTop() > 180 && !scrolled){
+          $('#nav').removeClass("nav_bar_cabecera");
+          $('#nav').removeClass("h-14");
+          $('#titulo').removeClass("titulo");
+          $('#login').removeClass("mt-8");
+          $('#login').removeClass("text-white");
+          $('#nav').addClass("nav_bar_scroll");
+          $('#enlace').addClass("enlace_titulo_nav");
+          $('#titulo').addClass("titulo_nav");
+          $('#login').addClass("login_nav");
+          $("#imagen").attr("src","{{ asset('storage/img/brujula_azul.png') }}");
+          $('#imagen').removeClass("h-14");
+          $('#imagen').removeClass("mt-32");
+          $('#imagen').addClass("img_nav");
+          
+          scrolled = true;
+      }
+      if($(window).scrollTop() < 180 && scrolled){
+          $('#titulo').removeClass("titulo_nav");
+          $("#imagen").attr("src","{{ asset('storage/img/brujula_blanca.png') }}");
+          $('#imagen').addClass("h-14");
+          $('#imagen').addClass("mt-32");
+          $('#imagen').removeClass("img_nav");
+          $('#enlace').removeClass("enlace_titulo_nav");
+          $('#nav').removeClass("nav_bar_scroll");
+          $('#titulo').addClass("titulo");
+          $('#nav').addClass("nav_bar_cabecera");
+          $('#nav').addClass("h-14");
+          $('#login').addClass("mt-8");
+          $('#login').addClass("text-white");
+          $('#login').removeClass("login_nav");
 
-        scrolled = false;
+          scrolled = false;
+      }
+  });
 
-        $(window).scroll(function (event) {
-            var scroll = $(window).scrollTop();
-            if($(window).scrollTop() > 180 && !scrolled){
-                $('#nav').removeClass("nav_bar_cabecera");
-                $('#nav').removeClass("h-14");
-                $('#titulo').removeClass("titulo");
-                $('#login').removeClass("mt-8");
-                $('#login').removeClass("text-white");
-                $('#nav').addClass("nav_bar_scroll");
-                $('#enlace').addClass("enlace_titulo_nav");
-                $('#titulo').addClass("titulo_nav");
-                $('#login').addClass("login_nav");
-                $("#imagen").attr("src","{{ asset('storage/img/brujula_azul.png') }}");
-                $('#imagen').removeClass("h-14");
-                $('#imagen').removeClass("mt-32");
-                $('#imagen').addClass("img_nav");
-                
-                
-                scrolled = true;
-            }
-            if($(window).scrollTop() < 180 && scrolled){
-                $('#titulo').removeClass("titulo_nav");
-                $("#imagen").attr("src","{{ asset('storage/img/brujula_blanca.png') }}");
-                $('#imagen').addClass("h-14");
-                $('#imagen').addClass("mt-32");
-                $('#imagen').removeClass("img_nav");
-                $('#enlace').removeClass("enlace_titulo_nav");
-                $('#nav').removeClass("nav_bar_scroll");
-                $('#titulo').addClass("titulo");
-                $('#nav').addClass("nav_bar_cabecera");
-                $('#nav').addClass("h-14");
-                $('#login').addClass("mt-8");
-                $('#login').addClass("text-white");
-                $('#login').removeClass("login_nav");
-
-                scrolled = false;
-            }
-        });
-
-        $('#tools-desplegable').click(function(event){
-          if($('#dropdownDotsHorizontal').hasClass("hidden")){
-            $('#dropdownDotsHorizontal').removeClass("hidden");
-          }
-          else{
-            $('#dropdownDotsHorizontal').addClass("hidden");
-          }
-        });
-    </script>
+  $('#tools-desplegable').click(function(event){
+    if($('#dropdownDotsHorizontal').hasClass("hidden")){
+      $('#dropdownDotsHorizontal').removeClass("hidden");
+    }
+    else{
+      $('#dropdownDotsHorizontal').addClass("hidden");
+    }
+  });
+</script>

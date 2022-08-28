@@ -32,3 +32,4 @@
         <x-destacados :objetos='$objetos'/>
     </div>
 @endsection
+

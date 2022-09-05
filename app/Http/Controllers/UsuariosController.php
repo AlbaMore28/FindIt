@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EditarPerfilRequest;
 use App\Models\Image;
 use App\Models\ImageUser;
 use App\Models\Objeto;
@@ -46,7 +47,7 @@ class UsuariosController extends Controller
      * @param  User  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(EditarPerfilRequest $request)
     {
         $usuario = User::find(Auth::user()->id);
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\InicioSesionRequest;
 use App\Http\Requests\UserRequest;
 use App\Models\Faq;
 use App\Models\Image;
@@ -46,7 +47,7 @@ class HomeController extends Controller
       return view('home.registroInicioSesion', compact('objetos'));
    }
 
-   public function iniciarSesion(Request $request){
+   public function iniciarSesion(InicioSesionRequest $request){
       $credenciales = $request->only(['email','password']);
 
       if (Auth::attempt($credenciales)) {

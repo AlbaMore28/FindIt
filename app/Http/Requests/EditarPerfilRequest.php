@@ -2,10 +2,11 @@
 
 namespace App\Http\Requests;
 
-use Carbon\Carbon;
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
-class UserRequest extends FormRequest
+class EditarPerfilRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,17 +25,15 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = [
+        $usuario = User::find(Auth::user()->id);
+
+        return [
             'nombre' => 'required',
             'apellidos' => 'required',
-            'nombre_usuario' => 'required|unique:users',
+            'nombre_usuario' => 'required|unique:users,nombre_usuario,' . $usuario->id,
             'fecha_nac' => 'required|date|olderThan',
-            'telefono' => 'numeric',
-            'email' => 'required|unique:users|email',
-            'password' => 'required|confirmed',
-            'password_confirmation' => 'required',
+            'telefono' => 'numeric|nullable',
             'imagen_perfil' => 'image'
         ];
-        return $rules;
     }
 }

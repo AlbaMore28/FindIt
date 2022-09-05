@@ -11,31 +11,56 @@
         <div class=" w-1280 min-h-300 bg-slate-200 flex rounded-xl shadow-xl">
             <form action="{{route('usuarios.update')}}" method="post" enctype="multipart/form-data" class="grid grid-cols-2 grid-flow-row gap-x-20 p-20 w-full">
                 @csrf
-                    <div class="input-field h-11">
-                        <input type="text" id="nombre" name="nombre" autocomplete="off" placeholder=" " value="{{$usuario->nombre}}">
+                    <div class="input-field h-11 text-left">
+                        <input type="text" id="nombre" name="nombre" autocomplete="off" placeholder=" " value="{{old('nombre', $usuario->nombre)}}">
                         <label for="nombre">Nombre:</label>
+                        @error('nombre')
+                            <small class="text-red-700 text-left">
+                                *{{$message}}
+                            </small>
+                        @enderror
                     </div>
 
-                    <div class="input-field">
-                        <input type="tel" id="telefono" name="telefono" autocomplete="off" placeholder=" " value="{{$usuario->telefono}}">
+                    <div class="input-field text-left">
+                        <input type="tel" id="telefono" name="telefono" autocomplete="off" placeholder=" " value="{{old('telefono', $usuario->telefono)}}">
                         <label for="telefono">Teléfono:</label>
+                        @error('telefono')
+                            <small class="text-red-700 text-left">
+                                *{{$message}}
+                            </small>
+                        @enderror
                     </div>
 
-                    <div class="input-field h-11">
-                        <input type="text" id="apellidos" name="apellidos" autocomplete="off" placeholder=" " value="{{$usuario->apellidos}}">
+                    <div class="input-field h-11 text-left">
+                        <input type="text" id="apellidos" name="apellidos" autocomplete="off" placeholder=" " value="{{old('apellidos', $usuario->apellidos)}}">
                         <label for="apellidos">Apellidos:</label>
+                        @error('apellidos')
+                            <small class="text-red-700">
+                                *{{$message}}
+                            </small>
+                        @enderror
                     </div>
                     
-                    <div class="input-field h-11">
-                        <input type="date" id="fecha_nac" name="fecha_nac" value="{{$usuario->fecha_nac}}">
+                    <div class="input-field h-11 text-left">
+                        <input type="date" id="fecha_nac" name="fecha_nac" value="{{old('fecha_nac', $usuario->fecha_nac)}}">
                         <label for="fecha_nac">Fecha de Nacimiento:</label>
+                        @error('fecha_nac')
+                            <small class="text-red-700">
+                                *{{$message}}
+                            </small>
+                        @enderror
                     </div>
 
-                    <div class="input-field h-11">
-                        <input type="text" id="nombre_usuario" name="nombre_usuario" autocomplete="off" placeholder=" " value="{{$usuario->nombre_usuario}}">
+                    <div class="input-field h-11 text-left">
+                        <input type="text" id="nombre_usuario" name="nombre_usuario" autocomplete="off" placeholder=" " value="{{old('nombre_usuario', $usuario->nombre_usuario)}}">
                         <label for="nombre_usuario">Nombre de Usuario:</label>
+                        @error('nombre_usuario')
+                            <small class="text-red-700">
+                                *{{$message}}
+                            </small>
+                        @enderror
                     </div>
-
+                    
                     <div class="input-field">
                     </div>
 
@@ -57,6 +82,11 @@
                             <img id="imagenPrevisualizacion" class="h-10 w-10 rounded-full ml-2 shadow-lg  @if (!$usuario->imageUser) hidden @endif" src="{{$src_perfil}}">
                         </div>
                         <input type="file" id="imagen_perfil" name="imagen_perfil">
+                        @error('imagen_perfil')
+                            <small class="text-red-700 text-left">
+                                *{{$message}}
+                            </small>
+                        @enderror
                     </div>
                     
                     <div class="flex flex-col items-end mt-14">
@@ -88,7 +118,9 @@
         
         $( ".input-field" ).focus(
             function() {
-                $( this ).children("label").addClass("active");   
+                if($( this ).children("input").val() != ""){
+                    $( this ).children("label").addClass("active");
+                }   
             }
         );
         $( ".input-field" ).focusout(
@@ -97,7 +129,7 @@
                     $( this ).children("label").removeClass("active"); 
                 }  
             }
-        );
+        );     
 
         // Obtener referencia al input y a la imagen
         const $seleccionArchivos = document.querySelector("#imagen_perfil"),

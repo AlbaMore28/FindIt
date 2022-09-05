@@ -15,14 +15,25 @@
                     @csrf
                     
                     <div class="input-field h-11">
-                        <input type="email" id="email" name="email">
+                        <input type="email" id="email" name="email" value="{{old('email')}}">
                         <label for="email">Email:</label>
                     </div>
+                    @error('email')
+                        <small class="text-red-700 text-left">
+                            *{{$message}}
+                        </small>
+                    @enderror
         
                     <div class="input-field h-11">
                         <input type="password" id="password" name="password">
                         <label for="password">Contraseña:</label>
                     </div>
+                    @error('password')
+                        <small class="text-red-700 text-left">
+                            *{{$message}}
+                        </small>
+                    @enderror
+
                     <div class="flex flex-col items-center mt-14">
                         <button class="btn waves-effect waves-light boton-form shadow-lg" type="submit" name="action">
                             <span class="texto-boton">Iniciar Sesion</span> 
@@ -36,44 +47,85 @@
                 <form action="{{route('home.registro')}}" method="post" enctype="multipart/form-data" class="grid grid-cols-1 grid-flow-row gap-x-20 p-20 w-full">
                     @csrf
                     <div class="input-field h-11">
-                        <input type="text" id="nombre" name="nombre">
+                        <input type="text" id="nombre" name="nombre" value="{{old('nombre')}}">
                         <label for="nombre">Nombre:</label>
                     </div>
+                    @error('nombre')
+                        <small class="text-red-700 text-left">
+                            *{{$message}}
+                        </small>
+                    @enderror
                     
                     <div class="input-field h-11">
-                        <input type="text" id="apellidos" name="apellidos">
+                        <input type="text" id="apellidos" name="apellidos" value="{{old('apellidos')}}">
                         <label for="apellidos">Apellidos:</label>
                     </div>
+                    @error('apellidos')
+                        <small class="text-red-700 text-left">
+                            *{{$message}}
+                        </small>
+                    @enderror
                     
                     <div class="input-field h-11">
-                        <input type="text" id="nombre_usuario" name="nombre_usuario">
+                        <input type="text" id="nombre_usuario" name="nombre_usuario" value="{{old('nombre_usuario')}}">
                         <label for="nombre_usuario">Nombre de usuario:</label>
                     </div>
+                    @error('nombre_usuario')
+                        <small class="text-red-700 text-left">
+                            *{{$message}}
+                        </small>
+                    @enderror
             
                     <div class="input-field h-11">
-                        <input type="date" id="fecha_nac" name="fecha_nac">
+                        <input type="date" id="fecha_nac" name="fecha_nac" value="{{old('fecha_nac')}}">
                         <label for="fecha_nac">Fecha de Nacimiento:</label>
                     </div>
+                    @error('fecha_nac')
+                        <small class="text-red-700 text-left">
+                            *{{$message}}
+                        </small>
+                    @enderror
+
             
                     <div class="input-field h-11">
-                        <input type="tel" id="telefono" name="telefono">
+                        <input type="tel" id="telefono" name="telefono" value="{{old('telefono')}}">
                         <label for="telefono">Teléfono:</label>
                     </div>
+                    @error('telefono')
+                        <small class="text-red-700 text-left">
+                            *{{$message}}
+                        </small>
+                    @enderror
             
                     <div class="input-field h-11">
-                        <input type="email" id="email" name="email">
+                        <input type="email" id="email" name="email" value="{{old('email')}}">
                         <label for="email">Email:</label>
                     </div>
+                    @error('email')
+                        <small class="text-red-700 text-left">
+                            *{{$message}}
+                        </small>
+                    @enderror
             
                     <div class="input-field h-11">
                         <input type="password" id="password" name="password">
                         <label for="password">Contraseña:</label>
                     </div>
+                    @error('password')
+                        <small class="text-red-700 text-left">
+                            *{{$message}}
+                        </small>
+                    @enderror
             
                     <div class="input-field h-11">
                         <input type="password" id="password_confirmation" name="password_confirmation">
                         <label for="password_confirmation">Confirmar Contraseña:</label>
                     </div>
+                    @error('password_confirmation')
+                        <small class="text-red-700 text-left">
+                            *{{$message}}
+                        </small>
+                    @enderror
             
                     <div class="flex flex-col items-start mt-12">
                         <label for="imagen_perfil">Imagen de perfil:</label>
@@ -85,6 +137,11 @@
                         </div>
                         <input type="file" id="imagen_perfil" name="imagen_perfil">
                     </div>
+                    @error('imagen_perfil')
+                        <small class="text-red-700 text-left">
+                            *{{$message}}
+                        </small>
+                    @enderror
                     
                     <div class="flex flex-col items-center mt-14">
                         <button class="btn waves-effect waves-light boton-form shadow-lg" type="submit" name="action">
@@ -111,7 +168,7 @@
             var instances = M.FormSelect.init(elems);
         });
         $(document).ready(function(event) {
-            $( "label" ).removeClass("active");
+            /* $( "label" ).removeClass("active"); */
         });
         $( ".input-field" ).focus(
             function() {

@@ -75,11 +75,11 @@ class ObjetosController extends Controller
 
         if($objeto->tipo == 'buscado'){
             $objetoBuscado = $objeto;
-            return redirect()->route('objetosBuscados.show', $objetoBuscado);
+            return redirect()->route('objetosBuscados.show', $objetoBuscado)->with('success','El objeto se ha actualizado correctamente');
         }
         else{
             $objetoEncontrado = $objeto;
-            return redirect()->route('objetosEncontrados.show', $objetoEncontrado);
+            return redirect()->route('objetosEncontrados.show', $objetoEncontrado)->with('success','El objeto se ha actualizado correctamente');
         }
     }
 
@@ -101,9 +101,9 @@ class ObjetosController extends Controller
         
         
         if(Auth::user()->hasRole('Administrador'))
-            return redirect()->route('admin.objetos.index')->with('info', 'El objeto se ha eliminado con éxito.');
+            return redirect()->route('admin.objetos.index')->with('success', 'El objeto se ha eliminado con éxito.');
         else{
-            return redirect()->route('objetos.index')->with('info', 'El objeto se ha eliminado con éxito.');
+            return redirect()->route('objetos.index')->with('success', 'El objeto se ha eliminado con éxito.');
         }
     }
 }

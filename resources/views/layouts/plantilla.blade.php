@@ -46,7 +46,7 @@
                 if($info.length){
                     setTimeout(function(){
                         $info.addClass('hidden');
-                    }, 3000);
+                    }, 7000);
                     $('#close-info').click(function (){
                         $info.hide();
                     });

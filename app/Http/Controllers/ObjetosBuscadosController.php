@@ -75,7 +75,7 @@ class ObjetosBuscadosController extends Controller
             }
         }
 
-        return redirect()->route('objetosBuscados.show', $objetoBuscadoBusca);
+        return redirect()->route('objetosBuscados.show', $objetoBuscadoBusca)->with('success','El objeto se ha creado correctamente');
     }
 
     /**

@@ -75,7 +75,7 @@ class ObjetosEncontradosController extends Controller
             }
         }
 
-        return redirect()->route('objetosEncontrados.show', $objetoEncontradoEncuentra);
+        return redirect()->route('objetosEncontrados.show', $objetoEncontradoEncuentra)->with('success','El objeto se ha creado correctamente');
     }
 
     /**

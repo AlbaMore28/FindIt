@@ -51,8 +51,8 @@
                         $info.hide();
                     });
                 }
-                
-            })
+                $('body').children('#h_b_bfsin').css("display","none");
+            });
         </script>
         @yield('js')
     </body>

@@ -15,6 +15,13 @@
   src: url('/fonts/Best School Dingbat Font by Kelik (7NTypes).otf');
 }
 
+#reset-this-root {
+    all: initial;
+    * {
+        all: unset;
+    }
+}
+
 body{
   font-family: 'Arima', cursive;
   min-width: -webkit-fit-content;
@@ -623,8 +630,22 @@ div #btn-delete:hover{
   margin: 0 !important;
 }
 
+@media (max-width: 768px){
+    .contenedor-destacados {
+        max-width: 100vw;
+    }
+    .faders{
+        display: none;
+    }
+}
+
+@media (min-width: 769px){
+    .contenedor-destacados {
+        width: 70%;
+    }
+}
+
 .contenedor-destacados {
-    width: 70%;
     overflow: hidden;
     position: relative;
 }
@@ -687,7 +708,7 @@ div #btn-delete:hover{
             transform: translate(0,0);
         }
         to {
-            transform: translate(calc(-70% + (2*220px)));
+            transform: translate(calc(-43% - (2*220px)));
         }
     }
 
@@ -696,7 +717,7 @@ div #btn-delete:hover{
             transform: translate(0,0);
         }
         to {
-            transform: translate(calc(-70% + (2*220px)));
+            transform: translate(calc(-43% - (2*220px)));
         }
     }
 }
@@ -2072,6 +2093,10 @@ video {
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
 .pr-2 {
   padding-right: 0.5rem;
 }
@@ -2092,6 +2117,12 @@ video {
 }
 .pr-3 {
   padding-right: 0.75rem;
+}
+.pb-6 {
+  padding-bottom: 1.5rem;
+}
+.pb-3 {
+  padding-bottom: 0.75rem;
 }
 .text-left {
   text-align: left;
@@ -2226,6 +2257,9 @@ video {
   --tw-drop-shadow: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
+.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
 .backdrop-invert {
   --tw-backdrop-invert: invert(100%);
   -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
@@ -2348,8 +2382,36 @@ video {
 }
 @media (min-width: 640px) {
 
+  .sm\:flex {
+    display: flex;
+  }
+
+  .sm\:h-400 {
+    height: 721.6px;
+  }
+
   .sm\:w-full {
     width: 100%;
+  }
+
+  .sm\:flex-row {
+    flex-direction: row;
+  }
+
+  .sm\:pb-0 {
+    padding-bottom: 0px;
+  }
+
+  .sm\:pb-3 {
+    padding-bottom: 0.75rem;
+  }
+
+  .sm\:pt-3 {
+    padding-top: 0.75rem;
+  }
+
+  .sm\:text-center {
+    text-align: center;
   }
 }
 @media (min-width: 768px) {

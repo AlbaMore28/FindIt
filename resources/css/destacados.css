@@ -1,8 +1,21 @@
 @import url('https://fonts.googleapis.com/css?family=Muli:400,700&display=swap');
 
+@media (max-width: 768px){
+    .contenedor-destacados {
+        max-width: 100vw;
+    }
+    .faders{
+        display: none;
+    }
+}
+
+@media (min-width: 769px){
+    .contenedor-destacados {
+        width: 70%;
+    }
+}
 
 .contenedor-destacados {
-    width: 70%;
     overflow: hidden;
     position: relative;
 }
@@ -52,7 +65,7 @@
             transform: translate(0,0);
         }
         to {
-            transform: translate(calc(-70% + (2*220px)));
+            transform: translate(calc(-43% - (2*220px)));
         }
     }
 }

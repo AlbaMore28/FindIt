@@ -154,6 +154,16 @@ return [
         'password_confirmation' => 'confirmar contraseña',
         'imagen_perfil' => 'imagen',
         'nombre_usuario' => 'nombre de usuario',
+
+        'titulo' => 'título',
+        'tamanio' => 'tamaño',
+        'descripcion' => 'descripción',
+        'categoria' => 'categoría',
+        'imagenes_objeto_busc' => 'imágenes',
+
+        'imagenes_objeto_enc' => 'imágenes',
+
+        'imagenes' => 'imágenes',
     ],
 
 ];

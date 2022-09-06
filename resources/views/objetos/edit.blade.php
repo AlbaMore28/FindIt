@@ -10,56 +10,86 @@
             <div class=" w-1280 min-h-300 bg-slate-200 flex rounded-xl shadow-xl">
                 <form action="{{route('objetos.update',$objeto->id)}}" method="post" enctype="multipart/form-data" class="grid grid-cols-2 grid-flow-row gap-x-20 p-20 w-full">
                     @csrf
-                        <div class="input-field h-11">
-                            <input type="text" id="titulo" name="titulo" autocomplete="off" placeholder=" " value="{{$objeto->titulo}}">
+                        <div class="input-field h-11 text-left">
+                            <input type="text" id="titulo" name="titulo" autocomplete="off" placeholder=" " value="{{old('titulo', $objeto->titulo)}}">
                             <label for="titulo">Título:</label>
+                            @error('titulo')
+                                <small class="text-red-700">
+                                    *{{$message}}
+                                </small>
+                            @enderror
                         </div>
-                        <div class="input-field  h-11">
+                        <div class="input-field h-11 text-left">
                             <select  id="tamanio" name="tamanio">
                                 <option value="" disabled selected>Selecciona tu opción</option>
-                                <option value="grande" @if ($objeto->tamanio == "grande") selected @endif>Grande</option>
-                                <option value="mediano" @if ($objeto->tamanio == "mediano") selected @endif>Mediano</option>
-                                <option value="pequenio" @if ($objeto->tamanio == "pequenio") selected @endif>Pequeño</option>
+                                <option value="grande" @if (old('tamanio', $objeto->tamanio) == "grande") selected @endif>Grande</option>
+                                <option value="mediano" @if (old('tamanio', $objeto->tamanio) == "mediano") selected @endif>Mediano</option>
+                                <option value="pequenio" @if (old('tamanio', $objeto->tamanio) == "pequenio") selected @endif>Pequeño</option>
                             </select>
                             <label list="tamanio">Tamaño:</label>
+                            @error('tamanio')
+                                <small class="text-red-700">
+                                    *{{$message}}
+                                </small>
+                            @enderror
                         </div>
             
                         <div class="flex flex-col items-start">
                             <label for="color">Color:</label>
-                            <input type="color" id="color" name="color" class="w-full" value="{{$objeto->color}}">
+                            <input type="color" id="color" name="color" class="w-full" value="{{old('color', $objeto->color)}}">
+                            @error('color')
+                                <small class="text-red-700 text-left">
+                                    *{{$message}}
+                                </small>
+                            @enderror
                         </div>
                         
-                        <div class="input-field">
+                        <div class="input-field text-left">
                             <select  id="categoria" name="categoria">
                                 <option value="" disabled selected>Selecciona tu opción</option>
-                                <option value="animal" @if ($objeto->categoria == "animal") selected @endif>Animal</option>
-                                <option value="cartera" @if ($objeto->categoria == "cartera") selected @endif>Cartera</option>
-                                <option value="ropa" @if ($objeto->categoria == "ropa") selected @endif>Ropa</option>
-                                <option value="llaves" @if ($objeto->categoria == "llaves") selected @endif>Llaves</option>
-                                <option value="telefono" @if ($objeto->categoria == "telefono") selected @endif>Teléfono</option>
+                                <option value="animal" @if (old('categoria', $objeto->categoria) == "animal") selected @endif>Animal</option>
+                                <option value="cartera" @if (old('categoria', $objeto->categoria) == "cartera") selected @endif>Cartera</option>
+                                <option value="ropa" @if (old('categoria', $objeto->categoria) == "ropa") selected @endif>Ropa</option>
+                                <option value="llaves" @if (old('categoria', $objeto->categoria) == "llaves") selected @endif>Llaves</option>
+                                <option value="telefono" @if (old('categoria', $objeto->categoria) == "telefono") selected @endif>Teléfono</option>
                             </select>
                             <label for="categoria">Categoría:</label>
+                            @error('categoria')
+                                <small class="text-red-700">
+                                    *{{$message}}
+                                </small>
+                            @enderror
                         </div>
 
-                        <div class="input-field">
-                            <input type="text" id="lugar" name="lugar" autocomplete="off" placeholder=" " value="{{$objeto->lugar}}">
+                        <div class="input-field text-left">
+                            <input type="text" id="lugar" name="lugar" autocomplete="off" placeholder=" " value="{{old('lugar', $objeto->lugar)}}">
                             <label for="lugar">Lugar:</label>
+                            @error('lugar')
+                                <small class="text-red-700">
+                                    *{{$message}}
+                                </small>
+                            @enderror
                         </div>
                         
                         <div class="flex flex-col items-start justify-center">
                             <div class="switch">
                                 <label>
                                   No Visible
-                                  <input type="checkbox" id="visible" name="visible" @if($objeto->visibilidad) checked @endif>
+                                  <input type="checkbox" id="visible" name="visible" @if(old('visible', $objeto->visibilidad)) checked @endif>
                                   <span class="lever"></span>
                                   Visible
                                 </label>
                               </div>
                         </div>
 
-                        <div class="input-field col-span-2 row-span-3">
-                            <textarea name="descripcion" id="descripcion" style="resize: none" class="h-full border-b border-solid border-blue-gray-dark">{{$objeto->descripcion}}</textarea>
+                        <div class="input-field col-span-2 row-span-3 text-left">
+                            <textarea name="descripcion" id="descripcion" style="resize: none" class="h-full border-b border-solid border-blue-gray-dark">{{old('descripcion', $objeto->descripcion)}}</textarea>
                             <label for="descripcion">Descripción:</label>
+                            @error('descripcion')
+                                <small class="text-red-700">
+                                    *{{$message}}
+                                </small>
+                            @enderror
                         </div>
 
                         <div class="flex flex-col items-start mt-12">
@@ -75,6 +105,11 @@
                                 </div>
                             </div>
                             <input type="file" multiple id="imagenes" name="imagenes[]">
+                            @error('imagenes')
+                                <small class="text-red-700 text-left">
+                                    *{{$message}}
+                                </small>
+                            @enderror
                         </div>
                         
                         <div class="flex flex-col items-end mt-14">
@@ -102,6 +137,11 @@
             var instances = M.FormSelect.init(elems);
         });
         $(document).ready(function(event) {
+            $( ".input-field" ).each(function(){
+                if($( this ).children("input").val() == "" || $( this ).children("textarea").val() == ""){
+                    $( this ).children("label").removeClass("active"); 
+                }
+            });
         
             $( ".input-field" ).focus(
                 function() {

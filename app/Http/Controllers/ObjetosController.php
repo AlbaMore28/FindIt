@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ObjetoRequest;
 use App\Models\Image;
 use App\Models\ImageObjeto;
 use App\Models\Objeto;
@@ -40,7 +41,7 @@ class ObjetosController extends Controller
      * @param  Objeto  $objeto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Objeto  $objeto)
+    public function update(ObjetoRequest $request, Objeto  $objeto)
     {
         $objeto->fill($request->all());
         if($request->input('visible')){

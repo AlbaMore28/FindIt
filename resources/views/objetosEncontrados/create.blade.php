@@ -10,56 +10,86 @@
             <div class=" w-1280 min-h-300 bg-slate-200 flex rounded-xl shadow-xl">
                 <form action="{{route('objetosEncontrados.store')}}" method="post" enctype="multipart/form-data" class="grid grid-cols-2 grid-flow-row gap-x-20 p-20 w-full">
                     @csrf
-                        <div class="input-field h-11">
-                            <input type="text" id="titulo" name="titulo" autocomplete="off" placeholder=" ">
+                        <div class="input-field h-11 text-left">
+                            <input type="text" id="titulo" name="titulo" autocomplete="off" placeholder=" " value="{{old('titulo')}}">
                             <label for="titulo">Título:</label>
+                            @error('titulo')
+                                <small class="text-red-700">
+                                    *{{$message}}
+                                </small>
+                            @enderror
                         </div>
-                        <div class="input-field  h-11">
+                        <div class="input-field h-11 text-left">
                             <select  id="tamanio" name="tamanio">
                                 <option value="" disabled selected>Selecciona tu opción</option>
-                                <option value="grande">Grande</option>
-                                <option value="mediano">Mediano</option>
-                                <option value="pequenio">Pequeño</option>
+                                <option value="grande" @if (old('tamanio') == "grande") selected @endif>Grande</option>
+                                <option value="mediano" @if (old('tamanio') == "mediano") selected @endif>Mediano</option>
+                                <option value="pequenio" @if (old('tamanio') == "pequenio") selected @endif>Pequeño</option>
                             </select>
                             <label list="tamanio">Tamaño:</label>
+                            @error('tamanio')
+                                <small class="text-red-700">
+                                    *{{$message}}
+                                </small>
+                            @enderror
                         </div>
             
                         <div class="flex flex-col items-start">
                             <label for="color">Color:</label>
-                            <input type="color" id="color" name="color" class="w-full" value="#637190">
+                            <input type="color" id="color" name="color" class="w-full" value="{{old('color')}}">
+                            @error('color')
+                                <small class="text-red-700 text-left">
+                                    *{{$message}}
+                                </small>
+                            @enderror
                         </div>
                         
-                        <div class="input-field">
+                        <div class="input-field text-left">
                             <select  id="categoria" name="categoria">
                                 <option value="" disabled selected>Selecciona tu opción</option>
-                                <option value="animal">Animal</option>
-                                <option value="cartera">Cartera</option>
-                                <option value="ropa">Ropa</option>
-                                <option value="llaves">Llaves</option>
-                                <option value="telefono">Teléfono</option>
+                                <option value="animal" @if (old('categoria') == "animal") selected @endif>Animal</option>
+                                <option value="cartera" @if (old('categoria') == "cartera") selected @endif>Cartera</option>
+                                <option value="ropa" @if (old('categoria') == "ropa") selected @endif>Ropa</option>
+                                <option value="llaves" @if (old('categoria') == "llaves") selected @endif>Llaves</option>
+                                <option value="telefono" @if (old('categoria') == "telefono") selected @endif>Teléfono</option>
                             </select>
                             <label for="categoria">Categoría:</label>
+                            @error('categoria')
+                                <small class="text-red-700">
+                                    *{{$message}}
+                                </small>
+                            @enderror
                         </div>
 
-                        <div class="input-field">
-                            <input type="text" id="lugar" name="lugar" autocomplete="off" placeholder=" ">
+                        <div class="input-field text-left">
+                            <input type="text" id="lugar" name="lugar" autocomplete="off" placeholder=" " value="{{old('lugar')}}">
                             <label for="lugar">Lugar:</label>
+                            @error('lugar')
+                                <small class="text-red-700">
+                                    *{{$message}}
+                                </small>
+                            @enderror
                         </div>
                         
                         <div class="flex flex-col items-start justify-center">
                             <div class="switch">
                                 <label>
                                   No Visible
-                                  <input type="checkbox" id="visible" name="visible" value="1">
+                                  <input type="checkbox" id="visible" name="visible" @if(old('visible')) checked @endif value="1">
                                   <span class="lever"></span>
                                   Visible
                                 </label>
                               </div>
                         </div>
 
-                        <div class="input-field col-span-2 row-span-3">
-                            <textarea name="descripcion" id="descripcion" style="resize: none" class="h-full border-b border-solid border-blue-gray-dark"></textarea>
+                        <div class="input-field col-span-2 row-span-3 text-left">
+                            <textarea name="descripcion" id="descripcion" style="resize: none" class="h-full border-b border-solid border-blue-gray-dark">{{old('descripcion')}}</textarea>
                             <label for="descripcion">Descripción:</label>
+                            @error('descripcion')
+                                <small class="text-red-700">
+                                    *{{$message}}
+                                </small>
+                            @enderror
                         </div>
 
                         <div class="flex flex-col items-start mt-12">
@@ -72,7 +102,12 @@
 
                                 </div>
                             </div>
-                            <input type="file" multiple id="imagenes_objeto_enc" name="imagenes_objeto_enc[]"> 
+                            <input type="file" multiple id="imagenes_objeto_enc" name="imagenes_objeto_enc[]">
+                            @error('imagenes_objeto_enc')
+                                <small class="text-red-700 text-left">
+                                    *{{$message}}
+                                </small>
+                            @enderror 
                         </div>
                         
                         <div class="flex flex-col items-end mt-14">
@@ -100,43 +135,48 @@
             var instances = M.FormSelect.init(elems);
         });
         $(document).ready(function(event) {
-            $( "label" ).removeClass("active");
-        });
-        $( ".input-field" ).focus(
-            function() {
-                $( this ).children("label").addClass("active");   
-            }
-        );
-        $( ".input-field" ).focusout(
-            function() {
-                if($( this ).children("input").val() == ""){
+            $( ".input-field" ).each(function(){
+                if($( this ).children("input").val() == "" || $( this ).children("textarea").val() == ""){
                     $( this ).children("label").removeClass("active"); 
-                }  
-            }
-        );
+                }
+            });
+            
+            $( ".input-field" ).focus(
+                function() {
+                    $( this ).children("label").addClass("active");   
+                }
+            );
+            $( ".input-field" ).focusout(
+                function() {
+                    if($( this ).children("input").val() == ""){
+                        $( this ).children("label").removeClass("active"); 
+                    }  
+                }
+            );
 
-        // Obtener referencia al input
-        const $seleccionArchivos = document.querySelector("#imagenes_objeto_enc");
-        var primero = true;
+            // Obtener referencia al input
+            const $seleccionArchivos = document.querySelector("#imagenes_objeto_enc");
+            var primero = true;
 
-        // Escuchar cuando cambie
-        $seleccionArchivos.addEventListener("change", () => {
-            $('#div-files')[0].innerHTML = "";
-            // Los archivos seleccionados, pueden ser muchos o uno
-            const archivos = $seleccionArchivos.files;
+            // Escuchar cuando cambie
+            $seleccionArchivos.addEventListener("change", () => {
+                $('#div-files')[0].innerHTML = "";
+                // Los archivos seleccionados, pueden ser muchos o uno
+                const archivos = $seleccionArchivos.files;
 
-            // Ahora tomamos los archivos que vamos a previsualizar
-            if (primero && archivos && archivos.length){
-                primero = false;
-                for (let i=0; i < archivos.length; i++) {
-                    // añadimos la imagen
-                    $('#div-files').append($('<img>',{id:'imagenPrevisualizacion'+i, class:'h-8 shadow-lg rounded-sm ml-2 mt-2'}));
-                    // Los convertimos a un objeto de tipo objectURL
-                     $objectURL = URL.createObjectURL(archivos[i]);
-                     
-                    $("#imagenPrevisualizacion"+i).attr("src", $objectURL);
-                }   
-            }
+                // Ahora tomamos los archivos que vamos a previsualizar
+                if (primero && archivos && archivos.length){
+                    primero = false;
+                    for (let i=0; i < archivos.length; i++) {
+                        // añadimos la imagen
+                        $('#div-files').append($('<img>',{id:'imagenPrevisualizacion'+i, class:'h-8 shadow-lg rounded-sm ml-2 mt-2'}));
+                        // Los convertimos a un objeto de tipo objectURL
+                        $objectURL = URL.createObjectURL(archivos[i]);
+                        
+                        $("#imagenPrevisualizacion"+i).attr("src", $objectURL);
+                    }   
+                }
+            });
         });
     </script>
 @endsection

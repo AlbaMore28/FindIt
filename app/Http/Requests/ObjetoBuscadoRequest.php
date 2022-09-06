@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ObjetoRequest extends FormRequest
+class ObjetoBuscadoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -30,7 +30,7 @@ class ObjetoRequest extends FormRequest
             'descripcion' => 'required',
             'tamanio' => 'required|in:grande,mediano,pequenio',
             'categoria' => 'required|in:animal,cartera,ropa,llaves,telefono',
-            'imagenes' => 'image'
+            'imagenes_objeto_busc' => 'image'
         ];
         return $rules;
     }

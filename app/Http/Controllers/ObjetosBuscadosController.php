@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ObjetoBuscadoRequest;
 use App\Models\Image;
 use App\Models\ImageObjeto;
 use App\Models\Objeto;
@@ -42,7 +43,7 @@ class ObjetosBuscadosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ObjetoBuscadoRequest $request)
     {
         $objeto = Objeto::make($request->all());
         $objeto->tipo = 'buscado';

@@ -437,7 +437,14 @@ input[type="file"] {
 
 .icono-file{
   position: relative;
-  top: 6px;
+  top: 6px !important;
+  left: 0px !important;
+}
+
+.icono-file-movil{
+  position: relative;
+  top: 5px;
+  left: 5px;
 }
 
 .boton-file:hover{

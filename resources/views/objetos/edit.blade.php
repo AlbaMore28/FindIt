@@ -7,8 +7,8 @@
 @section('contenido')
     <div class="flex flex-col text-center bg-gradient-to-t from-blush via-steel to-blue-gray min-h-inherit items-center pb-28">
         <h1 id="lista" class="text-white mt-20 mb-11 titulo_seccion">Editar {{$objeto->titulo}}</h1>
-            <div class=" w-1280 min-h-300 bg-slate-200 flex rounded-xl shadow-xl">
-                <form action="{{route('objetos.update',$objeto->id)}}" method="post" enctype="multipart/form-data" class="grid grid-cols-2 grid-flow-row gap-x-20 p-20 w-full">
+            <div class="flex flex-col w-5/6 px-5 sm:flex-row sm:w-1280 min-h-300 bg-slate-200 rounded-xl shadow-xl sm:px-0">
+                <form action="{{route('objetos.update',$objeto->id)}}" method="post" enctype="multipart/form-data" class="grid grid-cols-1 p-10 sm:grid-cols-2 grid-flow-row sm:gap-x-20 sm:p-20 w-full">
                     @csrf
                         <div class="input-field h-11 text-left">
                             <input type="text" id="titulo" name="titulo" autocomplete="off" placeholder=" " value="{{old('titulo', $objeto->titulo)}}">
@@ -34,7 +34,7 @@
                             @enderror
                         </div>
             
-                        <div class="flex flex-col items-start">
+                        <div class="flex flex-col items-start pb-3 sm:pb-0">
                             <label for="color">Color:</label>
                             <input type="color" id="color" name="color" class="w-full" value="{{old('color', $objeto->color)}}">
                             @error('color')
@@ -82,7 +82,7 @@
                               </div>
                         </div>
 
-                        <div class="input-field col-span-2 row-span-3 text-left">
+                        <div class="input-field sm:col-span-2 row-span-3 text-left">
                             <textarea name="descripcion" id="descripcion" style="resize: none" class="h-full border-b border-solid border-blue-gray-dark">{{old('descripcion', $objeto->descripcion)}}</textarea>
                             <label for="descripcion">Descripción:</label>
                             @error('descripcion')
@@ -92,7 +92,7 @@
                             @enderror
                         </div>
 
-                        <div class="flex flex-col items-start mt-12">
+                        <div class="flex flex-col items-start mt-16 sm:mt-12">
                             <label for="imagenes">Imágenes:</label>
                             <div class="flex">
                                 <label for="imagenes" class="h-10 w-10 rounded-full bg-blue-gray-dark waves-effect waves-light boton-file">
@@ -112,7 +112,7 @@
                             @enderror
                         </div>
                         
-                        <div class="flex flex-col items-end mt-14">
+                        <div class="flex flex-col items-center sm:items-end mt-14">
                             <button class="btn waves-effect waves-light boton-form" type="submit" name="action">
                                 <span class="texto-boton">Actualizar</span> 
                                 <i class="tiny material-icons">send</i>

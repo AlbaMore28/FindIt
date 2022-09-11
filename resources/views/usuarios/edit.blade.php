@@ -6,10 +6,10 @@
 @endsection
 
 @section('contenido')
-    <div class="flex flex-col items-center md:text-center bg-gradient-to-t from-blush via-steel to-blue-gray min-h-inherit  pb-28">
+    <div class="flex flex-col items-center md:text-center bg-gradient-to-t from-blush via-steel to-blue-gray min-h-inherit pb-28">
         <h1 class="text-white mt-10 text-center md:mt-20 mb-11 titulo_seccion">Editar Perfil</h1>
-        <div class=" w-1280 min-h-300 bg-slate-200 flex rounded-xl shadow-xl">
-            <form action="{{route('usuarios.update')}}" method="post" enctype="multipart/form-data" class="grid grid-cols-2 grid-flow-row gap-x-20 p-20 w-full">
+        <div class="flex flex-col w-5/6 sm:flex-row sm:w-1280 min-h-300 bg-slate-200 flex rounded-xl shadow-xl">
+            <form action="{{route('usuarios.update')}}" method="post" enctype="multipart/form-data" class="grid grid-cols-1 p-10 sm:grid-cols-2 grid-flow-row sm:gap-x-20 sm:p-20 w-full">
                 @csrf
                     <div class="input-field h-11 text-left">
                         <input type="text" id="nombre" name="nombre" autocomplete="off" placeholder=" " value="{{old('nombre', $usuario->nombre)}}">
@@ -73,11 +73,11 @@
                             $src_perfil = "";
                         @endphp
                     @endif
-                    <div class="flex flex-col items-start mt-12">
+                    <div class="flex flex-col items-start mt-10 sm:mt-12">
                         <label for="imagen_perfil">Imagen de perfil:</label>
                         <div class="flex">
                             <label for="imagen_perfil" class="h-10 w-10 rounded-full bg-blue-gray-dark waves-effect waves-light boton-file shadow-lg">
-                                <i class="material-icons text-white icono-file">add</i>
+                                <i class="material-icons text-white icono-file-movil sm:relative sm:top-1.5 sm:left-0">add</i>
                             </label>
                             <img id="imagenPrevisualizacion" class="h-10 w-10 rounded-full ml-2 shadow-lg  @if (!$usuario->imageUser) hidden @endif" src="{{$src_perfil}}">
                         </div>
@@ -89,13 +89,13 @@
                         @enderror
                     </div>
                     
-                    <div class="flex flex-col items-end mt-14">
+                    <div class="flex flex-col items-center sm:items-end mt-14">
                         <button class="btn waves-effect waves-light boton-form" type="submit" name="action">
                             <span class="texto-boton">Actualizar</span> 
                             <i class="tiny material-icons">send</i>
                         </button>
                     </div>
-            </div>
+            </form>
         </div>
 
         <div class="flex justify-center">

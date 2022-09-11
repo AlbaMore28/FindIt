@@ -553,6 +553,18 @@ input[type=color]:focus{
   z-index: 10001;
 }
 
+.div-mi-modal-movil {
+  /* position: relative; */
+  top: 384px;
+  left: 40px;
+  padding-top: 28px;
+  padding-bottom: 28px;
+  padding-left: 8px;
+  padding-right:8px;
+  position: relative;
+  z-index: 10001;
+}
+
 div #btn-delete{
   --tw-bg-opacity: 1;
     background-color: rgb(185 28 28 / var(--tw-bg-opacity)) !important;

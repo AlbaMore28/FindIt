@@ -2,40 +2,42 @@
 <div class="relative overflow-hidden bg-no-repeat bg-cover background_image">
   <div class="absolute top-0 right-0 bottom-0 left-0 w-full h-full overflow-hidden bg-fixed filtro_cabecera">
     <div class="flex flex-col justify-end h-full">
-      <div class="flex flex-row justify-between text-center text-white mb-24 px-6 md:px-12">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-9 w-9 mt-9" viewBox="0 0 20 20" fill="currentColor">
+      <div class="flex flex-row justify-around text-center text-white mb-24 md:px-12 sm:justify-between">
+        <svg xmlns="http://www.w3.org/2000/svg" class="hidden sm:flex h-9 w-9 mt-9" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
         </svg>
-        <a id="enlace" href="{{route('home.index')}}" class="flex flex-row justify-center text-center">
+        <a id="enlace" href="{{route('home.index')}}" class="flex flex-row justify-center text-center ml-12 sm:ml-0">
           <img id="imagen" class="h-14 w-14 mt-32" alt="" src="{{asset('storage/img/brujula_blanca.png')}}" >
           <h1 id="titulo" class="text-5xl font-bold mb-6 titulo">FindIt</h1>
         </a>
         <div id="login" class="flex flex-col justify-items-center mt-8 text-white">
           @auth
             @if (Auth::user()->imageUser)
-              <img src="{{asset('storage/'.Auth::user()->imageUser->image->url)}}" class="h-12 w-12 ml-3 mb-1 rounded-full border-2 border-solid border-white" alt="imagen user">
+              <img src="{{asset('storage/'.Auth::user()->imageUser->image->url)}}" class="h-12 w-12 mb-1 rounded-full border-2 border-solid border-white sm:ml-3" alt="imagen user">
             @else
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 sm:ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             @endif
-            <div class="flex">
+            <div class="flex items-center">
               <div class="flex flex-col">
                 <p class="text-xs text-center">{{ucfirst(Auth::user()->nombre_usuario)}}</p>
-                <a href="{{route('home.cerrarSesion')}}" class="text-xs text-center">Cerrar Sesión</a>
               </div>
               <div class="flex flex-col justify-items-start">
-                <svg id="tools-desplegable" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <svg id="tools-desplegable" xmlns="http://www.w3.org/2000/svg" class="hidden sm:flex h-6 w-6 ml-2 tools-desplegable" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                   <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
-                <div id="dropdownDotsHorizontal" class="z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 hidden desplegable">
+                <div id="dropdownDotsHorizontal" class="z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 hidden sm:desplegable">
                   <ul class="py-1 text-sm text-gray-700 dark:text-gray-200">
                     <li>
                       <a href="{{route('usuarios.index')}}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Ver Perfil</a>
                     </li>
                     <li>
                       <a href="{{route('objetos.index')}}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mis Registros</a>
+                    </li>
+                    <li>
+                      <a href="{{route('home.cerrarSesion')}}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Cerrar Sesión</a>
                     </li>
                   </ul>
                   @can('admin.usuarios.index')
@@ -63,7 +65,35 @@
         </div>
       </div>
       <div class="h-14">
-        <ul id="nav" class="flex flex-row justify-center h-14 nav_bar_cabecera items-center">
+        <div class="flex justify-between text-center sm:hidden">
+          <svg id="nav-desplegable" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 ml-2 mb-2 text-white">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
+          </svg>
+          <div id="desplegable-vertical-nav" class="z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 hidden">
+            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200">
+              <li>
+                <a href="{{route('home.index')}}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">HOME</a>
+              </li>
+              <li>
+                <a href="{{route('home.about')}}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">ABOUT</a>
+              </li>
+              <li>
+                <a href="{{route('home.faq')}}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">FAQ</a>
+              </li>
+              <li>
+                <a href="{{route('home.contact')}}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">CONTACT</a>
+              </li>
+            </ul>
+          </div>
+
+          <svg id="tools-desplegable" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 mr-2 mb-2 text-white tools-desplegable" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+        </div>
+        
+        
+        <ul id="nav" class="hidden sm:flex flex-row justify-center h-14 nav_bar_cabecera items-center">
           <li class="nav-item px-2">
             <a class="nav-link block pr-2 lg:px-2 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out nav_boton"
               href="{{route('home.index')}}" data-mdb-ripple="true" data-mdb-ripple-color="light">HOME</a>
@@ -128,12 +158,21 @@
       }
   });
 
-  $('#tools-desplegable').click(function(event){
+  $('.tools-desplegable').click(function(event){
     if($('#dropdownDotsHorizontal').hasClass("hidden")){
       $('#dropdownDotsHorizontal').removeClass("hidden");
     }
     else{
       $('#dropdownDotsHorizontal').addClass("hidden");
+    }
+  });
+
+  $('#nav-desplegable').click(function(event){
+    if($('#desplegable-vertical-nav').hasClass("hidden")){
+      $('#desplegable-vertical-nav').removeClass("hidden");
+    }
+    else{
+      $('#desplegable-vertical-nav').addClass("hidden");
     }
   });
 </script>

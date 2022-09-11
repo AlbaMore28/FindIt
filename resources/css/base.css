@@ -15,10 +15,10 @@
 }
 
 #reset-this-root {
-    all: initial;
-    * {
-        all: unset;
-    }
+  all: initial;
+}
+#reset-this-root > *{
+  all: unset;
 }
 
 body{

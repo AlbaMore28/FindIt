@@ -37,7 +37,7 @@
     <div class="flex flex-col text-center bg-gradient-to-t from-blush via-steel to-blue-gray min-h-inherit items-center pb-28">
         <h1 id="lista" class="text-white mt-20 mb-11 titulo_seccion">{{ucfirst($objetoEncontrado->objeto->titulo)}}</h1>
         <div class="flex flex-col h-400 w-1280 px-20 justify-between border-4 border-solid border-white/50 rounded-xl">
-            <div class="flex flex-row info-objeto justify-around h-7/12">  
+            <div class="flex flex-row info-objeto justify-around h-399">  
                 <div class="flex flex-col">
                     @if (count($objetoEncontrado->objeto->imagesObjeto))
                     @php
@@ -101,21 +101,39 @@
                     </div>
 
                     {{-- Pestaña datos --}}
-                    <div id="contenido-pestania-3" class="flex flex-col justify-center items-center w-full h-5/6 cuadro_grande bg-white/50 border-2 border-solid border-gray-400 hidden">
-                        <div class="flex">
-                            <p class="icono-chincheta font-medium text-xl">Q</p>
-                            <p class="font-semibold text-blue-gray-dark">Categoría: {{$objetoEncontrado->objeto->categoria}}</p>
+                    <div id="contenido-pestania-3" class="flex flex-col justify-center items-center h-5/6 cuadro_grande bg-white/50 border-2 border-solid border-gray-400 hidden">
+                        <div class="w-fit py-4 border-y-4 border-double border-blue-gray-dark">
+                            <div class="flex">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.098 19.902a3.75 3.75 0 005.304 0l6.401-6.402M6.75 21A3.75 3.75 0 013 17.25V4.125C3 3.504 3.504 3 4.125 3h5.25c.621 0 1.125.504 1.125 1.125v4.072M6.75 21a3.75 3.75 0 003.75-3.75V8.197M6.75 21h13.125c.621 0 1.125-.504 1.125-1.125v-5.25c0-.621-.504-1.125-1.125-1.125h-4.072M10.5 8.197l2.88-2.88c.438-.439 1.15-.439 1.59 0l3.712 3.713c.44.44.44 1.152 0 1.59l-2.879 2.88M6.75 17.25h.008v.008H6.75v-.008z" />
+                                </svg>
+                                <p class="font-semibold text-xl text-blue-gray-dark">Categoría:</p> 
+                                <p class="text-xl text-blue-gray-dark ml-2">{{$objetoEncontrado->objeto->categoria}}</p>
+                            </div>
+                            <div class="flex">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-10 mr-2">
+                                    <path class="h-6" stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" />
+                                </svg>
+                                <label for="muestrario" class="flex items-center font-semibold text-xl text-blue-gray-dark">Color:</label>
+                                <input class="ml-2" type="color" value="{{$objetoEncontrado->objeto->color}}" id="muestrario" disabled>
+                            </div>
+                            <div class="flex">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75zM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-8.25zM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-2.25z" />
+                                </svg>
+                                @if ($objetoEncontrado->objeto->tamanio == 'pequenio')
+                                    @php
+                                        $tamanio = 'pequeño';
+                                    @endphp
+                                @else
+                                    @php
+                                        $tamanio = $objetoEncontrado->objeto->tamanio;
+                                    @endphp
+                                @endif
+                                <p class="font-semibold text-xl text-blue-gray-dark">Tamaño:</p>
+                                <p class="text-xl text-blue-gray-dark ml-2">{{$tamanio}}</p>
+                            </div>
                         </div>
-                        <div class="flex">
-                            <p class="icono-chincheta font-medium text-xl">Q</p>
-                            <label for="muestrario">Color:</label>
-                            <input type="color" value="{{$objetoEncontrado->objeto->color}}" id="muestrario">
-                        </div>
-                        <div class="flex">
-                            <p class="icono-chincheta font-semibold text-xl text-red-600 bg-gray-400">Q</p>
-                            <p>Tamaño: {{$objetoEncontrado->objeto->tamanio}}</p>
-                        </div>
-                        
                     </div>
                 </div>
             </div>

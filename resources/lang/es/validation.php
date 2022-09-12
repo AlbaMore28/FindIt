@@ -148,6 +148,9 @@ return [
     */
 
     'attributes' => [
+        'emailInicio' => 'email',
+        'passwordInicio' => 'contraseña',
+
         'fecha_nac' => 'fecha de nacimiento',
         'password' => 'contraseña',
         'telefono' => 'teléfono',

@@ -48,7 +48,10 @@ class HomeController extends Controller
    }
 
    public function iniciarSesion(InicioSesionRequest $request){
-      $credenciales = $request->only(['email','password']);
+      $credenciales = [
+         'email' => $request->input('emailInicio'),
+         'password' => $request->input('passwordInicio')
+      ];
 
       if (Auth::attempt($credenciales)) {
          $request->session()->regenerate();

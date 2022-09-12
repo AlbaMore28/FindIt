@@ -15,20 +15,20 @@
                     @csrf
                     
                     <div class="input-field h-11">
-                        <input type="email" id="email" name="email" value="{{old('email')}}">
+                        <input type="email" id="email" name="emailInicio" value="{{old('emailInicio')}}">
                         <label for="email">Email:</label>
                     </div>
-                    @error('email')
+                    @error('emailInicio')
                         <small class="text-red-700 text-left">
                             *{{$message}}
                         </small>
                     @enderror
         
                     <div class="input-field h-11">
-                        <input type="password" id="password" name="password">
+                        <input type="password" id="password" name="passwordInicio">
                         <label for="password">Contraseña:</label>
                     </div>
-                    @error('password')
+                    @error('passwordInicio')
                         <small class="text-red-700 text-left">
                             *{{$message}}
                         </small>

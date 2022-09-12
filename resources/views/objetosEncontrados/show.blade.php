@@ -6,38 +6,39 @@
 @endsection
 
 @section('contenido')
-    <div id="mi-modal-eliminar" class="flex flex-col justify-center items-center hidden h-screen w-screen mi-modal-eliminar">
-        <div class="h-80 w-400 bg-white rounded-lg div-mi-modal text-2xl font-semibold text-blue-gray-dark shadow-lg text-center">
-            <p class="mb-2">¿Está seguro de que desea eliminar este objeto?</p>
-            <div class="flex w-full justify-center">
-                <div class="btn waves-effect waves-light boton-form mr-2" onclick="cerrarModalEliminar()">
-                    <span class="texto-boton">Cancelar</span> 
-                    <i class="tiny material-icons">clear</i>
-                </div>
-                    <a id="btn-delete" class="btn waves-effect waves-light boton-form" href="{{route('objetos.destroy',$objetoEncontrado->objeto)}}">
-                        <span class="texto-boton">Eliminar</span> 
-                        <i class="tiny material-icons">delete</i>
-                    </a>
-                </form>
+<div id="mi-modal-eliminar" class="flex flex-col justify-center items-center h-screen w-screen mi-modal-eliminar hidden">
+    <div class="w-5/6 sm:top-60 sm:left-96 div-mi-modal-movil text-center sm:pb-0 sm:pt-28 sm:px-0 sm:h-80 sm:w-400 bg-white rounded-lg text-2xl font-semibold text-blue-gray-dark shadow-lg">
+        <p class="mb-2">¿Está seguro de que desea eliminar este objeto?</p>
+        <div class="flex w-full justify-center">
+            <div class="btn waves-effect waves-light boton-form mr-2" onclick="cerrarModalEliminar()">
+                <span class="texto-boton">Cancelar</span> 
+                <i class="tiny material-icons">clear</i>
             </div>
+           
+            <a id="btn-delete" class="btn waves-effect waves-light boton-form" href="{{route('usuarios.destroy')}}">
+                <span class="texto-boton">Eliminar</span> 
+                <i class="tiny material-icons">delete</i>
+            </a>
+            
         </div>
     </div>
-    <div id="imagen-mi-modal" class="hidden h-screen w-screen mi-modal">
-        <img id="img-mod" class="rounded-xl shadow-lg img-mi-modal w-2/5" alt="objeto">
+</div>
+    <div id="imagen-mi-modal" class="hidden h-screen w-screen mi-modal sm:px-0">
+        <img id="img-mod" class="rounded-xl shadow-lg img-mi-modal w-4/5 sm:w-2/5" alt="objeto">
         @if (count($objetoEncontrado->objeto->imagesObjeto)>1)
-            <div class="button-container w-2/5">
+            <div class="button-container w-4/5 sm:w-2/5">
                 <div class="button-desplazar-img" onclick="desplazarImagen(false)"><i class="fas fa-angle-left"></i></div>
                 <div class="button-desplazar-img" onclick="desplazarImagen(true)"><i class="fas fa-angle-right"></i></div>
             </div>
         @endif
-        <div class="mi-modal-close">
+        <div class="mi-modal-close sm:flex hidden">
             <i class="fas fa-close h-6 w-6"></i>
         </div>
     </div>
     <div class="flex flex-col text-center bg-gradient-to-t from-blush via-steel to-blue-gray min-h-inherit items-center pb-28">
         <h1 id="lista" class="text-white mt-20 mb-11 titulo_seccion">{{ucfirst($objetoEncontrado->objeto->titulo)}}</h1>
-        <div class="flex flex-col h-400 w-1280 px-20 justify-between border-4 border-solid border-white/50 rounded-xl">
-            <div class="flex flex-row info-objeto justify-around h-399">  
+        <div class="flex flex-col sm:h-400 sm:w-1280 sm:px-20 px-5 justify-between border-4 border-solid border-white/50 rounded-xl">
+            <div class="flex flex-col sm:flex-row info-objeto justify-around sm:h-399">  
                 <div class="flex flex-col">
                     @if (count($objetoEncontrado->objeto->imagesObjeto))
                     @php
@@ -67,7 +68,7 @@
                     
                 </div>
                 
-                <div class="flex flex-col h-full w-7/12">
+                <div class="flex flex-col h-399 sm:w-7/12 sm:mt-0 mt-10 w-full">
                     <div class="flex">
                         <div id="pestania-1" class="h-12 w-1/3 border-2 border-solid border-gray-400 bg-white/30 pestania hover:cursor-pointer" onclick="activarPestania(1)">
                             <p class="titulo-pestania font-bold">Descripción</p>
@@ -81,16 +82,16 @@
                     </div>
 
                     {{-- Pestaña descripción --}}
-                    <div id="contenido-pestania-1" class="flex justify-center text-left items-center w-full h-5/6 cuadro_grande bg-white/50 border-2 border-solid border-gray-400">
+                    <div id="contenido-pestania-1" class="flex px-4 sm:px-0 justify-center text-left items-center w-full h-5/6 cuadro_grande bg-white/50 border-2 border-solid border-gray-400">
                         <p class=" icono-lugar mr-5 font-medium text-4xl text-blue-gray-dark">]</p>
-                        <p class="w-96 font-semibold text-blue-gray-dark">{{$objetoEncontrado->objeto->descripcion}}</p>
+                        <p class="w-full sm:w-96 font-semibold text-blue-gray-dark">{{$objetoEncontrado->objeto->descripcion}}</p>
                     </div>
 
                     {{-- Pestaña lugar --}}
-                    <div id="contenido-pestania-2" class="flex px-5 justify-around items-center w-full h-5/6 cuadro_grande bg-white/50 border-2 border-solid border-gray-400 hidden">
+                    <div id="contenido-pestania-2" class="flex flex-col sm:flex-row px-5 justify-around items-center w-full h-5/6 cuadro_grande bg-white/50 border-2 border-solid border-gray-400 hidden">
                         <div class="mapouter">
                             <div class="gmap_canvas">
-                                <iframe class="h-60" id="gmap_canvas" src="https://maps.google.com/maps?q=2880%20Broadway,%20New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                                <iframe class="h-60 w-full" id="gmap_canvas" src="https://maps.google.com/maps?q=2880%20Broadway,%20New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
                                 </iframe>
                             </div>
                         </div>
@@ -101,8 +102,8 @@
                     </div>
 
                     {{-- Pestaña datos --}}
-                    <div id="contenido-pestania-3" class="flex flex-col justify-center items-center h-5/6 cuadro_grande bg-white/50 border-2 border-solid border-gray-400 hidden">
-                        <div class="w-fit py-4 border-y-4 border-double border-blue-gray-dark">
+                    <div id="contenido-pestania-3" class="flex flex-col justify-center items-center h-5/6 w-full cuadro_grande bg-white/50 border-2 border-solid border-gray-400 hidden">
+                        <div class="sm:w-fit py-4 border-y-4 border-double border-blue-gray-dark">
                             <div class="flex">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M4.098 19.902a3.75 3.75 0 005.304 0l6.401-6.402M6.75 21A3.75 3.75 0 013 17.25V4.125C3 3.504 3.504 3 4.125 3h5.25c.621 0 1.125.504 1.125 1.125v4.072M6.75 21a3.75 3.75 0 003.75-3.75V8.197M6.75 21h13.125c.621 0 1.125-.504 1.125-1.125v-5.25c0-.621-.504-1.125-1.125-1.125h-4.072M10.5 8.197l2.88-2.88c.438-.439 1.15-.439 1.59 0l3.712 3.713c.44.44.44 1.152 0 1.59l-2.879 2.88M6.75 17.25h.008v.008H6.75v-.008z" />
@@ -140,8 +141,8 @@
 
             @auth
                 @if (($objetoEncontrado->user->id == Auth::user()->id) || (Auth::user()->can('admin.objetos.index')))
-                    <div class="flex flex-row justify-end mb-20 mr-7">
-                        <a class="btn waves-effect waves-light boton-form mr-2" href="{{route('objetos.edit',$objetoEncontrado->id)}}">
+                    <div class="flex flex-col sm:flex-row sm:justify-end mb-20 sm:mr-7 mr-0">
+                        <a class="btn waves-effect waves-light boton-form sm:mr-2 sm:mt-0 sm:mb-0 mt-2 mb-2 mr-0" href="{{route('objetos.edit',$objetoEncontrado->id)}}">
                             <span class="texto-boton">Editar</span> 
                             <i class="tiny material-icons">create</i>
                         </a>

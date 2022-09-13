@@ -8,6 +8,6 @@ class UsuarioBloqueadoController extends Controller
 {
     public function __invoke()
     {
-        return response('te jodes');
+        return view('usuarios.bloqueado');
     }
 }

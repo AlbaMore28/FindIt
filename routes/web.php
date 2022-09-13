@@ -43,9 +43,6 @@ Route::middleware('guest')->group(function (){
 
 /* Rutas con logueo obligatorio */
 Route::middleware('auth')->group(function (){
-    /* Rutas home */
-    Route::get('cerrarSesion', [HomeController::class, 'cerrarSesion'])->name('home.cerrarSesion');
-
     /* Rutas objetos buscados */
     Route::get('objetosBuscados/create', [ObjetosBuscadosController::class, 'create'])->name('objetosBuscados.create');
     Route::post('objetosBuscados', [ObjetosBuscadosController::class, 'store'])->name('objetosBuscados.store');

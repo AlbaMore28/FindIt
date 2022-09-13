@@ -9,7 +9,18 @@
                 <p>
                     Este proyecto nace a partir de una experiencia personal a la hora de poder, tanto recuperar objetos
                     perdidos, como de encontrar a los dueños de un objetos encontrado.
-                </p>
+                </p><br>
+                <p>
+                    Hoy en día, la mayoría de las personas suelen usar las redes sociales para esta
+                    tarea, con el inconveniente de que estas no están preparadas para ese uso y por
+                    tanto, muchas veces se acaban ignorando los mensajes de búsqueda y no son
+                    compartidos para que alcancen el mayor número de visualizaciones posible.
+                </p><br>
+                <p>
+                    Suelen darse casos en los que intentamos recuperar un objeto, o algo
+                    más importante como una mascota que hemos perdido, y no podemos asegurar
+                    con certeza que alguien esté dispuesto a ayudarnos en el proceso de búsqueda.
+                </p><br>
                 <p>
                     De esta manera, FindIt trata de acercarnos a todos de forma que podamos tanto,
                     localizar lo antes posible nuestros enseres, como poder ayudar a alguien en la

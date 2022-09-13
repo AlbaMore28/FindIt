@@ -43,20 +43,20 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/api.php')); */
 
-            Route::middleware('bloqueadoCheck', 'web')
+            Route::middleware('web', 'bloqueadoCheck')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
 
-            Route::middleware('bloqueadoCheck', 'web', 'auth')
+            Route::middleware('web', 'auth', 'bloqueadoCheck')
                 ->prefix('admin')
                 ->group(base_path('routes/admin.php'));
 
-            Route::middleware('bloqueadoCheck', 'web')
+            Route::middleware('web', 'bloqueadoCheck')
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
 
             Route::middleware('web')
-                ->group(base_path('routes/bloqueado.php'));
+                ->group(base_path('routes/noBloqueadas.php'));
         });
     }
 

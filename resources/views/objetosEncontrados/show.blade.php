@@ -15,7 +15,7 @@
                 <i class="tiny material-icons">clear</i>
             </div>
            
-            <a id="btn-delete" class="btn waves-effect waves-light boton-form" href="{{route('usuarios.destroy')}}">
+            <a id="btn-delete" class="btn waves-effect waves-light boton-form" href="{{route('objetos.destroy', $objetoEncontrado->objeto->id)}}">
                 <span class="texto-boton">Eliminar</span> 
                 <i class="tiny material-icons">delete</i>
             </a>

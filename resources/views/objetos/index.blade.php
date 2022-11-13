@@ -5,7 +5,7 @@
         <h1 class="text-white mt-10 text-center md:mt-20 mb-11 titulo_seccion">Mis Registros</h1>
         <div class="flex flex-row justify-center h-fit">
             <div class="flex flex-col">
-                <div class="sm:flex sm:h-864 grid grid-cols-1 gap-y-10 sm:gap-x-10 px-10 py-10 border-4 sm:w-700 border-solid border-white/50 rounded-xl overflow-auto @if (count(Auth::user()->objetosBuscados) == 0) hidden @endif">
+                <div class="sm:h-864 grid grid-cols-1 gap-y-10 sm:gap-x-10 px-10 py-10 border-4 sm:w-700 border-solid border-white/50 rounded-xl overflow-auto @if (count(Auth::user()->objetosBuscados) == 0) hidden @endif">
                     @foreach ($objetos as $objeto)
                         @if (($objeto->tipo == 'buscado' && $objeto->objetoBuscado->user_id == Auth::user()->id) ||
                             ($objeto->tipo == 'encontrado' && $objeto->objetoEncontrado->user_id == Auth::user()->id))

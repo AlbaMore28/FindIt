@@ -1,6 +1,6 @@
 @props(['link','link2','accion','accion2','rutaCrear','rutaListar'])
 
-<div class="card w-64 h-128 my-20 mx-16 ">
+<div class="card w-64 h-128 my-20 mx-auto sm:mx-16">
     <div class="face front flex flex-col justify-center bg-gray-500 rounded-lg">
         <div class="bg-gray-700 h-40 w-40 flex justify-center mb-5 mx-12 rounded-lg sombra-box-front">
             <img class="p-2" alt="" src="{{$link}}" >

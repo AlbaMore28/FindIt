@@ -29,8 +29,8 @@ class ObjetoEncontradoRequest extends FormRequest
             'lugar' => 'required',
             'descripcion' => 'required',
             'tamanio' => 'required|in:grande,mediano,pequenio',
-            'categoria' => 'required|in:animal,cartera,ropa,llaves,telefono',
-            'imagenes_objeto_enc' => 'image'
+            'categoria' => 'required|in:animal,cartera,ropa,llaves,telefono'/* ,
+            'imagenes_objeto_enc' => 'image' */
         ];
         return $rules;
     }

@@ -26,9 +26,9 @@
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" w-64 h-24 sm:mr-7 mr-0 text-red-700">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
                     </svg>
-                    <p class="text-blue-gray-dark font-semibold">
+                    <p class="text-red-800 font-semibold">
                         Su cuenta ha sido bloqueada y no se le permite navegar por el sistema. Si no conoce las razones 
-                        o no está de acuerdo con esta decisión, puede ponerse en contacto con nosotros a través del correo: <span class="text-black">findit@support.es</span> 
+                        o no está de acuerdo con esta decisión, puede ponerse en contacto con nosotros a través del correo: <a href="mailto:findit@support.es" class="text-black">findit@support.es</a> 
                     </p>
                 </div>
                 <a class="btn waves-effect waves-light boton-form mt-4 sm:mt-5" href="{{route('home.cerrarSesion')}}">

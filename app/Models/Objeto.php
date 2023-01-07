@@ -15,10 +15,8 @@ class Objeto extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'categoria',
         'titulo',
         'descripcion',
-        'color',
         'lugar',
         'tamanio',
     ];
@@ -36,5 +34,15 @@ class Objeto extends Model
     //Relacion 1 a 1 con objeto encontrado
     public function objetoEncontrado(){
         return $this->hasOne(ObjetoEncontradoEncuentra::class,'id','id');
+    }
+
+    //Relacion muchos a 1 (inversa)
+    public function color(){
+        return $this->belongsTo(Color::class);
+    }
+
+    //Relacion muchos a 1 (inversa)
+    public function categoria(){
+        return $this->belongsTo(Categoria::class);
     }
 }

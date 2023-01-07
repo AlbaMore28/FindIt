@@ -34,6 +34,9 @@
         <div class="mi-modal-close sm:flex hidden">
             <i class="fas fa-close h-6 w-6"></i>
         </div>
+        <div class="mi-modal-close-mobile flex sm:hidden">
+            <i class="fas fa-close h-6 w-6"></i>
+        </div>
     </div>
     <div class="flex flex-col text-center bg-gradient-to-t from-blush via-steel to-blue-gray min-h-inherit items-center pb-28">
         <h1 id="lista" class="text-white mt-20 mb-11 titulo_seccion">{{ucfirst($objetoBuscado->objeto->titulo)}}</h1>
@@ -89,11 +92,11 @@
 
                     {{-- Pestaña lugar --}}
                     <div id="contenido-pestania-2" class="flex flex-col sm:flex-row px-5 justify-around items-center w-full h-5/6 cuadro_grande bg-white/50 border-2 border-solid border-gray-400 hidden">
-                        <div class="mapouter">
-                            <div class="gmap_canvas">
+                        <div id="mapouter" class="h-60 w-full">
+                            {{-- <div class="gmap_canvas">
                                 <iframe class="h-60 w-full" id="gmap_canvas" src="https://maps.google.com/maps?q=2880%20Broadway,%20New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
                                 </iframe>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="flex">
                             <p class="icono-lugar mr-2 text-red-600 font-bold text-2xl">l</p>
@@ -104,21 +107,25 @@
                     {{-- Pestaña datos --}}
                     <div id="contenido-pestania-3" class="flex flex-col justify-center items-center h-5/6 w-full cuadro_grande bg-white/50 border-2 border-solid border-gray-400 hidden">
                         <div class="sm:w-fit py-4 border-y-4 border-double border-blue-gray-dark">
-                            <div class="flex">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.098 19.902a3.75 3.75 0 005.304 0l6.401-6.402M6.75 21A3.75 3.75 0 013 17.25V4.125C3 3.504 3.504 3 4.125 3h5.25c.621 0 1.125.504 1.125 1.125v4.072M6.75 21a3.75 3.75 0 003.75-3.75V8.197M6.75 21h13.125c.621 0 1.125-.504 1.125-1.125v-5.25c0-.621-.504-1.125-1.125-1.125h-4.072M10.5 8.197l2.88-2.88c.438-.439 1.15-.439 1.59 0l3.712 3.713c.44.44.44 1.152 0 1.59l-2.879 2.88M6.75 17.25h.008v.008H6.75v-.008z" />
-                                </svg>
-                                <p class="font-semibold text-xl text-blue-gray-dark">Categoría:</p>
-                                <p class="text-xl text-blue-gray-dark ml-2">{{$objetoBuscado->objeto->categoria}}</p>
-                            </div>
-                            <div class="flex muestrario">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-10 mr-2">
-                                    <path class="h-6" stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" />
-                                </svg>
-                                
-                                <label for="muestrario" class="flex items-center font-semibold text-xl text-blue-gray-dark">Color:</label>
-                                <input class="ml-2" type="color" value="{{$objetoBuscado->objeto->color}}" id="muestrario" disabled>
-                            </div>
+                            @if ($objetoBuscado->objeto->categoria)
+                                <div class="flex">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.098 19.902a3.75 3.75 0 005.304 0l6.401-6.402M6.75 21A3.75 3.75 0 013 17.25V4.125C3 3.504 3.504 3 4.125 3h5.25c.621 0 1.125.504 1.125 1.125v4.072M6.75 21a3.75 3.75 0 003.75-3.75V8.197M6.75 21h13.125c.621 0 1.125-.504 1.125-1.125v-5.25c0-.621-.504-1.125-1.125-1.125h-4.072M10.5 8.197l2.88-2.88c.438-.439 1.15-.439 1.59 0l3.712 3.713c.44.44.44 1.152 0 1.59l-2.879 2.88M6.75 17.25h.008v.008H6.75v-.008z" />
+                                    </svg>
+                                    <p class="font-semibold text-xl text-blue-gray-dark">Categoría:</p>
+                                    <p class="text-xl text-blue-gray-dark ml-2">{{$objetoBuscado->objeto->categoria->nombre}}</p>
+                                </div>
+                            @endif
+                            @if ($objetoBuscado->objeto->color)
+                                <div class="flex muestrario">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-10 mr-2">
+                                        <path class="h-6" stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" />
+                                    </svg>
+                                    
+                                    <label for="muestrario" class="flex items-center font-semibold text-xl text-blue-gray-dark">Color:</label>
+                                    <input class="ml-2" type="color" value="{{$objetoBuscado->objeto->color->hex_code}}" id="muestrario" disabled>
+                                </div>
+                            @endif
                             <div class="flex">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75zM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-8.25zM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-2.25z" />
@@ -164,6 +171,7 @@
 @endsection
 
 @section('js')
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v3"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <script>
@@ -233,5 +241,26 @@
             $("#mi-modal-eliminar").hide();
         }
         
+       /*  var divMap = document.getElementById('mapouter');
+        navigator.geolocation.getCurrentPosition( fn_ok, fn_mal );
+        function fn_mal(){}
+        function fn_ok( rta ){
+            var lat = rta.coords.latitude;
+            var lon = rta.coords.longitude;
+
+            var gLatLon = new google.maps.LatLng( lat, lon );
+            var objConfig = {
+                zoom: 17,
+                center: gLatLon
+            }
+
+            var gMapa = new google.maps.Map( divMap, objConfig );
+            var objConfigMarker = {
+                position: gLatLon,
+                map: gMapa
+                tittle: "hola"
+            }
+            var gMarker = new google.maps.Marker( objConfigMarker );
+        } */
     </script>
 @endsection

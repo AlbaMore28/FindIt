@@ -6,6 +6,8 @@ use App\Http\Controllers\ObjetosController;
 use App\Http\Controllers\ObjetosEncontradosController;
 use App\Http\Controllers\UsuarioBloqueadoController;
 use App\Http\Controllers\UsuariosController;
+use App\Mail\ContactanosMailable;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +25,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'home'])->name('home.index');
 Route::get('faq', [HomeController::class, 'preguntas'])->name('home.faq');
 Route::get('contact', [HomeController::class, 'contactar'])->name('home.contact');
+Route::post('contactanos',function(){
+    $correo = new ContactanosMailable;
+    Mail::to('find.it.find.them@gmail.com')->send($correo);
+    return redirect()->route('home.index')->with('success','Mensaje enviado correctamente');
+})->name('emails.contactanos');
 Route::get('about', [HomeController::class, 'about'])->name('home.about');
 
 /* rutas objetos buscados (sin logueo o con logueo) */

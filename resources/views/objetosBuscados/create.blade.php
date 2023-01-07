@@ -34,11 +34,16 @@
                             @enderror
                         </div>
             
-                        <div class="flex flex-col items-start pb-3 sm:pb-0">
+                        <div class="input-field text-left">
+                            <select  id="color" name="color">
+                                <option value="" disabled selected>Selecciona tu opción</option>
+                                @foreach($colores as $color)
+                                <option value="{{$color->id}}" @if (old('color') == "{{$color->id}}") selected @endif>{{ucfirst($color->nombre)}}</option>
+                                @endforeach
+                            </select>
                             <label for="color">Color:</label>
-                            <input type="color" id="color" name="color" class="w-full" value="{{old('color')}}">
                             @error('color')
-                                <small class="text-red-700 text-left">
+                                <small class="text-red-700">
                                     *{{$message}}
                                 </small>
                             @enderror
@@ -47,11 +52,9 @@
                         <div class="input-field text-left">
                             <select  id="categoria" name="categoria">
                                 <option value="" disabled selected>Selecciona tu opción</option>
-                                <option value="animal" @if (old('categoria') == "animal") selected @endif>Animal</option>
-                                <option value="cartera" @if (old('categoria') == "cartera") selected @endif>Cartera</option>
-                                <option value="ropa" @if (old('categoria') == "ropa") selected @endif>Ropa</option>
-                                <option value="llaves" @if (old('categoria') == "llaves") selected @endif>Llaves</option>
-                                <option value="telefono" @if (old('categoria') == "telefono") selected @endif>Teléfono</option>
+                                @foreach($categorias as $categoria)
+                                <option value="{{$categoria->id}}" @if (old('categoria') == "{{$categoria->id}}") selected @endif>{{ucfirst($categoria->nombre)}}</option>
+                                @endforeach
                             </select>
                             <label for="categoria">Categoría:</label>
                             @error('categoria')

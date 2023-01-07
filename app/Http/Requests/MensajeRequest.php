@@ -2,12 +2,13 @@
 
 namespace App\Http\Requests;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ObjetoRequest extends FormRequest
+class MensajeRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Determine if the mensaje is authorized to make this request.
      *
      * @return bool
      */
@@ -24,13 +25,9 @@ class ObjetoRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'titulo' => 'required',
-            'color' => 'required',
-            'lugar' => 'required',
-            'descripcion' => 'required',
-            'tamanio' => 'required|in:grande,mediano,pequenio',
-            'categoria' => 'required',
-            'imagenes' => 'image'
+            'nombre' => 'required',
+            'email' => 'required|email',
+            'mensaje' => 'required',
         ];
         return $rules;
     }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ObjetoRequest;
+use App\Models\Categoria;
+use App\Models\Color;
 use App\Models\Image;
 use App\Models\ImageObjeto;
 use App\Models\Objeto;
@@ -16,9 +18,10 @@ use Spatie\Permission\Models\Role;
 class ObjetosController extends Controller
 {
     public function index(){
-        $objetos = Objeto::with('objetoBuscado','objetoEncontrado')->get();
+        $categorias = Categoria::all();
+        $colores = Color::all();
 
-        return view('objetos.index',compact('objetos'));
+        return view('objetos.index', compact('categorias','colores'));
     }
 
     /**
@@ -29,9 +32,11 @@ class ObjetosController extends Controller
      */
     public function edit(Objeto  $objeto)
     {
+        $categorias = Categoria::all();
+        $colores = Color::all();
         $objetos = Objeto::where('visibilidad','1')->orderBy('id', 'desc')->take(5)->get();
 
-        return view('objetos.edit',compact('objeto','objetos'));
+        return view('objetos.edit',compact('objeto','objetos','categorias','colores'));
     }
 
     /**
@@ -44,6 +49,13 @@ class ObjetosController extends Controller
     public function update(ObjetoRequest $request, Objeto  $objeto)
     {
         $objeto->fill($request->all());
+
+        $categoria = Categoria::find($request->input('categoria'));
+        $color = Color::find($request->input('color'));
+
+        $objeto->categoria()->associate($categoria);
+        $objeto->color()->associate($color);
+
         if($request->input('visible')){
             $objeto->visibilidad = 1;
         }

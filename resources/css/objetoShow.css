@@ -163,3 +163,35 @@
     opacity: 1;
     cursor: pointer;
 }
+
+.mi-modal-close-mobile{
+    position: absolute;
+    top: 38%;
+    right: 9%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 1);
+    border-radius: 50%;
+    padding: 2px;
+    opacity: 0.75;
+    transition: .4s;
+}
+
+.mi-modal-close-mobile:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+
+.mi-modal-close-mobile > i{
+    opacity: 0.75;
+    color: white;
+    position: relative;
+    top: 4px;
+    left: 6px;
+    transition: .4s;
+}
+
+.mi-modal-close-mobile > i:hover{
+    opacity: 1;
+    cursor: pointer;
+}

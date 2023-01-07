@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ObjetoEncontradoRequest;
+use App\Models\Categoria;
+use App\Models\Color;
 use App\Models\Image;
 use App\Models\ImageObjeto;
 use App\Models\Objeto;
@@ -20,9 +22,9 @@ class ObjetosEncontradosController extends Controller
      */
     public function index()
     {
-        $objetosEncontrados = Objeto::where('visibilidad','1')->where('tipo','encontrado')->paginate(9);
-
-        return view('objetosEncontrados.index', compact('objetosEncontrados'));
+        $categorias = Categoria::all();
+        $colores = Color::all();
+        return view('objetosEncontrados.index', compact('categorias','colores'));
     }
 
     /**
@@ -32,9 +34,11 @@ class ObjetosEncontradosController extends Controller
      */
     public function create()
     {
+        $categorias = Categoria::all();
+        $colores = Color::all();
         $objetos = Objeto::where('visibilidad','1')->orderBy('id', 'desc')->take(5)->get();
         
-        return view('objetosEncontrados.create', compact('objetos'));
+        return view('objetosEncontrados.create', compact('objetos','categorias','colores'));
     }
 
     /**
@@ -46,6 +50,13 @@ class ObjetosEncontradosController extends Controller
     public function store(ObjetoEncontradoRequest $request)
     {
         $objeto = Objeto::make($request->all());
+
+        $categoria = Categoria::find($request->input('categoria'));
+        $color = Color::find($request->input('color'));
+
+        $objeto->categoria()->associate($categoria);
+        $objeto->color()->associate($color);
+
         $objeto->tipo = 'encontrado';
         if($request->input('visible')){
             $objeto->visibilidad = 1;

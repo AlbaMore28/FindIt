@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\InicioSesionRequest;
+use App\Http\Requests\MensajeRequest;
 use App\Http\Requests\UserRequest;
+use App\Mail\ContactanosMailable;
 use App\Models\Faq;
 use App\Models\Image;
 use App\Models\ImageUser;
@@ -13,6 +15,7 @@ use App\Models\ObjetoEncontradoEncuentra;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller

@@ -78,6 +78,11 @@ main{
     transition: 0.4s;
 }
 
+.text-registro{
+  font-size: 12px;
+  line-height: 1rem;
+}
+
 .enlace_titulo_nav{
   position: fixed;
   z-index: 200;
@@ -239,6 +244,15 @@ div hr{
 .titulo_seccion {
   font-family: 'Sriracha';
   font-size: 40px;
+}
+
+.titulo_filtros {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.altura-cuadro-objetos{
+  min-height: 864px;
 }
 
 #login{
@@ -494,16 +508,21 @@ input[type=color]:focus{
 }
 
 .desplegable{
+    position: absolute;
+    top: 91px;
+    margin-left: -140px;
+}
+
+.desplegable-mobile{
   position: absolute;
-  top: 98px;
-  right: 26px;
-  transition: 0.5s ;
+  right: 0;
+  margin-top: 36px;
 }
 
 .icono-detalles{
   position: relative;
-    top: 5px;
-    left: 6px;
+  top: 5px;
+  left: 6px;
 }
 
 .boton-detalles{

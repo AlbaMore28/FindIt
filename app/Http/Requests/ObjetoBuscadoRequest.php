@@ -29,7 +29,7 @@ class ObjetoBuscadoRequest extends FormRequest
             'lugar' => 'required',
             'descripcion' => 'required',
             'tamanio' => 'required|in:grande,mediano,pequenio',
-            'categoria' => 'required|in:animal,cartera,ropa,llaves,telefono',
+            'categoria' => 'required',
             'imagenes_objeto_busc' => 'image'
         ];
         return $rules;

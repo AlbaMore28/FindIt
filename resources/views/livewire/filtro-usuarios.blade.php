@@ -8,20 +8,20 @@
             <img class="w-full" src="{{asset('storage/img/spinner.png')}}" alt="">
         </div>
     </div>
-    <div class="h-864 grid grid-cols-1 gap-y-10 px-10 py-10 border-4 w-700 border-solid border-white/50 rounded-xl overflow-auto">
-            @foreach ($usuarios as $usuario)
-                <div class="h-56 w-full flex bg-white/50 rounded-xl shadow-sm items-center">
+    <div class="h-864 flex flex-col gap-y-10 px-10 py-10 border-4 w-700 border-solid border-white/50 rounded-xl overflow-auto">
+            @foreach ($this->usuarios as $usuario)
+                <div class="w-full flex bg-white/50 rounded-xl shadow-sm items-center" wire:key="usuario-{{$usuario->id}}">
                     @if ($usuario->imageUser)
                         @php $url_img = asset('storage/'.$usuario->imageUser->image->url) @endphp
                     @else
                         @php $url_img = asset('storage/img/no_img.png') @endphp
                     @endif
-                    <div class="img-block h-40 w-56 mx-10 rounded-xl shadow-sm bg-cover bg-center bg-no-repeat flex justify-center @if(!$usuario->bloqueado) hidden @endif" style="background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('{{$url_img}}');">
+                    <div class="img-block h-40 w-56 mx-10 my-8 rounded-xl shadow-sm bg-cover bg-center bg-no-repeat flex justify-center @if(!$usuario->bloqueado) hidden @endif" style="background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('{{$url_img}}');">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-full w-40 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                         </svg>
                     </div>
-                    <div class="img-no-block h-40 w-56 mx-10 rounded-xl shadow-sm bg-cover bg-center bg-no-repeat flex justify-center @if($usuario->bloqueado) hidden @endif" style="background-image: url('{{$url_img}}');">
+                    <div class="img-no-block h-40 w-56 mx-10 my-8 rounded-xl shadow-sm bg-cover bg-center bg-no-repeat flex justify-center @if($usuario->bloqueado) hidden @endif" style="background-image: url('{{$url_img}}');">
                     </div>
                     
                     <div class="flex flex-col w-64 items-center text-center text-lg font-semibold text-blue-gray-dark info-user">
@@ -50,20 +50,11 @@
                                     @endif
                                     <select id="{{$usuario->id}}" class="{{$claseRolPrevia}}" name="user_role">
                                         @foreach($roles as $rol)
-                                            @if($rol->name == $usuario->getRoleNames()->first()) 
-                                                @php
-                                                    $selected = "selected";
-                                                @endphp  
-                                            @elseif($usuario->getRoleNames()->first() == "" && $rol->name == "ColaboradorBeneficiario") 
-                                                @php
-                                                    $selected = "selected";
-                                                @endphp
+                                            @if($rol->name == $usuario->getRoleNames()->first() || ($usuario->getRoleNames()->first() == "" && $rol->name == "ColaboradorBeneficiario")) 
+                                                <option wire:key="rol-{{$rol->id}}-{{$usuario->id}}" value="{{$rol->name}}" selected>{{$rol->name}}</option>
                                             @else
-                                                @php
-                                                    $selected = "";
-                                                @endphp
+                                                <option wire:key="rol-{{$rol->id}}-{{$usuario->id}}" value="{{$rol->name}}">{{$rol->name}}</option>
                                             @endif
-                                            <option value="{{$rol->name}}" {{$selected}}>{{$rol->name}}</option>
                                         @endforeach
                                     </select>
                                 </form>
@@ -119,7 +110,7 @@
 
             <label class="text-lg col-span-1 font-semibold">Roles:</label>
             @foreach ($roles as $rol)
-            <label>
+            <label wire:key="rolFiltro-{{$rol->id}}">
                 <input type="checkbox" wire:model="rol" value="{{ $rol->name }}">
                 {{ ucfirst($rol->name) }}
             </label>

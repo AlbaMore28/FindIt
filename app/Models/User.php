@@ -61,4 +61,14 @@ class User extends Authenticatable
     public function imageUser(){
         return $this->belongsTo(ImageUser::class);
     }
+
+    //Relacion 1 a muchos
+    public function mensajes(){
+        return $this->hasMany(Mensaje::class);
+    }
+
+    //Relacion muchos a muchos
+    public function chats(){
+        return $this->belongsToMany(Chat::class);
+    }
 }

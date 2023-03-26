@@ -148,16 +148,37 @@
             </div>
 
             @auth
-                @if (($objetoBuscado->user->id == Auth::user()->id) || (Auth::user()->can('admin.objetos.index')))
+                @if ($objetoBuscado->user->id == Auth::user()->id)
                     <div class="flex flex-col sm:flex-row sm:justify-end mb-20 sm:mr-7 mr-0">
                         <a class="btn waves-effect waves-light boton-form sm:mr-2 sm:mt-0 sm:mb-0 mt-2 mb-2 mr-0" href="{{route('objetos.edit',$objetoBuscado->id)}}">
-                            <span class="texto-boton">Editar</span> 
+                            <span class="texto-boton mr-1">Editar</span> 
                             <i class="tiny material-icons">create</i>
                         </a>
                         <button class="btn waves-effect waves-light boton-form" onclick="activarModalEliminar()">
-                            <span class="texto-boton">Eliminar</span> 
+                            <span class="texto-boton mr-1">Eliminar</span> 
                             <i class="tiny material-icons">delete</i>
                         </button>
+                    </div>
+                @else
+                    <div class="flex flex-col sm:flex-row sm:justify-end mb-20 sm:mr-7 mr-0">
+                        @if(Auth::user()->can('admin.objetos.index'))
+                        <a class="btn waves-effect waves-light boton-form sm:mr-2 sm:mt-0 sm:mb-0 mt-2 mb-2 mr-0" href="{{route('objetos.edit',$objetoBuscado->id)}}">
+                            <span class="texto-boton mr-1">Editar</span> 
+                            <i class="tiny material-icons">create</i>
+                        </a>
+                        <button class="btn waves-effect waves-light boton-form mr-2" onclick="activarModalEliminar()">
+                            <span class="texto-boton mr-1">Eliminar</span> 
+                            <i class="tiny material-icons">delete</i>
+                        </button>
+                        @endif
+                        <form action="{{route('chats.crearChat')}}" method="POST" target="_blank">
+                            @csrf
+                            <input type="text" class="hidden" name='user_id' value="{{$objetoBuscado->user->id}}"/>
+                            <button type="submit" class="btn waves-effect waves-light boton-form sm:mr-2 sm:mt-0 sm:mb-0 mt-2 mb-2 mr-0">
+                                <span class="texto-boton mr-1">Contactar</span> 
+                                <i class="tiny material-icons">message</i>
+                            </button>
+                        </form>
                     </div>
                 @endif
             @endauth

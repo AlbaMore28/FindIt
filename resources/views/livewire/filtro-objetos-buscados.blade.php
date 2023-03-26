@@ -18,10 +18,10 @@
         </div>
         <div id="grid-objetos">
             <div class="flex flex-col">
-                @if (count($objetosBuscados) > 0)
+                @if (count($this->objetosBuscados) > 0)
                     <div class="altura-cuadro-objetos grid grid-cols-1 sm:grid-cols-3 grid-rows-3 gap-y-10 gap-x-10 px-10 py-10 border-4 sm:w-700 border-solid border-white/50 rounded-xl">
-                        @foreach ($objetosBuscados as $objetoBuscado)
-                            <a href="{{route('objetosBuscados.show', $objetoBuscado)}}">
+                        @foreach ($this->objetosBuscados as $objetoBuscado)
+                            <a href="{{route('objetosBuscados.show', $objetoBuscado)}}"  wire:key="objeto-{{$objetoBuscado->id}}">
                                 <div class="flex flex-col items-center text-center text-lg font-semibold text-blue-gray-dark bg-white/50 rounded-xl shadow-sm">
                                     @if (count($objetoBuscado->imagesObjeto))
                                         @php
@@ -46,7 +46,7 @@
                 @endif
             </div>
             <div class="mt-4">
-                {{$objetosBuscados->links('components.paginationLivewire')}}
+                {{$this->objetosBuscados->links('components.paginationLivewire')}}
             </div>
         </div>
     </div>
@@ -80,7 +80,7 @@
 
             <label class="text-lg col-span-3 font-semibold">Categoría:</label>
             @foreach ($categorias as $categoria)
-            <label>
+            <label wire:key="categoria-{{$categoria->id}}">
                 <input type="checkbox" wire:model="categoria" value="{{ $categoria->nombre }}">
                 {{ ucfirst($categoria->nombre) }}
             </label>
@@ -88,7 +88,7 @@
 
             <label class="text-lg col-span-3 font-semibold">Color:</label>
             @foreach ($colores as $color)
-            <label>
+            <label wire:key="color-{{$color->id}}">
                 <input type="checkbox" wire:model="color" value="{{ $color->hex_code }}">
                 {{ ucfirst($color->nombre) }}
             </label>

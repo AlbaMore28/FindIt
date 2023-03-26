@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ObjetosBuscadosController;
 use App\Http\Controllers\ObjetosController;
@@ -69,4 +70,8 @@ Route::middleware('auth')->group(function (){
     Route::get('editarRegistro/{objeto}', [ObjetosController::class, 'edit'])->name('objetos.edit');
     Route::post('editarRegistro/{objeto}', [ObjetosController::class, 'update'])->name('objetos.update');
     Route::get('borrarObjeto/{objeto}', [ObjetosController::class, 'destroy'])->name('objetos.destroy');
+
+    /* Rutas chat */
+    Route::get('chat', [ChatController::class, 'index'])->name('chats.index');
+    Route::post('chat', [ChatController::class, 'index'])->name('chats.crearChat');
 });

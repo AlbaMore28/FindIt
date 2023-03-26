@@ -20,14 +20,13 @@ class FiltroObjetosAdmin extends Component
     public $color = [];
     public $fecha;
 
-    public function __construct($elements){
-        $this->categorias = $elements[0];
-        $this->colores = $elements[1];
+    public function __mount($elements){
+        $this->categorias = $elements['categorias'];
+        $this->colores = $elements['colores'];
     }
 
-    public function render()
-    {
-        $eloquentQuery = $objetos = Objeto::with('objetoBuscado','objetoEncontrado');
+    public function getObjetosProperty(){
+        $eloquentQuery = Objeto::with('objetoBuscado','objetoEncontrado');
 
         $titulo = trim($this->titulo);
         if(!empty($titulo)){ $eloquentQuery = $eloquentQuery->where(DB::raw('LOWER(titulo)'), 'like', '%' . strtolower($titulo) . '%'); }
@@ -54,16 +53,14 @@ class FiltroObjetosAdmin extends Component
         }
         if(!empty($this->fecha)){ $eloquentQuery = $eloquentQuery->whereDate('created_at', $this->fecha); }
 
-        $objetos = $eloquentQuery->get();
+        return $eloquentQuery->get();
+    }
 
+    public function render()
+    {
         return view('livewire.filtro-objetos-admin', [
-            'objetos' => $objetos,
             'categorias' => $this->categorias,
             'colores' => $this->colores
         ]);
-    }
-
-    public function filtrado(){
-        $this->resetPage();
     }
 }

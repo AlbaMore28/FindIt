@@ -16,12 +16,11 @@ class FiltroUsuarios extends Component
     public $email;
     public $rol = [];
 
-    public function __construct($elements){
-        $this->roles = $elements[0];
+    public function __mount($elements){
+        $this->roles = $elements['roles'];
     }
 
-    public function render()
-    {
+    public function getUsuariosProperty(){
         $eloquentQuery = User::with('roles');
 
         $nombre = trim($this->nombre);
@@ -40,10 +39,12 @@ class FiltroUsuarios extends Component
             );
         }
 
-        $usuarios = $eloquentQuery->get();
+        return $eloquentQuery->get();
+    }
 
+    public function render()
+    {
         return view('livewire.filtro-usuarios', [
-            'usuarios' => $usuarios,
             'roles' => $this->roles,
         ]);
     }

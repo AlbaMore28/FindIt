@@ -121,7 +121,7 @@
                                     <path class="h-6" stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" />
                                 </svg>
                                 <label for="muestrario" class="flex items-center font-semibold text-xl text-blue-gray-dark">Color:</label>
-                                <input class="ml-2" type="color" value="{{$objetoEncontrado->objeto->color->hex_code}}" id="muestrario" disabled>
+                                <input class="ml-2" type="color" value="@if($objetoEncontrado->objeto->color){{$objetoEncontrado->objeto->color->hex_code}}@endif" id="muestrario" disabled>
                             </div>
                             <div class="flex">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-2">
@@ -148,15 +148,36 @@
                 @if (($objetoEncontrado->user->id == Auth::user()->id) || (Auth::user()->can('admin.objetos.index')))
                     <div class="flex flex-col sm:flex-row sm:justify-end mb-20 sm:mr-7 mr-0">
                         <a class="btn waves-effect waves-light boton-form sm:mr-2 sm:mt-0 sm:mb-0 mt-2 mb-2 mr-0" href="{{route('objetos.edit',$objetoEncontrado->id)}}">
-                            <span class="texto-boton">Editar</span> 
+                            <span class="texto-boton mr-1">Editar</span> 
                             <i class="tiny material-icons">create</i>
                         </a>
                         <button class="btn waves-effect waves-light boton-form" onclick="activarModalEliminar()">
-                            <span class="texto-boton">Eliminar</span> 
+                            <span class="texto-boton mr-1">Eliminar</span> 
                             <i class="tiny material-icons">delete</i>
                         </button>
                     </div>
-                @endif
+                    @else
+                        <div class="flex flex-col sm:flex-row sm:justify-end mb-20 sm:mr-7 mr-0">
+                            @if(Auth::user()->can('admin.objetos.index'))
+                            <a class="btn waves-effect waves-light boton-form sm:mr-2 sm:mt-0 sm:mb-0 mt-2 mb-2 mr-0" href="{{route('objetos.edit',$objetoEncontrado->id)}}">
+                                <span class="texto-boton mr-1">Editar</span> 
+                                <i class="tiny material-icons">create</i>
+                            </a>
+                            <button class="btn waves-effect waves-light boton-form mr-2" onclick="activarModalEliminar()">
+                                <span class="texto-boton mr-1">Eliminar</span> 
+                                <i class="tiny material-icons">delete</i>
+                            </button>
+                            @endif
+                            <form action="{{route('chats.crearChat')}}" method="POST" target="_blank">
+                                @csrf
+                                <input type="text" class="hidden" name='user_id' value="{{$objetoEncontrado->user->id}}"/>
+                                <button type="submit" class="btn waves-effect waves-light boton-form sm:mr-2 sm:mt-0 sm:mb-0 mt-2 mb-2 mr-0">
+                                    <span class="texto-boton mr-1">Contactar</span> 
+                                    <i class="tiny material-icons">message</i>
+                                </button>
+                            </form>
+                        </div>
+                    @endif
             @endauth
 
         </div>

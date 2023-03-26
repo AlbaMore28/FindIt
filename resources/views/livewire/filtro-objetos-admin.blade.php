@@ -18,10 +18,10 @@
         </div>
         <div id="grid-objetos">
             <div class="flex flex-col">
-                @if (count($objetos) > 0)
-                <div class="altura-cuadro-objetos sm:h-864 grid grid-cols-1 gap-y-10 sm:gap-x-10 px-10 py-10 border-4 sm:w-700 border-solid border-white/50 rounded-xl overflow-auto @if (count(Auth::user()->objetosBuscados) == 0) hidden @endif">
-                    @foreach ($objetos as $objeto)
-                    <div class="h-56 w-924 flex bg-white/50 rounded-xl shadow-sm items-center">
+                @if (count($this->objetos) > 0)
+                <div class="altura-cuadro-objetos sm:h-864 grid grid-cols-1 gap-y-10 sm:gap-x-10 px-10 py-10 border-4 sm:w-700 border-solid border-white/50 rounded-xl overflow-auto">
+                    @foreach ($this->objetos as $objeto)
+                    <div class="h-56 w-924 flex bg-white/50 rounded-xl shadow-sm items-center" wire:key="objeto-{{$objeto->id}}">
                         @if (count($objeto->imagesObjeto) > 0)
                             @php $imagen_url = asset('storage/'. $objeto->imagesObjeto->first()->image->url); @endphp
                         @else
@@ -70,10 +70,10 @@
         
         <div class="grid grid-cols-3 gap-4 text-left mx-4">
             <label class="text-lg col-span-3 font-semibold" for="titulo">Título:</label>
-            <input class="col-span-3" type="text" wire:model="titulo" wire:keydown="filtrado" />
+            <input class="col-span-3" type="text" wire:model="titulo"/>
 
             <label class="text-lg col-span-3 font-semibold" for="lugar">Lugar:</label>
-            <input class="col-span-3" type="text" wire:model="lugar" wire:keydown="filtrado" />
+            <input class="col-span-3" type="text" wire:model="lugar"/>
 
             <label class="text-lg col-span-3 font-semibold">Tamaño:</label>
             <label>
@@ -91,7 +91,7 @@
 
             <label class="text-lg col-span-3 font-semibold">Categoría:</label>
             @foreach ($categorias as $categoria)
-            <label>
+            <label wire:key="categoria-{{$categoria->id}}">
                 <input type="checkbox" wire:model="categoria" value="{{ $categoria->nombre }}">
                 {{ ucfirst($categoria->nombre) }}
             </label>
@@ -99,7 +99,7 @@
 
             <label class="text-lg col-span-3 font-semibold">Color:</label>
             @foreach ($colores as $color)
-            <label>
+            <label wire:key="color-{{$color->id}}">
                 <input type="checkbox" wire:model="color" value="{{ $color->hex_code }}">
                 {{ ucfirst($color->nombre) }}
             </label>

@@ -22,13 +22,12 @@ class FiltroObjetosBuscados extends Component
     public $color = [];
     public $fecha;
 
-    public function __construct($elements){
-        $this->categorias = $elements[0];
-        $this->colores = $elements[1];
+    public function __mount($elements){
+        $this->categorias = $elements['categorias'];
+        $this->colores = $elements['colores'];
     }
 
-    public function render()
-    {
+    public function getObjetosBuscadosProperty(){
         $eloquentQuery = Objeto::where('visibilidad','1')->where('tipo','buscado');
 
         $titulo = trim($this->titulo);
@@ -56,10 +55,12 @@ class FiltroObjetosBuscados extends Component
         }
         if(!empty($this->fecha)){ $eloquentQuery = $eloquentQuery->whereDate('created_at', $this->fecha); }
 
-        $objetosBuscados = $eloquentQuery->paginate(9);
-
+        return $eloquentQuery->paginate(9);
+    }
+    
+    public function render()
+    {
         return view('livewire.filtro-objetos-buscados', [
-            'objetosBuscados' => $objetosBuscados,
             'categorias' => $this->categorias,
             'colores' => $this->colores
         ]);

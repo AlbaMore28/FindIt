@@ -21,7 +21,6 @@
                         </div>
                         <div class="input-field h-11 text-left">
                             <select  id="tamanio" name="tamanio">
-                                <option value="" disabled selected>Selecciona tu opción</option>
                                 <option value="grande" @if (old('tamanio', $objeto->tamanio) == "grande") selected @endif>Grande</option>
                                 <option value="mediano" @if (old('tamanio', $objeto->tamanio) == "mediano") selected @endif>Mediano</option>
                                 <option value="pequenio" @if (old('tamanio', $objeto->tamanio) == "pequenio") selected @endif>Pequeño</option>
@@ -36,12 +35,13 @@
             
                         <div class="input-field text-left">
                             <select  id="color" name="color">
-                                <option value="" disabled selected>Selecciona tu opción</option>
                                 @foreach($colores as $color)
-                                <option value="{{$color->id}}" @if (old('color') == "{{$color->id}}") selected @endif>{{ucfirst($color->nombre)}}</option>
+                                <option value="{{$color->id}}"
+                                    @if (old('color', $objeto->color->id) == $color->id) selected @endif>{{ucfirst($color->nombre)}}
+                                </option>
                                 @endforeach
                             </select>
-                            <label for="color">Color:</label>
+                            <label for="color">Color: </label>
                             @error('color')
                                 <small class="text-red-700">
                                     *{{$message}}
@@ -51,9 +51,10 @@
                         
                         <div class="input-field text-left">
                             <select  id="categoria" name="categoria">
-                                <option value="" disabled selected>Selecciona tu opción</option>
                                 @foreach($categorias as $categoria)
-                                <option value="{{$categoria->id}}" @if (old('categoria') == "{{$categoria->id}}") selected @endif>{{ucfirst($categoria->nombre)}}</option>
+                                <option value="{{$categoria->id}}" 
+                                    @if (old('categoria', $objeto->categoria->id) == $categoria->id) selected @endif>{{ucfirst($categoria->nombre)}}
+                                </option>
                                 @endforeach
                             </select>
                             <label for="categoria">Categoría:</label>

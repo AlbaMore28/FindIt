@@ -3,5 +3,6 @@
 @tailwind utilities;
 
 @import "base.css";
+@import "chat.css";
 @import "destacados.css";
 @import "objetoShow.css";

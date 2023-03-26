@@ -29,8 +29,8 @@ class ObjetoRequest extends FormRequest
             'lugar' => 'required',
             'descripcion' => 'required',
             'tamanio' => 'required|in:grande,mediano,pequenio',
-            'categoria' => 'required',
-            'imagenes' => 'image'
+            'categoria' => 'required'
+            /* 'imagenes' => 'image' */
         ];
         return $rules;
     }

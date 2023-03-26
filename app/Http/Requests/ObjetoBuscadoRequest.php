@@ -30,7 +30,7 @@ class ObjetoBuscadoRequest extends FormRequest
             'descripcion' => 'required',
             'tamanio' => 'required|in:grande,mediano,pequenio',
             'categoria' => 'required',
-            'imagenes_objeto_busc' => 'image'
+            /* 'imagenes_objeto_busc' => 'image' */
         ];
         return $rules;
     }

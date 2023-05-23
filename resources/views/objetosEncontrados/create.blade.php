@@ -65,13 +65,17 @@
                         </div>
 
                         <div class="input-field text-left">
-                            <input type="text" id="lugar" name="lugar" autocomplete="off" placeholder=" " value="{{old('lugar')}}">
+                            <input type="text" id="lugar" name="lugar" autocomplete="off" placeholder=" " value="{{old('lugar')}}" onchange="updateCoords()">
                             <label for="lugar">Lugar:</label>
                             @error('lugar')
                                 <small class="text-red-700">
                                     *{{$message}}
                                 </small>
                             @enderror
+                            
+                            <small id="error-lugar" class="text-red-700 hidden">
+                                *La dirección no es válida
+                            </small>
                         </div>
                         
                         <div class="flex flex-col items-start justify-center">
@@ -112,6 +116,9 @@
                                 </small>
                             @enderror 
                         </div>
+                         
+                        <input type="hidden" id="latitud" name="latitud">
+                        <input type="hidden" id="longitud" name="longitud">
                         
                         <div class="flex flex-col items-center sm:items-end mt-14">
                             <button class="btn waves-effect waves-light boton-form" type="submit" name="action">
@@ -131,12 +138,46 @@
 
 @section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTynj_ZZOHcgQEhDn3RrEG9UAAnG9lgXk&libraries=places,geocoding&callback=initGoogleMapsApis"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('select');
             var instances = M.FormSelect.init(elems);
         });
+        
+        function updateCoords(){
+            direccion = document.getElementById('lugar').value;
+            console.log(direccion);
+
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ 'address': direccion }, function(results, status) {
+                if (status == 'OK') {
+                    var latitud = results[0].geometry.location.lat();
+                    var longitud = results[0].geometry.location.lng();
+
+                    console.log(status);
+
+                    document.getElementById('error-lugar').classList.add("hidden");
+                } else {
+                    var latitud = null;
+                    var longitud = null;
+                    
+                    document.getElementById('error-lugar').classList.remove("hidden");
+                }
+                
+                document.getElementById('latitud').value = latitud;
+                document.getElementById('longitud').value = longitud;
+                console.log('lat: ' + latitud + ' - lon: ' + longitud);
+            });
+        }
+
+        function initGoogleMapsApis() {
+            var lugarAutocomplete = new google.maps.places.Autocomplete(document.getElementById('lugar'));
+            lugarAutocomplete.setTypes(['address']);
+            lugarAutocomplete.addListener('place_changed', updateCoords);
+        }
+        
         $(document).ready(function(event) {
             $( ".input-field" ).each(function(){
                 if($( this ).children("input").val() == "" || $( this ).children("textarea").val() == ""){

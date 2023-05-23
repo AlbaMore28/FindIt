@@ -55,7 +55,7 @@ class FiltroObjetosBuscados extends Component
         }
         if(!empty($this->fecha)){ $eloquentQuery = $eloquentQuery->whereDate('created_at', $this->fecha); }
 
-        return $eloquentQuery->paginate(9);
+        return $eloquentQuery->orderBy('created_at', 'desc')->paginate(9);
     }
     
     public function render()

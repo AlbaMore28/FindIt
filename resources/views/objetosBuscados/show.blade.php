@@ -91,15 +91,10 @@
                     </div>
 
                     {{-- Pestaña lugar --}}
-                    <div id="contenido-pestania-2" class="flex flex-col sm:flex-row px-5 justify-around items-center w-full h-5/6 cuadro_grande bg-white/50 border-2 border-solid border-gray-400 hidden">
-                        <div id="mapouter" class="h-60 w-full">
-                            {{-- <div class="gmap_canvas">
-                                <iframe class="h-60 w-full" id="gmap_canvas" src="https://maps.google.com/maps?q=2880%20Broadway,%20New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
-                                </iframe>
-                            </div> --}}
-                        </div>
-                        <div class="flex">
-                            <p class="icono-lugar mr-2 text-red-600 font-bold text-2xl">l</p>
+                    <div id="contenido-pestania-2" class="flex flex-col px-5 justify-around items-center w-full h-5/6 cuadro_grande bg-white/50 border-2 border-solid border-gray-400 pt-3 hidden">
+                        <div id="mapa" class="h-60 w-full sm:w-2/3"></div>
+                        <div class="flex justify-center items-center gap-x-1 -mt-5">
+                            <p class="icono-lugar text-red-600 font-bold text-2xl">l</p>
                             <p class="font-semibold text-blue-gray-dark">{{$objetoBuscado->objeto->lugar}}</p>
                         </div>
                     </div>
@@ -117,7 +112,7 @@
                                 </div>
                             @endif
                             @if ($objetoBuscado->objeto->color)
-                                <div class="flex muestrario">
+                                <div class="flex items-center muestrario">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-10 mr-2">
                                         <path class="h-6" stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" />
                                     </svg>
@@ -192,10 +187,21 @@
 @endsection
 
 @section('js')
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v3"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTynj_ZZOHcgQEhDn3RrEG9UAAnG9lgXk&libraries=geocoding&callback=initMap"></script>
 
     <script>
+        function initMap() {
+            var coordenadas = { lat: {{ $objetoBuscado->objeto->latitud }}, lng: {{ $objetoBuscado->objeto->longitud }} };
+            var map = new google.maps.Map(document.getElementById('mapa'), {
+                zoom: 15,
+                center: coordenadas
+            });
+            var marker = new google.maps.Marker({
+                position: coordenadas,
+                map: map
+            });
+        }
+
         var imagenes = [];
         var indice;
         var num_imagenes;

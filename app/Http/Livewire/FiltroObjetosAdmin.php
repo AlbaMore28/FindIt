@@ -53,7 +53,7 @@ class FiltroObjetosAdmin extends Component
         }
         if(!empty($this->fecha)){ $eloquentQuery = $eloquentQuery->whereDate('created_at', $this->fecha); }
 
-        return $eloquentQuery->get();
+        return $eloquentQuery->orderBy('created_at', 'desc')->get();
     }
 
     public function render()

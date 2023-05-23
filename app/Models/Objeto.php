@@ -19,6 +19,8 @@ class Objeto extends Model
         'descripcion',
         'lugar',
         'tamanio',
+        'latitud',
+        'longitud'
     ];
     
     //Relacion muchos a 1 

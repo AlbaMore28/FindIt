@@ -16,7 +16,7 @@
                     
                     <div class="input-field h-11">
                         <input type="email" id="email" name="emailInicio" value="{{old('emailInicio')}}">
-                        <label for="email">Email:</label>
+                        <label for="email">*Email:</label>
                     </div>
                     @error('emailInicio')
                         <small class="text-red-700 text-left">
@@ -26,7 +26,7 @@
         
                     <div class="input-field h-11">
                         <input type="password" id="password" name="passwordInicio">
-                        <label for="password">Contraseña:</label>
+                        <label for="password">*Contraseña:</label>
                     </div>
                     @error('passwordInicio')
                         <small class="text-red-700 text-left">
@@ -48,7 +48,7 @@
                     @csrf
                     <div class="input-field h-11">
                         <input type="text" id="nombre" name="nombre" value="{{old('nombre')}}">
-                        <label for="nombre">Nombre:</label>
+                        <label for="nombre">*Nombre:</label>
                     </div>
                     @error('nombre')
                         <small class="text-red-700 text-left">
@@ -58,7 +58,7 @@
                     
                     <div class="input-field h-11">
                         <input type="text" id="apellidos" name="apellidos" value="{{old('apellidos')}}">
-                        <label for="apellidos">Apellidos:</label>
+                        <label for="apellidos">*Apellidos:</label>
                     </div>
                     @error('apellidos')
                         <small class="text-red-700 text-left">
@@ -68,7 +68,7 @@
                     
                     <div class="input-field h-11">
                         <input type="text" id="nombre_usuario" name="nombre_usuario" value="{{old('nombre_usuario')}}">
-                        <label for="nombre_usuario">Nombre de usuario:</label>
+                        <label for="nombre_usuario">*Nombre de usuario:</label>
                     </div>
                     @error('nombre_usuario')
                         <small class="text-red-700 text-left">
@@ -78,7 +78,7 @@
             
                     <div class="input-field h-11">
                         <input type="date" id="fecha_nac" name="fecha_nac" value="{{old('fecha_nac')}}">
-                        <label for="fecha_nac">Fecha de Nacimiento:</label>
+                        <label for="fecha_nac">*Fecha de Nacimiento:</label>
                     </div>
                     @error('fecha_nac')
                         <small class="text-red-700 text-left">
@@ -99,7 +99,7 @@
             
                     <div class="input-field h-11">
                         <input type="email" id="email" name="email" value="{{old('email')}}">
-                        <label for="email">Email:</label>
+                        <label for="email">*Email:</label>
                     </div>
                     @error('email')
                         <small class="text-red-700 text-left">
@@ -109,7 +109,7 @@
             
                     <div class="input-field h-11">
                         <input type="password" id="password" name="password">
-                        <label for="password">Contraseña:</label>
+                        <label for="password">*Contraseña:</label>
                     </div>
                     @error('password')
                         <small class="text-red-700 text-left">
@@ -119,7 +119,7 @@
             
                     <div class="input-field h-11">
                         <input type="password" id="password_confirmation" name="password_confirmation">
-                        <label for="password_confirmation">Confirmar Contraseña:</label>
+                        <label for="password_confirmation">*Confirmar Contraseña:</label>
                     </div>
                     @error('password_confirmation')
                         <small class="text-red-700 text-left">

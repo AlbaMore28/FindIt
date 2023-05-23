@@ -12,7 +12,7 @@
                     @csrf
                         <div class="input-field h-11 text-left">
                             <input type="text" id="titulo" name="titulo" autocomplete="off" placeholder=" " value="{{old('titulo', $objeto->titulo)}}">
-                            <label for="titulo">Título:</label>
+                            <label for="titulo">*Título:</label>
                             @error('titulo')
                                 <small class="text-red-700">
                                     *{{$message}}
@@ -25,7 +25,7 @@
                                 <option value="mediano" @if (old('tamanio', $objeto->tamanio) == "mediano") selected @endif>Mediano</option>
                                 <option value="pequenio" @if (old('tamanio', $objeto->tamanio) == "pequenio") selected @endif>Pequeño</option>
                             </select>
-                            <label list="tamanio">Tamaño:</label>
+                            <label list="tamanio">*Tamaño:</label>
                             @error('tamanio')
                                 <small class="text-red-700">
                                     *{{$message}}
@@ -41,7 +41,7 @@
                                 </option>
                                 @endforeach
                             </select>
-                            <label for="color">Color: </label>
+                            <label for="color">*Color: </label>
                             @error('color')
                                 <small class="text-red-700">
                                     *{{$message}}
@@ -57,7 +57,7 @@
                                 </option>
                                 @endforeach
                             </select>
-                            <label for="categoria">Categoría:</label>
+                            <label for="categoria">*Categoría:</label>
                             @error('categoria')
                                 <small class="text-red-700">
                                     *{{$message}}
@@ -66,13 +66,17 @@
                         </div>
 
                         <div class="input-field text-left">
-                            <input type="text" id="lugar" name="lugar" autocomplete="off" placeholder=" " value="{{old('lugar', $objeto->lugar)}}">
-                            <label for="lugar">Lugar:</label>
+                            <input type="text" id="lugar" name="lugar" autocomplete="off" placeholder=" " value="{{old('lugar', $objeto->lugar)}}" onchange="updateCoords()">
+                            <label for="lugar">*Lugar:</label>
                             @error('lugar')
                                 <small class="text-red-700">
                                     *{{$message}}
                                 </small>
                             @enderror
+                            
+                            <small id="error-lugar" class="text-red-700 hidden">
+                                *La dirección no es válida
+                            </small>
                         </div>
                         
                         <div class="flex flex-col items-start justify-center">
@@ -88,7 +92,7 @@
 
                         <div class="input-field sm:col-span-2 row-span-3 text-left">
                             <textarea name="descripcion" id="descripcion" style="resize: none" class="h-full border-b border-solid border-blue-gray-dark">{{old('descripcion', $objeto->descripcion)}}</textarea>
-                            <label for="descripcion">Descripción:</label>
+                            <label for="descripcion">*Descripción:</label>
                             @error('descripcion')
                                 <small class="text-red-700">
                                     *{{$message}}
@@ -116,6 +120,9 @@
                             @enderror
                         </div>
                         
+                        <input type="hidden" id="latitud" name="latitud">
+                        <input type="hidden" id="longitud" name="longitud">
+                        
                         <div class="flex flex-col items-center sm:items-end mt-14">
                             <button class="btn waves-effect waves-light boton-form" type="submit" name="action">
                                 <span class="texto-boton">Actualizar</span> 
@@ -134,12 +141,46 @@
 
 @section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTynj_ZZOHcgQEhDn3RrEG9UAAnG9lgXk&libraries=places,geocoding&callback=initGoogleMapsApis"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('select');
             var instances = M.FormSelect.init(elems);
         });
+
+        function updateCoords(){
+            direccion = document.getElementById('lugar').value;
+            console.log(direccion);
+
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ 'address': direccion }, function(results, status) {
+                if (status == 'OK') {
+                    var latitud = results[0].geometry.location.lat();
+                    var longitud = results[0].geometry.location.lng();
+
+                    console.log(status);
+
+                    document.getElementById('error-lugar').classList.add("hidden");
+                } else {
+                    var latitud = null;
+                    var longitud = null;
+                    
+                    document.getElementById('error-lugar').classList.remove("hidden");
+                }
+                
+                document.getElementById('latitud').value = latitud;
+                document.getElementById('longitud').value = longitud;
+                console.log('lat: ' + latitud + ' - lon: ' + longitud);
+            });
+        }
+
+        function initGoogleMapsApis() {
+            var lugarAutocomplete = new google.maps.places.Autocomplete(document.getElementById('lugar'));
+            lugarAutocomplete.setTypes(['address']);
+            lugarAutocomplete.addListener('place_changed', updateCoords);
+        }
+
         $(document).ready(function(event) {
             $( ".input-field" ).each(function(){
                 if($( this ).children("input").val() == "" || $( this ).children("textarea").val() == ""){
@@ -179,6 +220,8 @@
                     }   
                 }   
             });
+
+            updateCoords();
         });
     </script>
 @endsection

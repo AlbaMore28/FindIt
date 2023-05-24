@@ -27,8 +27,13 @@ tasks:
 
 
   build:
-    - cd: "{{release path}}"
-    - run: "npm run build"
+    - cd: "{{release_path}}"
+    - run: "npm run prod"
+
+  queue:work:
+    - cd: "{{release_path}}"
+    - run: "php {{bin/php}} {{release_path}}/artisan queue:work --daemon"
 
 after:
   deploy:failed: deploy:unlock
+  deploy:symlink: queue:work

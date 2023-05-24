@@ -32,7 +32,7 @@ tasks:
 
   queue:work:
     - cd: "{{release_path}}"
-    - run: "php {{bin/php}} {{release_path}}/artisan queue:work --daemon"
+    - run: "php artisan queue:work --daemon"
 
 after:
   deploy:failed: deploy:unlock

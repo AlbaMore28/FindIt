@@ -30,10 +30,10 @@ tasks:
     - cd: "{{release_path}}"
     - run: "npm run prod"
 
-  queue:work:
-    - cd: "{{release_path}}"
-    - run: "php artisan queue:work --daemon"
+  # queue:work:
+  #   - cd: "{{release_path}}"
+  #   - run: "php artisan queue:work --daemon"
 
 after:
   deploy:failed: deploy:unlock
-  deploy:symlink: queue:work
+  # deploy:symlink: queue:work

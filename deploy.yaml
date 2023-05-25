@@ -31,7 +31,7 @@ tasks:
   
   load_env:
     - cd: "{{release_path}}"
-    - run: "cp .env.prod .env"
+    - run: "cp .env.prod ../../shared/.env"
 
   # queue:work:
   #   - cd: "{{release_path}}"

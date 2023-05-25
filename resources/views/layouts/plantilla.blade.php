@@ -25,7 +25,7 @@
         
         <main class="main">
             @if (session('success'))
-                <x-alerta color='green' :mensaje="session('success')"/>
+                <x-alerta color='purple' :mensaje="session('success')"/>
             @endif
             @if (session('info'))
                 <x-alerta color='yellow' :mensaje="session('info')"/>

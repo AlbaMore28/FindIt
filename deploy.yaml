@@ -25,15 +25,21 @@ tasks:
     - build
     - deploy:publish
 
-
   build:
     - cd: "{{release_path}}"
     - run: "npm run prod"
+  
+  load_env:
+    - cd: "{{release_path}}"
+    - run: "cp .env.prod .env"
 
   # queue:work:
   #   - cd: "{{release_path}}"
   #   - run: "php artisan queue:work --daemon"
 
+before:
+  deploy:shared: load_env
+  
 after:
   deploy:failed: deploy:unlock
   # deploy:symlink: queue:work

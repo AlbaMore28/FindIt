@@ -3,6 +3,9 @@
 /public/css/app.css
 /public/js
 /public/storage
+/storage/app/public/img/
+/storage/app/public/objetos/
+/storage/app/public/users/
 /storage/*.key
 /vendor
 .phpunit.result.cache

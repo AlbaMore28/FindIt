@@ -148,15 +148,12 @@
         
         function updateCoords(){
             direccion = document.getElementById('lugar').value;
-            console.log(direccion);
 
             var geocoder = new google.maps.Geocoder();
             geocoder.geocode({ 'address': direccion }, function(results, status) {
                 if (status == 'OK') {
                     var latitud = results[0].geometry.location.lat();
                     var longitud = results[0].geometry.location.lng();
-
-                    console.log(status);
 
                     document.getElementById('error-lugar').classList.add("hidden");
                 } else {
@@ -168,7 +165,6 @@
                 
                 document.getElementById('latitud').value = latitud;
                 document.getElementById('longitud').value = longitud;
-                console.log('lat: ' + latitud + ' - lon: ' + longitud);
             });
         }
 

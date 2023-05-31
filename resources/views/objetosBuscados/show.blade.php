@@ -7,7 +7,11 @@
 
 @section('contenido')
     <div id="mi-modal-eliminar" class="flex flex-col justify-center items-center h-screen w-screen mi-modal-eliminar hidden">
-        <div class="w-5/6 sm:top-60 sm:left-96 div-mi-modal-movil text-center sm:pb-0 sm:pt-28 sm:px-0 sm:h-80 sm:w-400 bg-white rounded-lg text-2xl font-semibold text-blue-gray-dark shadow-lg">
+        <div class="w-5/6 div-mi-modal-movil text-center sm:pb-0 sm:pt-28 sm:px-0 sm:h-80 sm:w-400 bg-white rounded-lg text-2xl font-semibold text-blue-gray-dark shadow-lg"
+            style="transform: translate(-50%, -50%) !important;
+            top: 50% !important;
+            left: 50% !important;"
+        >
             <p class="mb-2">¿Está seguro de que desea eliminar este objeto?</p>
             <div class="flex w-full justify-center">
                 <div class="btn waves-effect waves-light boton-form mr-2" onclick="cerrarModalEliminar()">
@@ -208,9 +212,10 @@
 
         $(document).ready(function(event) {
             var imagenes_aux = {!! json_encode($objetoBuscado->objeto->imagesObjeto) !!}
-        
+            var path = "{{ asset('storage/') }}/";
+
             imagenes_aux.forEach(imagen => {
-                imagenes.push('http://findit.test/storage/'+imagen['image']['url']);
+                imagenes.push(path + imagen['image']['url']);
             });
 
             num_imagenes = imagenes.length;

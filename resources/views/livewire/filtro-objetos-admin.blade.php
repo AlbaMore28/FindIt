@@ -61,7 +61,7 @@
         </div>
     </div>
 
-    <div id="filtros" class="hidden h-screen w-full sm:flex sm:flex-col sm:h-864 sm:w-80 sm:ml-10 backdrop-opacity-10 backdrop-invert bg-white/50 rounded-xl">
+    <div id="filtros" class="hidden pb-5 w-full sm:flex sm:flex-col sm:h-864 sm:w-80 sm:ml-10 backdrop-opacity-10 backdrop-invert bg-white/50 rounded-xl">
         <h2 class="titulo_filtros mt-8 mb-2 text-blue-gray-dark">Filtros</h2>
 
         <div class="flex justify-center">

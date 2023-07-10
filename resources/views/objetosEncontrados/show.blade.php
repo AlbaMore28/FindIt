@@ -6,7 +6,7 @@
 @endsection
 
 @section('contenido')
-<div id="mi-modal-eliminar" class="flex flex-col justify-center items-center h-screen w-screen mi-modal-eliminar hidden">
+<div id="mi-modal-eliminar" class="mi-modal-eliminar hidden" style="position: fixed; inset: 0;">
     <div class="w-5/6  div-mi-modal-movil text-center sm:pb-0 sm:pt-28 sm:px-0 sm:h-80 sm:w-400 bg-white rounded-lg text-2xl font-semibold text-blue-gray-dark shadow-lg"
         style="transform: translate(-50%, -50%) !important;
         top: 50% !important;
@@ -144,7 +144,7 @@
             </div>
 
             @auth
-                @if (($objetoEncontrado->user->id == Auth::user()->id) || (Auth::user()->can('admin.objetos.index')))
+                @if ($objetoEncontrado->user->id == Auth::user()->id)
                     <div class="flex flex-col sm:flex-row sm:justify-end mb-20 sm:mr-7 mr-0">
                         <a class="btn waves-effect waves-light boton-form sm:mr-2 sm:mt-0 sm:mb-0 mt-2 mb-2 mr-0" href="{{route('objetos.edit',$objetoEncontrado->id)}}">
                             <span class="texto-boton mr-1">Editar</span> 
@@ -162,15 +162,15 @@
                                 <span class="texto-boton mr-1">Editar</span> 
                                 <i class="tiny material-icons">create</i>
                             </a>
-                            <button class="btn waves-effect waves-light boton-form mr-2" onclick="activarModalEliminar()">
+                            <button class="w-full sm:w-fit btn waves-effect waves-light boton-form mr-2" onclick="activarModalEliminar()">
                                 <span class="texto-boton mr-1">Eliminar</span> 
                                 <i class="tiny material-icons">delete</i>
                             </button>
                             @endif
-                            <form action="{{route('chats.crearChat')}}" method="POST" target="_blank">
+                            <form action="{{route('chats.crearChat')}}" method="POST" target="_blank" class="w-full sm:w-fit">
                                 @csrf
                                 <input type="text" class="hidden" name='user_id' value="{{$objetoEncontrado->user->id}}"/>
-                                <button type="submit" class="btn waves-effect waves-light boton-form sm:mr-2 sm:mt-0 sm:mb-0 mt-2 mb-2 mr-0">
+                                <button type="submit" class="w-full sm:w-fit btn waves-effect waves-light boton-form sm:mr-2 sm:mt-0 sm:mb-0 mt-2 mb-2 mr-0">
                                     <span class="texto-boton mr-1">Contactar</span> 
                                     <i class="tiny material-icons">message</i>
                                 </button>

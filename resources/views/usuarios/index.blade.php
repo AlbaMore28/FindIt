@@ -12,7 +12,7 @@
                 <img class="w-full" src="{{asset('storage/img/spinner.png')}}" alt="">
             </div>
         </div>
-        <div id="mi-modal-eliminar" class="flex flex-col justify-center items-center h-screen w-screen mi-modal-eliminar hidden">
+        <div id="mi-modal-eliminar" class="mi-modal-eliminar hidden" style="position: fixed; inset: 0;">
             <div class="w-5/6 div-mi-modal-movil text-center sm:pb-0 sm:pt-28 sm:px-0 sm:h-80 sm:w-400 bg-white rounded-lg text-2xl font-semibold text-blue-gray-dark shadow-lg"
                 style="transform: translate(-50%, -50%) !important;
                 top: 50% !important;
@@ -33,7 +33,7 @@
                 </div>
             </div>
         </div>
-        <div id="mi-modal-password" class="flex flex-col justify-center items-center h-screen w-screen mi-modal-eliminar hidden">
+        <div id="mi-modal-password" class="mi-modal-eliminar hidden" style="position: fixed; inset: 0;">
             <form id="cambiarPassword" action="{{route('api.usuarios.editarPassword')}}" method="POST" class="grid grid-cols-1 sm:grid-cols-2 sm:gap-x-10 gap-y-8 sm:py-8 h-fit content-center w-5/6 sm:px-20 px-10 sm:w-400 bg-white rounded-lg div-mi-modal-movil text-2xl font-semibold text-blue-gray-dark shadow-lg"
                     style="transform: translate(-50%, -50%) !important;
                     top: 50% !important;

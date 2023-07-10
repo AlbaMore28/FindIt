@@ -138,7 +138,7 @@
 
 @section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTynj_ZZOHcgQEhDn3RrEG9UAAnG9lgXk&libraries=places,geocoding&callback=initGoogleMapsApis"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvM9oha22BkPlxiQPRNOXCVXu89RjpwGw&libraries=places,geocoding&callback=initGoogleMapsApis"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
